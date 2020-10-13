@@ -1,0 +1,148 @@
+﻿@model  YemekSepetiUygulamasi.WebUI.Models.UyeBilgileri
+@{
+    Layout = null;
+}
+<style>
+   
+    #giris:hover{
+        background-color:black;
+        border:1px solid black;
+       
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V7</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Content/Login_v7/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v7/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v7/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v7/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v7/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v7/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v7/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v7/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v7/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v7/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v7/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-b-50 col-md-9" style="margin-left:auto" >
+                @using (Html.BeginForm("UyeOl", "Home", FormMethod.Post))
+                {
+                    <span class="login100-form-title p-b-20" style="margin-top:-20px; margin-left:-340px;">
+                        ÜYE OL
+                    </span>
+                    <div class="row" >
+                            <div class="wrap-input100 col-md-4" data-validate="Please enter email: ex@abc.xyz">
+                               
+                                @Html.TextBoxFor(m=>m.isim,new{ @type="text",@class="input100",@placeholder="Adınız Soyadınız" })
+                            </div>
+                            <div class="wrap-input100  col-md-4" data-validate="Please enter email: ex@abc.xyz">
+                                @Html.TextBoxFor(m => m.soyisim, new { @type = "text", @class = "input100", @placeholder = "Kullanıcı Adı" })
+                               
+                            </div>
+                    </div>
+                    <div class="row" style="margin-top:10px; ">
+                        <div class="wrap-input100 validate-input col-md-4" data-validate="Please enter email: ex@abc.xyz">
+                            @Html.TextBoxFor(m => m.Email, new { @type = "email", @class = "input100", @placeholder = "Email Adresi" })
+                           
+                        </div>
+                        <div class="wrap-input100 validate-input col-md-4">
+                            <span class="btn-show-pass">
+                                <i class="fa fa fa-eye"></i>
+                            </span>
+                           
+                            @Html.TextBoxFor(m => m.parola, new { @type = "password", @class = "input100", @placeholder = "Parola" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="wrap-input100 validate-input col-md-4" data-validate="Please enter email: ex@abc.xyz">
+                           
+                            @Html.TextBoxFor(m => m.ulke, new { @type = "text", @class = "input100", @placeholder = "Ülke" })
+                            
+                        </div>
+                        <div class="wrap-input100 validate-input col-md-4" data-validate="Please enter email: ex@abc.xyz">
+                          
+                            @Html.TextBoxFor(m => m.il, new { @type = "text", @class = "input100", @placeholder = "İl" })
+                            
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="wrap-input100 validate-input col-md-4" data-validate="Please enter email: ex@abc.xyz">
+                           
+                            @Html.TextBoxFor(m => m.ilce, new { @type = "text", @class = "input100", @placeholder = "İlçe" })
+                           
+                        </div>
+                        <div class="wrap-input100 validate-input col-md-4" data-validate="Please enter email: ex@abc.xyz">
+                           
+                            @Html.TextBoxFor(m => m.semt, new { @type = "text", @class = "input100", @placeholder = "semt" })
+                           
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="wrap-input100 validate-input col-md-8" data-validate="Please enter email: ex@abc.xyz">
+                          
+                            @Html.TextBoxFor(m => m.adres, new { @type = "text", @class = "input100", @placeholder = "Adres" })
+                        </div>
+                        
+                    </div>
+                    <div  style="margin-top:10px;">
+                        <button class="btn btn-danger col-md-4" id="giris" style="margin-left:150px; height:60px; margin-top:10px; border-radius:30px;">
+                            Üye Ol
+                        </button>
+                    </div>
+
+                    <div class="flex-col-c p-t-20 " style="margin-left:-350px;">
+                        <span class="txt2 " style="color:black;">
+                            Üyeliğin Varmı?
+                        </span>
+
+                        <a href="/Home/GirisYap" class="txt3 bo1 hov1" style="margin-left:-10px;">
+                            Giriş Yap
+                        </a>
+                    </div>
+
+           
+                }
+            </div>
+        </div>
+    </div>
+
+
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v7/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v7/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v7/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/Login_v7/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v7/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v7/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/Login_v7/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v7/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v7/js/main.js"></script>
+
+</body>
+</html>

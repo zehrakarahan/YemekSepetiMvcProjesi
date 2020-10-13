@@ -1,0 +1,90 @@
+/**
+ * Modal windows
+ */
+.modal {
+	background-color: $color-white;
+	border: calc-em(1px) solid $color-gray-light;
+	border-radius: calc-em(1px);
+	box-shadow: 0 calc-em(4px) calc-em(8px) rgba(0, 0, 0, 0.3);
+	display: none;
+	max-width: 100%;
+	padding: calc-em(8px) calc-em(16px);
+	visibility: hidden;
+	z-index: 9999;
+
+	@media (min-width: $bp-medium) {
+		max-width: 98%;
+	}
+
+	&.active {
+		display: block;
+		height: 100%;
+		left: 0;
+		max-height: 100%;
+		overflow: auto;
+		position: fixed;
+		right: 0;
+		top: 0;
+		visibility: visible;
+		-webkit-overflow-scrolling: touch;
+
+		@media (min-width: $bp-small) {
+			height: auto;
+			left: 3%;
+			margin-left: auto;
+			margin-right: auto;
+			right: 3%;
+			top: 50px;
+		}
+
+		@media (min-width: $bp-medium) {
+			left: 8%;
+			right: 8%;
+
+			&.modal-medium {
+				width: 35em;
+			}
+
+			&.modal-small {
+				width: 25em;
+			}
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+
+/**
+ * Modal background
+ */
+.modal-bg {
+	background-color: $color-black;
+	bottom: 0;
+	position: fixed;
+	left: 0;
+	opacity: .9;
+	right: 0;
+	top: 0;
+	z-index: 9998;
+}
+
+
+/**
+ * Close button
+ */
+.close {
+	color: $color-gray-dark;
+	cursor: pointer;
+	float: right;
+	font-weight: bold;
+	font-size: calc-em(24px);
+	text-decoration: none;
+
+	&:hover {
+		color: darken( $color-gray-dark, 15% );
+		cursor: pointer;
+	}
+}

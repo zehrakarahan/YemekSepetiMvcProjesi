@@ -1,0 +1,12 @@
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Release\YemekSepetiUygulamasi.Entity.dll.config
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Release\YemekSepetiUygulamasi.Entity.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Release\YemekSepetiUygulamasi.Entity.pdb
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Release\EntityFramework.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Release\YemekSepetiUygulamasi.Core.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Release\YemekSepetiUygulamasi.Core.pdb
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Release\EntityFramework.xml
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\obj\Release\YemekSepetiUygulamasi.Entity.csprojResolveAssemblyReference.cache
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\obj\Release\YemekSepetiUygulamasi.Entity.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\obj\Release\YemekSepetiUygulamasi.Entity.pdb

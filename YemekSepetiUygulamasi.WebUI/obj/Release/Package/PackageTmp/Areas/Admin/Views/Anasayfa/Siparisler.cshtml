@@ -1,0 +1,108 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Areas.Admin.Models.SiparislerimViewModel
+@{
+    ViewBag.Title = "Siparisler";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+@{
+    var veriler = Model.Siparisislemleri;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Bootstrap Admin Template : Binary Admin</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="~/Areas/Admin/Content/bs-binary-admin/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="~/Areas/Admin/Content/bs-binary-admin/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- MORRIS CHART STYLES-->
+    <!-- CUSTOM STYLES-->
+    <link href="~/Areas/Admin/Content/NiceAdmin/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/bs-binary-admin/assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <script src="~/Areas/Admin/Content/NiceAdmin/js/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+    <link href='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' rel='stylesheet' type='text/css' />
+    <link href='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js' rel='stylesheet' type='text/css' />
+    <link href='https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js' rel='stylesheet' type='text/css' />
+
+    <link href='https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css' rel='stylesheet' type='text/css' />
+    <!-- TABLE STYLES-->
+    <link href="~/Areas/Admin/Content/bs-binary-admin/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   Sipariş Listesi
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="demoGrid">
+                            <thead>
+                                <tr>
+                                    <th>Sipariş Id</th>
+                                    <th>Kullanıcı Adı</th>
+                                 
+                                    <th>Sipariş Tarih</th>
+                                    <th>Siparis Durumu</th>
+                                    <th>SiparisTutarı</th>
+                                    <th>Sipariş Net Tutar</th>
+                                    <th>Ödeme Tipi</th>
+                                    <th>İncele</th>
+                                </tr>
+                            </thead>
+                                @for(int k=0;k<veriler.Count();k++)
+                                {
+                                <tr class="odd gradeX">
+                                    <td>@veriler[k].Order.Id</td>
+                                    <td>@veriler[k].Customer.Cname</td>
+                                    
+                                    <td>@veriler[k].Order.CreateDateTime.Value.ToShortDateString()</td>
+                                    <td>@veriler[k].Status.StatusName</td>
+                                    <td>@veriler[k].siparistutari</td>
+                                    <td>@veriler[k].siparisindirimlitutari</td>
+                                    <td>Odeme Tipi</td>
+                                    <td class="center"><a href="/Admin/Anasayfa/Siparisincele/@veriler[k].Order.Id"   title="Detay"><i class="fas fa-search-plus fa-2x"></i></a></td>
+                                </tr>
+                                }
+                        </table>
+
+                    </div>
+                    <script type="text/javascript">
+                        $('#demoGrid').dataTable({
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/bootstrap.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/jquery.metisMenu.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/dataTables/jquery.dataTables.js"></script>
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/dataTables/dataTables.bootstrap.js"></script>
+<script src="~/Areas/Admin/Content/jquery-3.4.1.min.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="assets/js/custom.js"></script>

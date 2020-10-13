@@ -1,0 +1,117 @@
+﻿@model IEnumerable<UserAndCartInformationModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div id="breadcrumb-container">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">User Account Page</li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <header class="content-title">
+                <h1 class="title">Welcome <b> @User.Identity.Name </b></h1>
+                <p class="title-desc">You can change your password <br> or show old purchase </p>
+            </header>
+            <div class="xs-margin"></div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <fieldset>
+                        <h2 class="sub-title">YOUR PERSONAL DETAILS</h2>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">First Name&#42;</span></span>
+                            <input type="text" required asp-for="@Model.First().Name" class="form-control input-lg" disabled placeholder="Your First Name">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="input-icon input-icon-email"></span><span class="input-text">Email&#42;</span></span>
+                            <input type="text" required asp-for="@Model.First().Email" class="form-control input-lg" disabled placeholder="Your Email">
+                        </div>
+                        <header class="content-title">
+                            <h1 class="title"></h1>
+                            <p class="title-desc"> * <small>if You Want Change Name Or Email please Send a Mail a@a.com</small></p>
+                        </header>
+                    </fieldset>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <form asp-controller="Account" asp-action="ForgotPassword" method="post">
+                        <div class="text-danger" asp-validation-summary="All"></div>
+                        <input type="hidden" value="SendNewPassword" />
+                        <fieldset>
+                            <h2 class="sub-title">CHANGE YOUR PASSWORD ? </h2>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="input-icon input-icon-password"></span><span class="input-text">Current Password&#42;</span></span>
+                                <input type="password" name="CurrentPassword" required class="form-control input-lg" placeholder="Current Password">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="input-icon input-icon-password"></span><span class="input-text">New Password&#42;</span></span>
+                                <input type="password" name="SendNewPassword" required class="form-control input-lg" placeholder="New Password">
+                            </div>
+                            <div class="text-danger">@TempData["Error"]</div>
+                        </fieldset>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="submit" value="Change My Password" class="btn btn-custom-2 md-margin" style="margin-top: -10%;">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <header class="content-title">
+                            <h1 class="title">Shopping Cart</h1>
+                            <p class="title-desc"></p>
+                        </header>
+                        <div class="xs-margin"></div>
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                <table class="table cart-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="table-title">Cart Id</th>
+                                            <th class="table-title">Products Name</th>
+                                            <th class="table-title">Check Out Date</th>
+                                            <th class="table-title">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.First().CardId != 0)
+                                        {
+                                            @foreach (var cart in Model)
+                                            {
+                                                <tr>
+                                                    <td class="item-code">@cart.CardId</td>
+                                                    <td class="item-code">@cart.ProductsName</td>
+                                                    <td class="item-price-col"><span class="item-price-special"> @cart.CheckOutDate</span></td>
+                                                    <td class="item-price-col"><span class="item-price-special">€ @cart.Total</span></td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                                @if (Model.First().CardId == 0)
+                                {
+                                    <br />
+                                    <div class="col-md-12"><h2 style="text-align:center;color:red">Haven't Any Shopping Yet!</h2></div>
+                                }
+                            </div>
+                        </div>
+                        <div class="lg-margin"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

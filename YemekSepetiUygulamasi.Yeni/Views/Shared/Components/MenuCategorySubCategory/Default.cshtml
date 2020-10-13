@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MenuItemModel>
+
+@foreach (var menuItem in Model)
+{
+    if (menuItem.SubCategoryName == null)
+    {
+        <li>
+            <a class="active" asp-controller="Home" asp-action="ProductList" asp-route-id="@menuItem.CategoryId" style="color: white;">@menuItem.CategoryName</a>
+        </li>
+    }
+    else
+    {
+        string[] subcategories = (menuItem.SubCategoryName).Split(',');
+        <li>
+            <a  asp-controller="Home" asp-action="ProductList" asp-route-id="@menuItem.CategoryId" style="color: white;">@menuItem.CategoryName</a>
+            <ul>
+                @foreach (var item in subcategories)
+                {
+                    <li>
+                        <a href="">@item</a>
+                    </li>
+                }
+
+            </ul>
+        </li>
+    }
+
+}

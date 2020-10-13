@@ -1,0 +1,123 @@
+﻿@model MainPageSetupsModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@await Component.InvokeAsync("SliderView")
+
+@await Component.InvokeAsync("BestSeller")
+
+@await Component.InvokeAsync("SliderView", new { SlideNumber = 2 })
+
+@await Component.InvokeAsync("BestSeller", new { SlideNumber = 2 })
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="lg-margin"></div>
+            <div class="row">
+
+                @if (Model != null)
+                {
+                    @if (Model.NewsIsActive)
+                    {
+                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="alert alert-warning" style="height: 200px; background:#FFCE00;">
+                                <strong style="color:white;font-size: 20px;">@Model.NewsHeader</strong>
+                                <p>@Model.NewsContext</p>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h1 style="color:orangered"> Not Any Slider Record From Database </h1>
+                }
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="alert alert-info" style="height: 200px; background:#1262AC">
+                        <strong style="color:white;font-size: 20px;">Bültenimizden Haberdar Olun</strong>
+                        <div class="md-margin"></div>
+                        <div class="col-md-6">
+                            <p style="color:white; font-size:15px;text-align:left">Get all the latest information on Events, Sales and Offers. Sign up for the Venedor store newsletter today.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <form action="#" id="subscribe-form">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="subscribe-email" placeholder="Enter your email address">
+                                </div>
+                                <input type="submit" value="Abone Ol" class="btn btn-custom" style="float:right;border-radius: 21px; background:#ffce00">
+                            </form>
+                        </div>
+                        @*<p>Vivamus orci tellus, faucibus ut metus a, ornare interdum nisl. Mauris commodo nibh justo, at fringilla dui molestie vel. Aliquam sed tellus lacus. Sed euismod urna in augue dapibus, quis interdum eros vestibulum. Nullam ac vulputate nisl. Nulla posuere dolo</p>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="lg-margin"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="lg-margin"></div>
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-4 ">
+                    <span class="col-md-5">
+                        <img src="~/Icons/icons8-price-80.png" alt="Brand Logo 2">
+                    </span>
+                    <span class="col-md-7">
+                        <div style="text-align:center">
+                            <strong>Avantajlı Fiyatlar</strong><br />
+                            <p>Kaliteli Ürünler</p>
+                        </div>
+                    </span>
+
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-4 ">
+                    <span class="col-md-5">
+                        <img src="~/Icons/icons8-security-configuration-96.png" alt="Brand Logo 2">
+                    </span>
+                    <span class="col-md-7">
+                        <div style="text-align:center">
+                            <strong>Güvenli Alışveriş</strong><br />
+                            <p>SSL Sertifikası</p>
+                        </div>
+                    </span>
+                </div>
+
+                <div class="col-md-3 col-sm-4 col-xs-4 ">
+                    <span class="col-md-5">
+                        <img src="~/Icons/icons8-free-shipping-80.png" alt="Brand Logo 2">
+                    </span>
+                    <span class="col-md-7">
+                        <div style="text-align:center">
+                            <strong>Ücretsiz Kargo</strong><br />
+                            <p><b>hede </b>Avro üzeri alışverişlerde</p>
+                        </div>
+                    </span>
+                </div>
+
+                <div class="col-md-3 col-sm-4 col-xs-4 ">
+                    <span class="col-md-5">
+                        <img src="~/Icons/icons8-return-purchase-96.png" alt="Brand Logo 2">
+                    </span>
+                    <span class="col-md-7">
+                        <div style="text-align:center">
+                            <strong>Kolay İade</strong><br />
+                            <p>Koşulsuz 14 gün iade hakkı</p>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

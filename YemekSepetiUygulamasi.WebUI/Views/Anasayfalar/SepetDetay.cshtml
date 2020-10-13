@@ -1,0 +1,398 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Models.Sepet
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Content/Documentation/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Documentation/assets/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Documentation/assets/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Documentation/assets/lib/jquery.bxslider/jquery.bxslider.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Documentation/assets/lib/owl.carousel/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Documentation/assets/lib/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Documentation/assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Documentation/assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Documentation/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Documentation/assets/css/responsive.css" />
+    <link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <script src="~/Content/fontawesome-free/js/all.min.js"></script>
+
+</head>
+@{
+
+    string alert = (string)Session["aramabilgisi"];
+}
+<body class="category-page">
+    <!-- HEADER -->
+    <!-- end header -->
+    <!-- page wapper-->
+    <div class="columns-container">
+        <div class="container" id="columns">
+
+            <!-- page heading-->
+            <h2 class="page-heading no-line">
+                <span class="page-heading-title2">Sepetim Verileri</span>
+            </h2>
+            <!-- ../page heading-->
+            <div class="page-content page-order">
+                <ul class="step">
+                    <li class="current-step"><span>01.Sepete Ekle</span></li>
+                    <li><span>02. Giriş Yap</span></li>
+                    <li><span>03. Sepet Detay</span></li>
+                    <li><span>04. Ödeme ve Sipariş Sonucu</span></li>
+                    <li><span>05. Yorum Yap</span></li>
+                </ul>
+
+                <div class="order-detail-content">
+                    <table class="table table-bordered table-responsive cart_summary">
+                        <thead>
+                            <tr>
+                                <th>Ürün Adı</th>
+                                <th>Adet Fiyatı</th>
+                                <th>Adedi</th>
+
+                                <th>Total Fiyat</th>
+                                <th class="action">Ürünü Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Urunler)
+                            {
+                                <tr>
+                                    <td class="cart_description">
+                                        <p class="product-name">@item.urunadi</p>
+
+                                    </td>
+                                    <td class="cart_avail"><span class="label label-success">@item.fiyati TL</span></td>
+                                    <td class="cart_avail"><span class="label label-success">@item.adeti Adet</span></td>
+                                    <td class="cart_avail"><span class="label label-success">@item.Tutar TL</span></td>
+
+                                    <td class="action">
+                                        <button class="silinecek" data-urunadi="@item.urunadi" data-urunid="@item.urunid" data-urunadeti="@item.adeti" data-tutari="@item.Tutar" data-firmaid="@item.firmaid" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2" rowspan="2">
+                                    <div style="position:absolute; left:100px;"><input type="text" style="background-color:white;  padding:3px 5px; border-radius:3px; border:1px solid #dedede;" placeholder="Kupon Kodu Giriniz.." /></div>
+                                    <button style="position:absolute;left:320px; margin-top:-3px;" class="btn btn-danger">Kodu Uygula</button>
+                                </td>
+                                <td colspan="1">Toplam Fiyat</td>
+                                <td colspan="2">@Model.ToplamTutar TL</td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="1"><strong>Genel Toplam</strong></td>
+                                <td colspan="2"><strong>@Model.ToplamTutar TL</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="cart_navigation">
+                        <a class="prev-btn" href="#">Geriye Dön</a>
+                        <a class="next-btn" href="#">Siparişi Tamamla</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./page wapper-->
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <!-- introduce-box -->
+            <div id="introduce-box" class="row">
+                <div class="col-md-3">
+                    <div id="address-box">
+                        <a href="#"><img src="~/Content/Documentation/assets/data/introduce-logo.png" alt="" /></a>
+                        <div id="address-list">
+                            <div class="tit-name">Address:</div>
+                            <div class="tit-contain">Example Street 68, Mahattan, New York, USA.</div>
+                            <div class="tit-name">Phone:</div>
+                            <div class="tit-contain">+00 123 456 789</div>
+                            <div class="tit-name">Email:</div>
+                            <div class="tit-contain">support@business.com</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="introduce-title">Company</div>
+                            <ul id="introduce-company" class="introduce-list">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Affiliate Program</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="introduce-title">My Account</div>
+                            <ul id="introduce-Account" class="introduce-list">
+                                <li><a href="#">My Order</a></li>
+                                <li><a href="#">My Wishlist</a></li>
+                                <li><a href="#">My Credit Slip</a></li>
+                                <li><a href="#">My Addresses</a></li>
+                                <li><a href="#">My Personal In</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="introduce-title">Support</div>
+                            <ul id="introduce-support" class="introduce-list">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Affiliate Program</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="contact-box">
+                        <div class="introduce-title">Newsletter</div>
+                        <div class="input-group" id="mail-box">
+                            <input type="text" placeholder="Your Email Address" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">OK</button>
+                            </span>
+                        </div><!-- /input-group -->
+                        <div class="introduce-title">Let's Socialize</div>
+                        <div class="social-link">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fa fa-vk"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /#introduce-box -->
+            <!-- #trademark-box -->
+            <div id="trademark-box" class="row">
+                <div class="col-sm-12">
+                    <ul id="trademark-list">
+                        <li id="payment-methods">Accepted Payment Methods</li>
+                        <li>
+                            <a href="#"><img src="~/Content/Documentation/assets/data/trademark-ups.jpg" alt="ups" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/Documentation/assets/data/trademark-qiwi.jpg" alt="ups" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/Documentation/assets/data/trademark-wu.jpg" alt="ups" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/Documentation/assets/data/trademark-cn.jpg" alt="ups" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/Documentation/assets/data/trademark-visa.jpg" alt="ups" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/Documentation/assets/data/trademark-mc.jpg" alt="ups" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/Documentation/assets/data/trademark-ems.jpg" alt="ups" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/Documentation/assets/data/trademark-dhl.jpg" alt="ups" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/Documentation/assets/data/trademark-fe.jpg" alt="ups" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="~/Content/Documentation/assets/data/trademark-wm.jpg" alt="ups" /></a>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- /#trademark-box -->
+            <!-- #trademark-text-box -->
+            <div id="trademark-text-box" class="row">
+                <div class="col-sm-12">
+                    <ul id="trademark-search-list" class="trademark-list">
+                        <li class="trademark-text-tit">HOT SEARCHED KEYWORDS:</li>
+                        <li><a href="#">Xiaomii Mi3</a></li>
+                        <li><a href="#">Digiflipii Pro XT 712 Tablet</a></li>
+                        <li><a href="#">Mi 3 Phones</a></li>
+                        <li><a href="#">Iphonei 6 Plus</a></li>
+                        <li><a href="#">Women's Bags</a></li>
+                        <li><a href="#">Wallets</a></li>
+                        <li><a href="#">Women's Clutches</a></li>
+                        <li><a href="#">Backpacks Totes</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <ul id="trademark-tv-list" class="trademark-list">
+                        <li class="trademark-text-tit">TVS:</li>
+                        <li><a href="#">Sonyi TV</a></li>
+                        <li><a href="#">Samsing TV</a></li>
+                        <li><a href="#">LGi TV</a></li>
+                        <li><a href="#">Onidai TV</a></li>
+                        <li><a href="#">Toshibai TV</a></li>
+                        <li><a href="#">Philipsi TV</a></li>
+                        <li><a href="#">Micromaxi TV</a></li>
+                        <li><a href="#">LED TV</a></li>
+                        <li><a href="#">LCD TV</a></li>
+                        <li><a href="#">Plasma TV</a></li>
+                        <li><a href="#">3D TV</a></li>
+                        <li><a href="#">Smart TV</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <ul id="trademark-mobile-list" class="trademark-list">
+                        <li class="trademark-text-tit">MOBILES:</li>
+                        <li><a href="#">Moto E</a></li>
+                        <li><a href="#">Samsong Mobile</a></li>
+                        <li><a href="#">Micromaxo Mobile</a></li>
+                        <li><a href="#">Nokiao Mobile</a></li>
+                        <li><a href="#">HTCo Mobile</a></li>
+                        <li><a href="#">Sonyo Mobile</a></li>
+                        <li><a href="#">Appleo Mobile</a></li>
+                        <li><a href="#">LoG Mobile</a></li>
+                        <li><a href="#">Karbonno Mobile</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <ul id="trademark-laptop-list" class="trademark-list">
+                        <li class="trademark-text-tit">LAPTOPS::</li>
+                        <li><a href="#">Appleo Laptop</a></li>
+                        <li><a href="#">Acero Laptop</a></li>
+                        <li><a href="#">Samsoung Laptop</a></li>
+                        <li><a href="#">Lenoovo Laptop</a></li>
+                        <li><a href="#">Sonoy Laptop</a></li>
+                        <li><a href="#">Dello Laptop</a></li>
+                        <li><a href="#">Asuos Laptop</a></li>
+                        <li><a href="#">Toshibao Laptop</a></li>
+                        <li><a href="#">LGo Laptop</a></li>
+                        <li><a href="#">HPo Laptop</a></li>
+                        <li><a href="#">Notebook</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <ul id="trademark-watches-list" class="trademark-list">
+                        <li class="trademark-text-tit">WATCHES:</li>
+                        <li><a href="#">FCUKo Watches</a></li>
+                        <li><a href="#">Titano Watches</a></li>
+                        <li><a href="#">Casioo Watches</a></li>
+                        <li><a href="#">Fastracko Watches</a></li>
+                        <li><a href="#">Timexo Watches</a></li>
+                        <li><a href="#">Fossilo Watches</a></li>
+                        <li><a href="#">Dieselo Watches</a></li>
+                        <li><a href="#">Toshibao Laptop</a></li>
+                        <li><a href="#">Luxury Watches</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <ul id="trademark-shoes-list" class="trademark-list">
+                        <li class="trademark-text-tit">FOOTWEAR:</li>
+                        <li><a href="#">Shoes</a></li>
+                        <li><a href="#">Casualo Shoes</a></li>
+                        <li><a href="#">Sports Shoes</a></li>
+                        <li><a href="#">Adidaso Shoes</a></li>
+                        <li><a href="#">Gaso Shoes</a></li>
+                        <li><a href="#">Pumao Shoes</a></li>
+                        <li><a href="#">Reeboko Shoes</a></li>
+                        <li><a href="#">Woodlando Shoes</a></li>
+                        <li><a href="#">Red tape Shoes</a></li>
+                        <li><a href="#">Nikeo Shoes</a></li>
+                    </ul>
+                </div>
+            </div><!-- /#trademark-text-box -->
+            <div id="footer-menu-box">
+                <div class="col-sm-12">
+                    <ul class="footer-menu-list">
+                        <li><a href="#">Company Info - Partnerships</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <ul class="footer-menu-list">
+                        <li><a href="#">Online Shopping</a></li>
+                        <li><a href="#">Promotions</a></li>
+                        <li><a href="#">My Orders</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Site Map</a></li>
+                        <li><a href="#">Customer Service</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <ul class="footer-menu-list">
+                        <li><a href="#">Most Populars</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Special Products</a></li>
+                        <li><a href="#">Manufacturers</a></li>
+                        <li><a href="#">Our Stores</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Payments</a></li>
+                        <li><a href="#">Warantee</a></li>
+                        <li><a href="#">Refunds</a></li>
+                        <li><a href="#">Checkout</a></li>
+                        <li><a href="#">Discount</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <ul class="footer-menu-list">
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Policy</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Payments</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Refunds</a></li>
+                        <li><a href="#">Warrantee</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <p class="text-center">Copyrights &#169; 2015 KuteShop. All Rights Reserved. Designed by KuteThemes.com</p>
+            </div><!-- /#footer-menu-box -->
+        </div>
+    </footer>
+
+    <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+    <!-- Script-->
+    <script type="text/javascript" src="~/Content/Documentation/assets/lib/jquery/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="~/Content/Documentation/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/Documentation/assets/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/Content/Documentation/assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="~/Content/Documentation/assets/lib/owl.carousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/Content/Documentation/assets/lib/jquery.countdown/jquery.countdown.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/Documentation/assets/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Content/Documentation/assets/js/jquery.actual.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/Documentation/assets/js/theme-script.js"></script>
+
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(".silinecek").click(function () {
+
+        alert("merhaba dunya");
+        var firmaid = $(this).data("firmaid");
+        var urunadi = $(this).data("urunadi");
+        var urunid = $(this).data("urunid");
+        var urunadedi = $(this).data("urunadeti");
+        alert("fir"+firmaid+"uradi"+urunadi+"uruade"+urunadedi);
+        $.ajax({
+            type:"POST",
+            url: "/Sepetim/SepetUrunSil",
+            data: { id: urunid, urunadi: urunadi, adet: urunadedi, firmaid:firmaid},
+            success: function () {
+                var jsAlert = '@alert';
+                window.location.replace("/Anasayfalar/YemekveRestoransearch?search=" + jsAlert);
+                }
+                });
+
+  });
+</script>

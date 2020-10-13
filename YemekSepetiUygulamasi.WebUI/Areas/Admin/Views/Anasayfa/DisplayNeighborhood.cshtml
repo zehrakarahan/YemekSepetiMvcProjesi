@@ -1,0 +1,10 @@
+﻿
+<option value="">-- Semt  Seç--</option>
+
+@if (ViewBag.clist != null)
+{
+    foreach (var item in ViewBag.clist)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

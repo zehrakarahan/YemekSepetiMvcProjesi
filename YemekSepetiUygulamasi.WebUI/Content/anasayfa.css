@@ -1,0 +1,19 @@
+﻿body {
+     padding:0px;
+    margin:0px;
+    list-style:none;
+    border:0px;
+}
+.container{
+    max-width:800px;
+    margin:0px;
+    padding:0px;
+    border:0px;
+}
+.slider{
+    max-width:800px;
+    float:left;
+}
+.slider ul.slider_liste li a img{
+    max-width:800px;
+}

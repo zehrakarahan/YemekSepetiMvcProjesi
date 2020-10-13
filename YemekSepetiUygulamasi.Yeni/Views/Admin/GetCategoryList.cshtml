@@ -1,0 +1,122 @@
+﻿@model Categories
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+    <div class="col-lg-offset-3">
+        <form asp-controller="Admin" asp-action="AddCategory" class="form-horizontal form-label-left" method="post">
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <div class="col-sm-4 col-xs-12 col-md-4 " style="margin-top:15px">
+                <div class="form-group">
+                    <label asp-for="CategoriesName"></label>
+                    <input asp-for="CategoriesName" class="form-control" required="required" />
+                </div>
+                <button type="submit" class="btn btn-success">Add To New Cateogry</button>
+            </div>
+        </form>
+
+
+        <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:50px">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Kategori Listesi</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Category Id</th>
+                                <th>Category Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.CategoryList as List<Categories>)
+                            {
+                                <tr>
+                                    <td>@item.CategoriesId</td>
+                                    <td>@item.CategoriesName</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="showCategories(@item.CategoriesId)">
+                                            Edit
+                                        </button>
+                                        <a asp-controller="Admin" asp-action="RemoveCategory" asp-route-Category_id="@item.CategoriesId" class="btn btn-danger">Remove</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="myModalBodyDiv">
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="SaveChangesForCategory()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts
+{
+    <script>
+        var showCategories = function (id) {
+            $("#mymodal").modal('hide');
+            $.ajax({
+                type: "POST",
+                url: "/Admin/GetCategory",
+                data: { Category_id: id },
+                success: function (result) {
+                    $("#myModalBodyDiv").html(result);
+                }
+            });
+        }
+    </script>
+
+    <script>
+        var SaveChangesForCategory = function (event) {
+
+            var sendCategory_Id = $("#Category_Id").val();
+            var category_name = $("#CategoryName").val();
+            $.ajax({
+                type: "POST",
+                url: "/Admin/EditCategory",
+                data: { Category_id: sendCategory_Id, Category_name: category_name },
+                success: function (result) {
+                    $("#exampleModal").modal('hide');
+                    location.reload();
+                    $("#TempData").append(html);
+
+
+                }
+            });
+        }
+
+    </script>
+
+}
+

@@ -1,0 +1,119 @@
+﻿
+<!DOCTYPE html>
+<style>
+     #uyeol:hover{
+         background-color:#380000;
+         font-size:19px;
+         border:2px solid #380000;
+     }
+     #girisyap:hover{
+         background-color:#380000;
+         font-size:19px;
+         border:2px solid #380000;
+     }
+</style>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,600,500,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="~/Content/templatemo_414_zoom/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/templatemo_414_zoom/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/Content/templatemo_414_zoom/css/templatemo_main.css">
+<body style="overflow:hidden">
+
+    <div id="main-wrapper">
+        <!--[if lt IE 7]>
+        <![endif]-->
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center templatemo-logo margin-top-20">
+           
+            <section id="menu-section" class="active">
+            @if (Session["adsoyadi"] == null && Session["kullaniciadi"] == null)
+            {
+                <div class="row">  
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20" style="margin-left:30px;">
+                        <a href="/Home/UyeOl" id="uyeol"  class="btn btn-danger" style="background-color:#850000; width:90px; height:70px; border:1px solid white;" >
+                          <i class="fa fa-users fa-2x"></i><br /><strong style="font-size:17px; font-weight:bold;">Üye Ol</strong> 
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                        <a href="/Home/GirisYap" id="girisyap" class="btn btn-danger" style="background-color:#850000; width:90px; height:70px; border:1px solid white;">
+                            <i class="fa fa-user fa-2x"></i><br /><strong style="font-size:17px; font-weight:bold;">Giriş Yap</strong>
+                        </a>
+                    </div>
+                    
+                </div>
+            }
+            @if (Session["adsoyadi"] != null && Session["kullaniciadi"] != null)
+            {
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                    <a href="/Home/GirisYap" id="girisyap" class="btn btn-danger" style="background-color:#850000; width:90px; height:70px; border:1px solid white;">
+                        <i class="fas fa-user-circle fa-2x"></i><br /><strong style="font-size:17px; font-weight:bold;">@Session["adsoyadi"]</strong>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                    <a href="/Home/CikisYap" id="girisyap" class="btn btn-danger" style="background-color:#850000; width:90px; height:70px; border:1px solid white;">
+                        <i class="fas fa-sign-out-alt fa-2x"></i><br /><strong style="font-size:17px; font-weight:bold;">Çıkış Yap</strong>
+                    </a>
+                </div>
+            }
+            </section>
+          
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center templatemo-logo margin-top-20" >
+
+            <h1 class="templatemo-site-title">
+                <a href="#">Zoom Template</a>
+            </h1>
+            <h3 class="templatemo-site-title">
+                by <a href="#"><span class="blue">template</span><span class="green">mo</span></a>
+            </h3>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center templatemo-logo margin-top-20" >
+                <a href="/Home/Sehirler" id="girisyap" class="btn btn-danger" style="background-color:#850000; width:160px; height:100px; margin-left:170px; border:1px solid white;">
+                    <i class="fas fa-street-view fa-2x"></i><br /><strong style="font-size:17px; font-weight:bold;">Bölge:@Session["sehiradi"]<br />Değiştir</strong>
+                </a>
+        </div>
+
+        <div class="image-section">
+            <div class="image-container">
+                
+             
+                <img src="~/Content/pizza3.jpg" id="menu-img" class="main-img inactive" alt="Zoom HTML5 Template by templatemo.com" />
+
+            </div>
+        </div>
+    
+        <div class="container">
+                
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 templatemo-content-wrapper">
+                        <div class="templatemo-content">
+                            @RenderBody();
+                        </div>
+                    </div>
+               
+           
+            
+         </div>
+        
+        @RenderSection("head", required: false); 
+        @RenderSection("scripts", required: false);
+    </div><!-- /#main-wrapper -->
+
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div><!-- /#preloader -->
+
+    <script src="~/Content/templatemo_414_zoom/js/jquery.min.js"></script>
+    <script src="~/Content/templatemo_414_zoom/js/jquery-ui.min.js"></script>
+    <script src="~/Content/templatemo_414_zoom/js/jquery.backstretch.min.js"></script>
+    <script src="~/Content/templatemo_414_zoom/js/templatemo_script.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+       
+
+

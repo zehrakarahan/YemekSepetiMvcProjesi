@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ResimEkle</title>
+</head>
+<body>
+    <div> 
+         @using (Html.BeginForm("SaveImages", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+         {
+             @Html.TextBox("SliderFoto", "",new { type="File"})
+             
+             <input type="submit" value="Yükle" />
+
+         }
+    </div>
+
+</body>
+</html>

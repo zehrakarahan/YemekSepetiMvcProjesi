@@ -1,0 +1,379 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Models.Ilcevesemt
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    List<string> resim = ViewBag.resimler;
+    var ilkeleman = resim[0];
+    var ikincieleman = resim[1];
+    var ucuncueleman = resim[2];
+}
+<style>
+.media-carousel 
+{
+  margin-bottom: 0;
+  padding: 0 40px 30px 40px;
+  margin-top: 30px;
+}
+/* Previous button  */
+.media-carousel .carousel-control.left 
+{
+  left: -12px;
+  background-image: none;
+  background: none repeat scroll 0 0 #222222;
+  border: 4px solid #FFFFFF;
+  border-radius: 23px 23px 23px 23px;
+  height: 40px;
+  width : 40px;
+  margin-top: 30px
+}
+/* Next button  */
+.media-carousel .carousel-control.right 
+{
+  right: -12px !important;
+  background-image: none;
+  background: none repeat scroll 0 0 #222222;
+  border: 4px solid #FFFFFF;
+  border-radius: 23px 23px 23px 23px;
+  height: 40px;
+  width : 40px;
+  margin-top: 30px
+}
+/* Changes the position of the indicators */
+.media-carousel .carousel-indicators 
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the colour of the indicators */
+.media-carousel .carousel-indicators li 
+{
+  background: #c0c0c0;
+}
+.media-carousel .carousel-indicators .active 
+{
+  background: #333333;
+}
+.media-carousel img
+{
+  width: 250px;
+  height: 100px
+}
+    body {
+        border: 0;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    a .tiklacak:hover {
+        font-weight: bold;
+        border: 4px solid;
+        border-color: #800000;
+        z-index: 9999;
+        background-color: black;
+    }
+
+    #myCarousel {
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    table {
+        width: 100%;
+    }
+
+        table thead th {
+            padding: 20px;
+        }
+
+        table tbody th {
+            width: 10%;
+            font-style: italic;
+        }
+
+        table td {
+            padding: 10px;
+        }
+
+
+    #rangeValue {
+        position: relative;
+        display: block;
+        text-align: center;
+        font-size: 15px;
+        color: #999;
+        font-weight: 400;
+        z-index: 999999;
+        color: black;
+        font-weight: bold;
+    }
+
+    .range {
+        width: 400px;
+        height: 15px;
+        -webkit-appearance: none;
+        outline: none;
+        overflow: hidden;
+        margin-top: -30px;
+        box-shadow: inset 0 0 5px rgba(0,0,0,1);
+    }
+
+        .range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 30px;
+            height: 30px;
+            background: black;
+            cursor: pointer;
+            border-radius: 30px;
+            border: 6px solid black;
+            box-shadow: -407px 0 0 400px #ff6508;
+            color: white;
+            -moz-appearance: none;
+        }
+
+    ul {
+        height: 30px;
+        width: 150px;
+    }
+
+    .list-unstyled {
+        display: none;
+        width: 300px;
+        height: 260px;
+        overflow: scroll;
+    }
+
+    ul li {
+        font-size: 12px;
+        width: 300px;
+    }
+
+        ul li:hover {
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            background-color: #ff6508;
+            overflow: auto;
+            border: 3px solid #ff6508;
+        }
+
+
+    a#submit {
+        z-index: 1;
+    }
+
+    .glyphicon-chevron-down {
+        cursor: pointer;
+    }
+
+    .glyphicon-chevron-up {
+        cursor: pointer;
+    }
+
+    a {
+        color: magenta;
+    }
+
+</style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link href="~/Content/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/Content/RangeSlider/css/range-slider.css" rel="stylesheet" />
+<script src="~/Content/bootstrap/js/bootstrap.js"></script>
+
+<script src="~/Content/RangeSlider/src/range-slider.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+<link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
+<script src="~/Content/fontawesome-free/js/all.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<style>
+    input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+    .button {
+
+  background-color: #ff0600;
+ 
+  border: none;
+
+  color: white;
+
+  padding: 16px 32px;
+
+  text-align: center;
+
+  font-size: 16px;
+
+  margin: 4px 2px;
+
+  transition: 0.3s;
+
+  cursor: pointer;
+}
+
+.button:hover {
+   background-color: #a30000;
+}
+#ana_div {
+    
+    height: 100px;
+    width: 960px;
+    margin-right: auto;
+    margin-left: auto;
+ 
+    
+}
+
+.div {
+    
+    float: left;
+    display: inline-block;
+  
+
+    margin: 10px;
+ 
+
+}
+select option {
+
+  box-shadow: inset 20px 20px #f00
+} 
+.denemeklazim>.active>a {color:black; background-color:red;}
+.denemeklazim>.active>a:focus {color:black; background-color:red;}
+.denemeklazim>.active>a:hover {color:black; background-color:red;}
+
+select option:hover {
+  color: #000; 
+  box-shadow: inset 20px 20px #00f;
+  background-color:none;
+}
+    
+
+
+</style>
+<body>
+    <div class="col-lg-12">
+
+        <div class="row ">
+        @using (Html.BeginForm("AramaSonuclari", "Anasayfalar", FormMethod.Get))
+        {
+
+            <div id="ana_div" style="width:900px; max-width:100%; margin-right: auto; float:left; margin-left: auto;">
+          
+                 
+                
+                    @Html.DropDownListFor(model => model.secilensemt, new SelectList(ViewBag.mahalleler , "Value", "Text"), "Semt Seçiniz", new { @class = "form-control div", @id = "denemeklazim", @style = "border:1px solid black; width:500px; height:40px; max-width:100%;", @required = "required" })
+                    <button class="button div" style="width:200px; height:40px; -webkit-border-radius: 20px;-moz-border-radius: 10px; -webkit-border-radius: 10px;-moz-border-radius: 10px;  "><i class="fas fa-search fa-2x" style="margin-top:-10px; position:relative; left:-30px;"></i>&nbsp;&nbsp;<strong style="position:relative; left:-15px; top:-10px;">Arama Yap</strong> </button>
+                </div>
+                }
+            
+          
+                <br /><br /><br /><br />
+                <div class="container">
+
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            <div class="carousel slide media-carousel" id="media">
+                                <div class="carousel-inner">
+                                    <div class="item  active">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <a class="thumbnail" href="#"><img alt="" src='@ilkeleman'></a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a class="thumbnail" href="#"><img alt="" src='@ikincieleman'></a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a class="thumbnail" href="#"><img alt="" src='@ucuncueleman'></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <a class="thumbnail" href="#"><img alt="" src='@ucuncueleman'></a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a class="thumbnail" href="#"><img alt="" src='@ilkeleman'></a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a class="thumbnail" href="#"><img alt="" src='@ikincieleman'></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <a class="thumbnail" href="#"><img alt="" src='@ikincieleman'></a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a class="thumbnail" href="#"><img alt="" src='@ucuncueleman'></a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a class="thumbnail" href="#"><img alt="" src='@ilkeleman'></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
+                                <a data-slide="next" href="#media" class="right carousel-control">›</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+ </body>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+@section scripts{
+   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".veril").onclick(function () {
+                alert("merhaba dunya");
+            });
+                    
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById("goster").style.display = "none";
+            $("#sakla2").click(function () {
+                document.getElementById("goster").style.display = "block";
+                document.getElementById("sakla2").style.display = "none";
+                document.getElementById("sakla").style.display = "none";
+            });
+            $('#media').carousel({
+                play: auto,
+                interval: true,
+            });
+        });
+
+    </script>
+}
+
+

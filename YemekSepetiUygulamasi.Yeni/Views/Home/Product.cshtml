@@ -1,0 +1,189 @@
+﻿@model Products
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="content">
+    <div id="breadcrumb-container">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="~/Home/Index">Home</a>
+                </li>
+                <li class="active">Product</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12 product-viewer clearfix">
+                        <div id="product-image-container">
+                            <figure>
+
+                                <img src="~/Productimage/@Model.ProductImage" id="product-image">
+                                <figcaption class="item-price-container">
+                                    <span class="item-price">Net Price : @Model.NetProductPrice £</span>
+                                </figcaption>
+
+                            </figure>
+                        </div>
+                        <div>
+
+                            @*<div class="row">
+                                    <div class="col-md-10">
+                                        <div class="lg-margin"></div>
+                                        <div class="col-md-2">
+                                            <img src="~/Icons/brutprice.png" />
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <strong>Brut Price  <br /> <b style="color:orangered">@Model.BrutProductPrice €</b></strong> <br />
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <img src="~/Icons/ship.png" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>Shipping Price <br /> <b style="color:orangered">@Model.ShippingPrice €</b></strong> <br />
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                    <div class="lg-margin2x"></div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 product">
+                        <div class="lg-margin visible-sm visible-xs"></div>
+                        <h1 class="product-name">@Model.ProductName</h1>
+                        <div class="ratings-container">
+                            <span class="ratings-amount separator">3 Review(s)</span>
+                            <span class="separator">|</span>
+                            <a href="#review" class="rate-this">Add Your Review</a>
+                        </div>
+                        <ul class="product-list">
+                            <li>
+                                @if (Model.ProductQuantity > 0)
+                                {
+                                    <span>Availability: In Stock</span><p></p>
+                                }
+                                else
+                                {
+                                    <span>Availability: Not Stock</span>
+                                }
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="product-add clearfix">
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                <div class="custom-quantity-input">
+                                    <input type="hidden" name="productId" value="@Model.ProductsId" />
+                                    <input type="number" name="quantity" id="quantity" value="1" min="1">
+                                    <a onclick="QuantityValue('inc')" id="increase" class="quantity-btn quantity-input-up">
+                                        <i class="fa fa-angle-up"></i>
+                                    </a>
+                                    <a onclick="QuantityValue('desc')" id="decrease" class="quantity-btn quantity-input-down">
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                </div>
+                                <button action="Submit" class="btn btn-custom-2">ADD TO CART</button>
+
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="lg-margin"></div>
+                                        <div class="col-md-2">
+                                            <img src="~/Icons/brutprice.png" />
+
+                                        </div>
+                                        <div class="col-md-3">
+                                             <strong>Brut Price  <br /> <b style="color:orangered">@Model.BrutProductPrice €</b></strong> <br />
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <img src="~/Icons/ship.png" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>Shipping Price <br /> <b style="color:orangered">@Model.ShippingPrice €</b></strong> <br />
+                                            <input type="checkbox" id="shippingPrice"  name="shippingPrice" value="true"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="md-margin"></div>
+                        <hr />
+                        <div class="row">
+                            <div class="fa-hover col-md-3 col-sm-4">
+                                <img src="~/Icons/icons8-food-truck-96.png">
+                            </div>
+                            <div class="col-md-9">
+                                <strong>250 TL üstü <b style="color:orangered">Ücretsiz Kargo</b></strong> <br />
+                                En Geç Yarın Kargoda! <br />
+                                İnternet sitesi ve mağaza satış fiyatları farklılık gösterebilir.
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="md-margin"></div>
+                    </div>
+                </div>
+                <div class="lg-margin2x"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="tab-container clearfix">
+                            <ul class="nav-tabs nav-justified clearfix">
+                                <li class="active">
+                                    <a href="#overview" data-toggle="tab">Product Description</a>
+                                </li>
+                                <li>
+                                    <a href="#description" data-toggle="tab">Shipping Options</a>
+                                </li>
+                                <li>
+                                    <a href="#review" data-toggle="tab">Refund / Cancellation Procedures</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content clearfix">
+                                <div class="tab-pane active" id="overview">
+                                    <p>@Model.ProductDescription</p>
+                                </div>
+                                <div class="tab-pane" id="description">
+                                    <p>@Model.ShippingDescription</p>
+                                </div>
+                                <div class="tab-pane" id="review">
+                                    <p>@Model.cancellationProcedure</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg-margin visible-xs"></div>
+                    </div>
+                    <div class="lg-margin2x visible-sm visible-xs"></div>
+
+                </div>
+                <div class="lg-margin2x"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script>
+        function QuantityValue(value) {
+            var resOfvalue = $("#quantity").val();
+            if (resOfvalue >= 1) {
+                if (value == "inc") {
+                    resOfvalue++;
+                }
+                else
+                    resOfvalue--;
+
+                if (resOfvalue == 0) {
+                    resOfvalue = 1;
+                }
+            }
+
+            $("#quantity").val(resOfvalue);
+        }
+    </script>
+}

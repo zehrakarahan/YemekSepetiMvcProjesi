@@ -1,0 +1,79 @@
+﻿@model MainPage
+@{
+    ViewData["Title"] = "EditMainPageSetups";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <h1 style="text-align:center;color:darkred">
+        Main Page Edit
+    </h1>
+
+
+</div>
+
+<form asp-controller="Admin" asp-action="EditMainPageSetups" method="post" enctype="multipart/form-data" class="form-horizontal form-label-left" style="margin-top:3%">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber1" class="control-label col-md-3 col-sm-3 col-xs-12">Phone Number 1</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="PhoneNumber1" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhoneNumber2" class="control-label col-md-3 col-sm-3 col-xs-12">Phone Number 2</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="PhoneNumber2" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SkypeName" class="control-label col-md-3 col-sm-3 col-xs-12">Skype Name</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="SkypeName" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MailAdress" class="control-label col-md-3 col-sm-3 col-xs-12">Mail Adress</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="MailAdress" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LogoImage" class="control-label col-md-3 col-sm-3 col-xs-12">Logo Image</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <img src="~/logos/@Model.LogoImage" width="120" />
+            <input type="file" name="file" id="file" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NewsHeader" class="control-label col-md-3 col-sm-3 col-xs-12">News Header</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="NewsHeader" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="NewsContext" class="control-label col-md-3 col-sm-3 col-xs-12">News Context</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="NewsContext" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Haber Aktif mi Olacak
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="checkbox" class="form-check-input" asp-for="NewsIsActive">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success col-md-12 col-sm-12 col-xs-12" style="margin-top:2%">Add & Edit Main Page Settings</button>
+
+</form>
+

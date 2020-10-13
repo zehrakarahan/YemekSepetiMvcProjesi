@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>Coupons - Curbside Pick-Up &amp; Delivery included make and model</title>
+    <link href="~/Content/public/templates/public/default/css/bootstrap.min.css?v=2020.2.24" media="all" rel="stylesheet" type="text/css">
+    <link href="~/Content/public/templates/public/default/css/owl.carousel.css?v=2020.2.24" media="all" rel="stylesheet" type="text/css">
+    <link href="~/Content/public/templates/public/default/css/owl.theme.css?v=2020.2.24" media="all" rel="stylesheet" type="text/css">
+    <link href="~/Content/public/templates/public/default/css/style.css?v=2020.2.24" media="all" rel="stylesheet" type="text/css">
+    <link href="~/Content/public/templates/public/default/css/view/coupons.css?v=2020.2.24" media="all" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Boston Bay Pizza Chicopee">
+    <meta name="description" content="Boston Bay Pizza Chicopee">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,300,700" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin+Sketch:400normal,700normal" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" type="text/css"><!--[if lt IE 9]><script src="/public/templates/public/default/js/ie8-responsive-file-warning.js?v=2020.2.24"></script><![endif]--><!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="~/Content/public/templates/public/default/js/ie10-viewport-bug-workaround.js?v=2020.2.24"></script>
+    <script src="~/Content/public/templates/public/default/js/ie-emulation-modes-warning.js?v=2020.2.24"></script><!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --><!--[if lt IE 9]><script src="/public/templates/public/default/js/html5shiv.min.js?v=2020.2.24"></script><script src="/public/templates/public/default/js/respond.min.js?v=2020.2.24"></script><![endif]-->
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkz3ujRAQpgBYyQZJ7cwDCmQD6tHgTo_g&v=3.exp&libraries=places,geometry,drawing,visualization"></script>
+</head>
+
+<body>
+
+                <div id="ustarka" style="background-color:#DE4B06; margin-top:-50px; width:100%; height:40px;">
+                    <header class="navbar-default navbar-fixed-top " data-background-src="~/Content/public/templates/public/default/images/bg-header.jpg">
+                        <div class="top-nav">
+                            <div class="container">
+                                <a class="phone-site" onclick="window.location.href='tel:413-888-3000'" href="javascript:;"><span class="glyphicon glyphicon-phone"></span><span class="sr-only">Phone</span><span>413-888-3000</span></a><div class="pull-right nav-order">
+                                    <a data-toggle="modal" href="#order-now-modal" class="order-now os" id="order-now" data-width="540" title="Order Now"> Mükemmel Ürünler</a><a href="Cart.html" class="order-cart os">
+                                        <img src="~/Content/public/templates/public/default/images/icon-cart.png" width="30" height="29" alt="Cart"> :
+                                        <span class="cart-total">$0.00</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div><div class="header-wrap">
+                            <div class="container">
+                                <div class="container-wrap">
+                                    <a class="logo" href="index-1.htm" title="Logo Curbside Pick-Up & Delivery included make and model">
+                                        <span>
+                                            <img src="~/Content/public/templates/public/default/images/pixel.gif" data-original="~/Content/public/img/global/logo.png" alt="" class="img-responsive" width="1" height="1" data-dimensions="">
+                                        </span>
+                                        <span class="sr-only">Logo Curbside Pick-Up & Delivery included make and model</span>
+                                    </a><a class="header-ele-1 order-icon emove" data-toggle="modal" href="#order-now-modal" data-width="540"><span class="sr-only">Mükemmel Yemekler</span></a>
+                                    <div class="header-ele-2 emove"></div><div class="header-ele-3 emove"></div><div class="header-ele-4 emove">
+                                    </div><div class="header-ele-5 emove"></div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </header>
+                </div>
+    
+    
+    @RenderSection("head", required: false); 
+    <div class="container body-content" style="margin-top:300px;  margin-left:0px; margin-right:0px; margin-bottom:0px; padding:0px; border:0px;">
+            @RenderBody()
+    </div>
+    @RenderSection("body", required: false);
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/public/templates/public/default/js/jquery-1.11.1.min.js?v=2020.2.24"></script>
+    <script src="~/Content/public/templates/public/default/js/bootstrap.min.js?v=2020.2.24"></script>
+    <script src="~/Content/public/templates/public/default/js/owl.carousel.min.js?v=2020.2.24"></script>
+    <script src="~/Content/public/templates/public/default/js/plugins/plaxify.min.js?v=2020.2.24"></script>
+    <script src="~/Content/public/templates/public/default/js/jquery.lazyload.min.js?v=2020.2.24"></script>
+    <script src="~/Content/public/templates/public/default/js/core.js?v=2020.2.24"></script>
+    <script src="~/Content/public/templates/public/default/js/view/coupons.js?v=2020.2.24"></script>
+   
+</body>
+</html>

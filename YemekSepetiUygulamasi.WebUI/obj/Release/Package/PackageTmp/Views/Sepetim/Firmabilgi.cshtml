@@ -1,0 +1,190 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Models.Firmabilgilistesi
+@{
+    ViewBag.Title = "Firmabilgi";
+    Layout = "~/Views/Shared/_Layout5.cshtml";
+}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+
+
+<link href="~/Content/RangeSlider/css/range-slider.css" rel="stylesheet" />
+<script src="~/Content/RangeSlider/src/range-slider.min.js"></script>
+
+<link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
+<script src="~/Content/fontawesome-free/js/all.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    .nav-tabs li a{
+        color:#ff6508;
+        background-color:black;
+        font-size:18px;
+    }
+    .nav-tabs li a:hover{
+        color:black;
+        background-color:#ff6508;
+        font-size:18px;
+    }
+    .nav-tabs li::after{
+        color:black;
+        background-color:#ff6508;
+        font-size:18px;
+    }
+    .nav-tabs li:hover .nav-tabs li a:hover{
+        color:black;
+        background-color:#ff6508;
+        font-size:18px;
+    }
+
+    .nav-tabs li .active{
+        color:black;
+        border:3px solid brown;
+        font-size:18px;
+        font-weight:bold;
+    }
+</style>
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" vocab="">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="float:left;padding:25px 25px; margin-top:100px;">
+            <div class="row">
+                <i style="float:left; color:#ff6508;margin-left:15px; margin-right:10px; " class="fas fa-heartbeat fa-2x"></i>
+                <input id="agileinfo_sign" value="Adi" readonly style="float:left; border:none; font-weight:600;font-size:20px;" /><button type="button" style="position:absolute; right:20px; margin-top:-10px; font-size:30px;" class="close" data-dismiss="modal">&times;</button>
+                <input id="firmabilgisi" readonly value="firmaid" style="float:left; display:none;" />
+                <input id="urunid" readonly value="urunid" style="float:left; display:none;" />
+            </div>
+            <div class="row" style="margin-top:20px; margin-left:40px;">
+                <input id="arttirveyaazalt" style="width:70px;" type="text" min="1" max="50" value="1" oninput="degistir()" required="" />
+                <span class="buttons">
+                    <button aria-label="Ürün Artır" style="padding:6px 11px;" class="number-button increase">+</button>
+                    <button aria-label="Ürün Azalt" style="padding:6px 11px;" class="number-button decrease">-</button>
+                </span>
+                <input id="urunfiyati" readonly value="TL" style="padding:5px 10px; border:3px solid;border-color:#ff6508; margin-left:10px; border-radius:5px; width:130px; height:40px;"></input>
+            </div>
+            <br />
+            <div class="row">
+                <button type="button" class="btn btn-success sepeteat" style="right:30px;position:absolute;margin-top:-20px;">Sepete Ekle</button>
+            </div>
+        </div>
+        <!-- //Modal content-->
+    </div>
+</div>
+
+
+<div class="ads-grid" style="margin-top:-120px;">
+    <div class="container">
+
+        <hr /><hr />
+        <!-- product left -->
+            <div class="side-bar col-md-3" style="text-decoration: none;">
+                @{
+                    Html.RenderAction("MiniSepet2", "Sepetim");
+                }
+            </div>
+               <div class="col-md-9">
+                   @if (Model != null)
+                   {
+                   
+                    <div class="container">
+                       
+                        <ul class="nav nav-tabs">
+                            <li ><a data-toggle="tab" href="#home">Başlıklar</a></li>
+                            <li class="active"><a data-toggle="tab"   href="#menu1">Menuler</a></li>
+                            <li ><a data-toggle="tab"  href="#menu2">Firma Bilgileri</a></li>
+                            <li><a data-toggle="tab" href="#menu3">Yorumlar</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade">
+                                @foreach (var item in Model.Menunamelistesi)
+                                {
+                                    <ul class="list-group" style="width:70%;margin-bottom:0px;">
+                                        <li class="list-group-item">@item.MenuName</li>
+                                    </ul>
+                                }
+
+                              
+                            </div>
+                            <div id="menu1" class="tab-pane fade in active">
+                                @for (int j = 0; j < Model.Menunamelistesi.Count(); j++)
+                                {
+
+                                    <div class="card" style="width: 73%;" >
+                                        <div class="card-body" style="margin-top:-10px; ">
+                                            <div id="container">
+                                                <div class="card-title" style="float:left;">
+                                                    <span style="float:left;">
+                                                        <i class="fab fa-battle-net fa-2x"></i>
+                                                        <i class="fab fa-battle-net fa-2x" style="color:#ff6508"></i>
+                                                    </span><div style="float:left;" face="Verdana" id="test" class="tikladigim" data-firmaid="@Model.firmabilgileri.Id" data-menuid="@Model.Menunamelistesi[j].Id" data-menufiyati="@Model.Menunamelistesi[j].Price" data-menuadi="@Model.Menunamelistesi[j].MenuName" data-toggle="modal" data-target="#myModal3">@Model.Menunamelistesi[j].MenuName</div>
+                                                </div>
+                                                <div style="float:right;" class="card-title">
+                                                    @Model.Menunamelistesi[j].Price TL&nbsp;&nbsp;
+                                                    @*<span id="artislemi" class="card-title">+</span>*@
+
+                                                    <span style="cursor:pointer;" data-toggle="modal" data-firmaid="@Model.firmabilgileri.Id" data-menuid="@Model.Menunamelistesi[j].Id" data-menufiyati="@Model.Menunamelistesi[j].Price" data-menuadi="@Model.Menunamelistesi[j].MenuName" data-target="#myModal3" id="artislemi" class="card-title tikladigim">+</span>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <ul class="list-group" style="width:70%;">
+                                    <li class="list-group-item">Adres: @Model.firmabilgileri.CompanyAdress</li>
+                                    <li class="list-group-item">Açıklama: @Model.firmabilgileri.CompanyDescription</li>
+                                    <li class="list-group-item">Service süresi: @Model.firmabilgileri.CompanyServiceTime</li>
+                                    <li class="list-group-item">Lezzet: @Model.firmabilgileri.FlavorPoint</li>
+                                    <li class="list-group-item">Minimum paket Tutarı: @Model.firmabilgileri.MinimumPackagePrice</li>
+                                </ul>
+                            </div>
+                            <div id="menu3" class="tab-pane fade">
+                              
+                                @for (int j = 0; j < Model.yorumlistesi.Count(); j++)
+                                {
+
+                                    <div class="card" style="width: 73%;">
+                                        <div class="card-body" style="margin-top:-10px; ">
+                                            <div id="container">
+                                                <div class="card-title" style="float:left;">
+                                                    <span style="float:left;">
+                                                        <i class="fab fa-battle-net fa-2x"></i>
+                                                        <i class="fab fa-battle-net fa-2x" style="color:#ff6508"></i>
+                                                    </span><div style="float:left;" face="Verdana" id="test" class="tikladigim" data-firmaid="@Model.firmabilgileri.Id" data-yorumid="@Model.yorumlistesi[j].Id" data-yorum="@Model.yorumlistesi[j].Comments" data-toggle="modal" data-target="#myModal3">@Model.yorumlistesi[j].Comments</div>
+                                                </div>
+                                              
+
+                                            </div>
+                                        </div>
+                                    </div>
+                               }
+                            </div>
+                        </div>
+                    </div>
+                   }
+               </div>
+    </div>
+
+        
+   
+     
+
+
+       
+
+
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+   
+</script>

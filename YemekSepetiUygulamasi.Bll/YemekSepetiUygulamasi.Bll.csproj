@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2F8DCE56-31A2-43FA-B8A7-3804E74F0CDA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YemekSepetiUygulamasi.Bll</RootNamespace>
+    <AssemblyName>YemekSepetiUygulamasi.Bll</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.6.2\lib\net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IAuthorityService.cs" />
+    <Compile Include="Abstract\IBasketService.cs" />
+    <Compile Include="Abstract\ICampaignPNameService.cs" />
+    <Compile Include="Abstract\ICampaignProductsService.cs" />
+    <Compile Include="Abstract\ICategoryService.cs" />
+    <Compile Include="Abstract\ICategoryTypeService.cs" />
+    <Compile Include="Abstract\ICityService.cs" />
+    <Compile Include="Abstract\ICommentService.cs" />
+    <Compile Include="Abstract\ICompaniesService.cs" />
+    <Compile Include="Abstract\ICountryService.cs" />
+    <Compile Include="Abstract\ICountyService.cs" />
+    <Compile Include="Abstract\ICustomersAdressService.cs" />
+    <Compile Include="Abstract\ICustomerService.cs" />
+    <Compile Include="Abstract\IDayTableService.cs" />
+    <Compile Include="Abstract\IDiscountCouponService.cs" />
+    <Compile Include="Abstract\IEmployeesService.cs" />
+    <Compile Include="Abstract\IFavoritesService.cs" />
+    <Compile Include="Abstract\IManagerTableService.cs" />
+    <Compile Include="Abstract\IMenuNamesService.cs" />
+    <Compile Include="Abstract\IMenusService.cs" />
+    <Compile Include="Abstract\INeighborhoodService.cs" />
+    <Compile Include="Abstract\IOrderService.cs" />
+    <Compile Include="Abstract\IOrderProductService.cs" />
+    <Compile Include="Abstract\IPaymentsOptionsService.cs" />
+    <Compile Include="Abstract\IProductService.cs" />
+    <Compile Include="Abstract\IProductImageService.cs" />
+    <Compile Include="Abstract\IProductSalesService.cs" />
+    <Compile Include="Abstract\IPromosyonService.cs" />
+    <Compile Include="Abstract\ISalesService.cs" />
+    <Compile Include="Abstract\ISandDtableService.cs" />
+    <Compile Include="Abstract\IShiftTableService.cs" />
+    <Compile Include="Abstract\ISifreDegisiklikService.cs" />
+    <Compile Include="Abstract\ISliderService.cs" />
+    <Compile Include="Abstract\IStatusService.cs" />
+    <Compile Include="Abstract\IWorkingService.cs" />
+    <Compile Include="Concrte\AuthorityManager.cs" />
+    <Compile Include="Concrte\BasketManager.cs" />
+    <Compile Include="Concrte\CampaignPNameManager.cs" />
+    <Compile Include="Concrte\CampaignProductsManager.cs" />
+    <Compile Include="Concrte\CategoryManager.cs" />
+    <Compile Include="Concrte\CategoryTypeManager.cs" />
+    <Compile Include="Concrte\CityManager.cs" />
+    <Compile Include="Concrte\CommentManager.cs" />
+    <Compile Include="Concrte\CompaniesManager.cs" />
+    <Compile Include="Concrte\CountryManager.cs" />
+    <Compile Include="Concrte\CountyManager.cs" />
+    <Compile Include="Concrte\CustomersAdressManager.cs" />
+    <Compile Include="Concrte\CustomerManager.cs" />
+    <Compile Include="Concrte\DayTableManager.cs" />
+    <Compile Include="Concrte\DiscountCouponManager.cs" />
+    <Compile Include="Concrte\EmployeesManager.cs" />
+    <Compile Include="Concrte\FavoritesManager.cs" />
+    <Compile Include="Concrte\ManagerTableManager.cs" />
+    <Compile Include="Concrte\MenuNamesManager.cs" />
+    <Compile Include="Concrte\MenusManager.cs" />
+    <Compile Include="Concrte\NeighborhoodManager.cs" />
+    <Compile Include="Concrte\OrderProductManager.cs" />
+    <Compile Include="Concrte\OrderManager.cs" />
+    <Compile Include="Concrte\PaymentsOptionsManager.cs" />
+    <Compile Include="Concrte\ProductImageManager.cs" />
+    <Compile Include="Concrte\ProductSalesManager.cs" />
+    <Compile Include="Concrte\ProductManager.cs" />
+    <Compile Include="Concrte\PromosyonManager.cs" />
+    <Compile Include="Concrte\SalesManager.cs" />
+    <Compile Include="Concrte\SandDtableManager.cs" />
+    <Compile Include="Concrte\ShiftTableManager.cs" />
+    <Compile Include="Concrte\SifreDegisiklikManager.cs" />
+    <Compile Include="Concrte\SliderManager.cs" />
+    <Compile Include="Concrte\StatusManager.cs" />
+    <Compile Include="Concrte\WorkingManager.cs" />
+    <Compile Include="DepencyResolvers\Ninject\BusinessModule.cs" />
+    <Compile Include="DepencyResolvers\Ninject\NinjectValidatorFactory.cs" />
+    <Compile Include="DepencyResolvers\Ninject\ValidationModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToPasswordRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YemekSepetiUygulamasi.Core\YemekSepetiUygulamasi.Core.csproj">
+      <Project>{19cef283-a700-43fc-88bc-3673749391c8}</Project>
+      <Name>YemekSepetiUygulamasi.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YemekSepetiUygulamasi.Dal\YemekSepetiUygulamasi.Dal.csproj">
+      <Project>{175f49ed-d6cf-4440-8b3e-348fe331a12b}</Project>
+      <Name>YemekSepetiUygulamasi.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YemekSepetiUygulamasi.Entity\YemekSepetiUygulamasi.Entity.csproj">
+      <Project>{0481bb05-c745-4fd4-8394-220bc365bd94}</Project>
+      <Name>YemekSepetiUygulamasi.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

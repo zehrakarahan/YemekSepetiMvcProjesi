@@ -1,0 +1,14 @@
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\YemekSepetiUygulamasi.Dal.dll.config
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\YemekSepetiUygulamasi.Dal.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\YemekSepetiUygulamasi.Dal.pdb
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\EntityFramework.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\YemekSepetiUygulamasi.Core.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\YemekSepetiUygulamasi.Entity.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\YemekSepetiUygulamasi.Core.pdb
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\YemekSepetiUygulamasi.Entity.pdb
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\EntityFramework.xml
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\obj\Release\YemekSepetiUygulamasi.Dal.csprojResolveAssemblyReference.cache
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\obj\Release\YemekSepetiUygulamasi.Dal.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Dal\obj\Release\YemekSepetiUygulamasi.Dal.pdb

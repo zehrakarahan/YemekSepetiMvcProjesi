@@ -1,0 +1,93 @@
+﻿@model YemekSepetiUygulamasi.Entity.EntityTable.DiscountCoupon
+@{
+    ViewBag.Title = "IndirimDuzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<SelectListItem> aktifpasif = new List<SelectListItem>();
+
+    aktifpasif.Add(new SelectListItem { Text = "Aktif", Value = "True" });
+    aktifpasif.Add(new SelectListItem { Text = "Pasif", Value = "False" });
+    aktifpasif.Add(new SelectListItem { Text = "Beklemede", Value = "False" });
+    aktifpasif.Add(new SelectListItem { Text = "İptal", Value = "False" });
+    ViewBag.Secilen = Model.CouponStatus;
+    ViewBag.liste = aktifpasif;
+
+    
+        string deliveryDate = Model.CouponBaslangicTarihi.Value.ToShortDateString();
+    
+}
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div style="float:left; font-weight:bold; font-size:25px;">
+                    İndirim Kuponu  Düzenle
+                </div>
+                <div class="form-group" style="float:right">
+                    <div class="col-lg-offset-3 col-lg-10">
+                        <a class="btn btn-danger" href="/Admin/Anasayfa/IndırımKuponlari" id="kaydet" style="font-weight:bold;">Geri Dön</a>
+
+                    </div>
+                </div>
+                <br />
+            </header>
+            @using (Html.BeginForm("KuponDuzenle", "Anasayfa", new { area = "Admin" }, FormMethod.Post))
+            {
+                <div class="panel-body">
+
+                    <hr />
+
+                    <div class="form-group ">
+                        <label for="password" class="control-label col-md-2">Kupon Kodu</label>
+                        <div class="col-lg-10">
+
+                            @Html.TextBoxFor(m => m.CouponKodu, new {@type = "text", @required = "required", @class = "form-control " })
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2" style="margin-top:10px;">Başlangıç Tarih </label>
+                        <div class="col-lg-10">
+
+                            @Html.TextBoxFor(m => m.CouponBaslangicTarihi, "{0:yyyy-MM-dd}", new { @type = "date", @style = "margin-top:7px; height:35px;", @required = "required", @class = "form-control baslatarih" }) 
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2" style="margin-top:10px;">Kupon Bitiş Tarihi </label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.CouponBitisTarihi, "{0:yyyy-MM-dd}", new { @type = "date", @style = "margin-top:7px;height:35px;", @required = "required", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="address" class="control-label col-lg-2" style="margin-top:10px;">Kupon Durumu </label>
+                        <div class="col-lg-10" style="margin-top:10px;">
+
+                            @Html.DropDownListFor(m => m.CouponStatus, new SelectList(ViewBag.liste, "Value", "Text", ViewBag.Secilen), new { @required = "required", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:15px;">
+                        <label for="username" class="control-label col-lg-2" style="margin-top:10px;">Indirim Miktarı</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.DiscountCouponQuantity, new { @type = "text", @style = "margin-top:7px;", @required = "required", @class = "form-control" })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.Id, new { @type = "text", @style = "margin-top:7px; display:none;", @required = "required", @class = "form-control" })
+                    @Html.HiddenFor(m => m.CompaniesId, new { @type = "text", @style = "margin-top:7px; display:none;", @required = "required", @class = "form-control" })
+                    <div class="form-group ">
+
+                        <button class="btn btn-danger" type="submit" style="margin-top:10px; width:200px; margin-left:250px;">
+                            Kaydet
+                        </button>
+                        <a href="/Admin/Anasayfa/IndırımKuponlari" class="btn btn-primary" style="margin-left:20px; width:200px; margin-top:10px;background-color:">İptal</a>
+                    </div>
+
+
+
+                </div>}
+
+        </section>
+    </div>
+</div>
+
+

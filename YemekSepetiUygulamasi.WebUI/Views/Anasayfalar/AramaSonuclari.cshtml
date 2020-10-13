@@ -1,0 +1,861 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Models.Ilcevesemt
+@{
+    ViewBag.Title = "AramaSonuclari";
+    Layout = "~/Views/Shared/_Layout4.cshtml";
+    List<string> resim = ViewBag.resimler;
+    YemekSepetiUygulamasi.WebUI.Models.Categorilistebilgi veriler = ViewBag.categoribilgi;
+
+    List<YemekSepetiUygulamasi.Entity.EntityTable.Companies> liste = ViewBag.listeler;
+    List<string> resimler = ViewBag.firmaresim;
+    int sayac = 0;
+    var gelenler =TempData["gelenlerbilgisi"];
+
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+
+
+<link href="~/Content/RangeSlider/css/range-slider.css" rel="stylesheet" />
+<script src="~/Content/RangeSlider/src/range-slider.min.js"></script>
+
+<link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
+<script src="~/Content/fontawesome-free/js/all.min.js"></script>
+
+@{ 
+    DateTime bugun = DateTime.Now;
+    var saat=DateTime.Now.Hour.ToString();
+    var saatimuzun=DateTime.Now.ToLongTimeString();
+    TimeSpan time = TimeSpan.Parse(saatimuzun);
+
+    var acikfirma = Session["acikfirmalar"];
+    var minimumtutar = Session["mintutar"];
+    var hizimiz = Session["hizimiz"];
+    var lezzeti= Session["lezzeti"];
+    var odeme = Session["odemetut"];
+ 
+
+}
+<style>
+    .card-title:hover{
+        color:#ff0000;
+    }
+    table {
+        width: 100%;
+    }
+
+        table thead th {
+            padding: 10px;
+        }
+
+        table tbody th {
+            width: 10%;
+            font-style: italic;
+        }
+
+        table td {
+            padding: 0px;
+        }
+
+    .range {
+        padding: 15px 0 15px 0;
+    }
+
+    #rangeValue {
+        position: relative;
+        display: block;
+        text-align: center;
+        font-size: 10px;
+        color: #999;
+        font-weight: 400;
+        z-index: 999999;
+        color: black;
+        font-weight: bold;
+    }
+
+    .range {
+        width: 350px;
+        height: 10px;
+        -webkit-appearance: none;
+        outline: none;
+        overflow: hidden;
+        margin-top: -30px;
+        border-radius:5px;
+        box-shadow: inset 0 0 5px rgba(0,0,0,1);
+    }
+
+        .range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 28px;
+            background: black;
+            cursor: pointer;
+            border-radius:5px;
+            border:6px solid black;
+            box-shadow: -407px 0 0 400px #ff6508;
+            color: white;
+            -moz-appearance: none;
+        }
+
+            .list-unstyled { 
+    height: 30px;
+    width: 150px;
+   
+}
+
+.list-unstyled{
+    display: none;
+    width:300px;
+    height:260px;
+   
+    overflow:scroll;
+
+}
+.list-unstyled li{
+    font-size:12px;
+   
+    width:300px;
+   
+   
+}
+
+.list-unstyled li:hover {
+ 
+ font-weight:bold;
+ font-size:15px;
+ cursor:pointer;
+ background-color:#ff6508;
+ overflow:auto;
+ border:3px solid #ff6508;
+}
+
+
+a#submit { z-index: 1; }
+
+.glyphicon-chevron-down{
+	cursor:pointer
+}
+.glyphicon-chevron-up{
+	cursor:pointer
+}
+
+
+    .media-carousel {
+        margin-bottom: 0;
+        padding: 0 40px 30px 40px;
+        margin-top: 30px;
+    }
+        /* Previous button  */
+        .media-carousel .carousel-control.left {
+            left: -12px;
+            background-image: none;
+            background: none repeat scroll 0 0 #222222;
+            border: 4px solid #FFFFFF;
+            border-radius: 23px 23px 23px 23px;
+            height: 40px;
+            width: 40px;
+            margin-top: 30px;
+        }
+        /* Next button  */
+        .media-carousel .carousel-control.right {
+            right: -12px !important;
+            background-image: none;
+            background: none repeat scroll 0 0 #222222;
+            border: 4px solid #FFFFFF;
+            border-radius: 23px 23px 23px 23px;
+            height: 40px;
+            width: 40px;
+            margin-top: 30px;
+        }
+        /* Changes the position of the indicators */
+        .media-carousel .carousel-indicators {
+            right: 50%;
+            top: auto;
+            bottom: 0px;
+            margin-right: -19px;
+        }
+            /* Changes the colour of the indicators */
+            .media-carousel .carousel-indicators li {
+                background: #c0c0c0;
+            }
+
+            .media-carousel .carousel-indicators .active {
+                background: #333333;
+            }
+
+        .media-carousel img {
+            width: 250px;
+            height: 100px;
+        }
+
+
+
+    #myCarousel {
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+</style>
+<div class="ads-grid" style="margin-top:-120px;">
+    <div class="container">
+
+       
+        <!-- product left -->
+        <div class="side-bar col-md-3">
+         
+           
+          
+                <table class="table table-bordered" style="margin-top:-20px; border:1px solid; border-color:black;">
+                    <tbody>
+
+                        <tr>
+                            <td><div><strong style="margin-left:9px;">Restorant Kriterleri</strong><i style="float:right;" class="fas fa-search fa-2x"></i></div></td>
+                        </tr>
+                        <tr>
+                                @if (acikfirma!= null)
+                                {
+                                    if ((bool)acikfirma== true)
+                                    {
+                                    <td>
+                                        <div class="basit"><i class="fas fa-circle"></i><strong style="margin-left:9px;">Açık</strong><input id="myCheck" onclick='myFunction(this);' checked="checked" name="checkResp" style="margin-left:145px;" type="checkbox" /></div>
+                                    </td>
+                                    }
+                                    if ((bool)acikfirma== false)
+                                    {
+                                        <td>
+                                            <div class="basit"><i class="fas fa-circle"></i><strong style="margin-left:9px;">Açık</strong><input id="myCheck" onclick='myFunction(this);' name="checkResp" style="margin-left:145px;" type="checkbox" /></div>
+                                        </td>
+                                    }
+                                }
+                                @if (acikfirma ==null )
+                                {
+                                    <td>
+                                        <div class="basit"><i class="fas fa-circle"></i><strong style="margin-left:9px;">Açık</strong><input id="myCheck" onclick='myFunction(this);' name="checkResp" style="margin-left:145px;" type="checkbox" /></div>
+                                    </td>
+                                }
+                           
+                        </tr>
+                       
+                        <tr>
+                         @if (minimumtutar != null)
+                         {
+                            if ((string)minimumtutar == "Hepsi")
+                            {
+                                <td>
+                                    <div style="margin:0px; padding:0px; margin-bottom:-30px;">
+                                        <i class="fas fa-newspaper fa-2x" style="margin-top:-10px;"></i>&nbsp;<strong style="position:relative; top:-5px;">Min. Paket Tutarı </strong>
+                                        <span id="rangeValue" style="font-size:15px; top:-30px; position:relative;  margin-left:170px;" onchange='minimumtutar(this);'>Hepsi</span>
+                                        <br />
+                                        <strong style="position:relative; left:-8px; top:-20px;">5 TL</strong>
+                                        <input class="range" type="range" style="left:25px; top:-10px;bottom:-20px; position:relative;width:150px; height:10px;" name="" value="40" min="5" max="40" step="5" onchange="rangeSlide(this.value)" />
+                                        <strong style="position:relative;top:-35px; bottom:-30px; left:178px;">Hepsi</strong>
+                                    </div>
+                                </td>
+                             }
+                            if ((string)minimumtutar != "Hepsi")
+                            {
+                                <td>
+                                    <div style="margin:0px; padding:0px; margin-bottom:-30px;">
+                                        <i class="fas fa-newspaper fa-2x" style="margin-top:-10px;"></i>&nbsp;<strong style="position:relative; top:-5px;">Min. Paket Tutarı </strong>
+                                        <span id="rangeValue" style="font-size:15px; top:-30px; position:relative;  margin-left:170px;" onchange='minimumtutar(this);'>@Session["mintutarimiz"]</span>
+                                        <br />
+                                        <strong style="position:relative; left:-8px; top:-20px;">5 TL</strong>
+                                        <input class="range" type="range" style="left:25px; top:-10px;bottom:-20px; position:relative;width:150px; height:10px;" name="" value="@Session["min2tutar"]" min="5" max="40" step="5" onchange="rangeSlide(this.value)" />
+                                        <strong style="position:relative;top:-35px; bottom:-30px; left:178px;">Hepsi</strong>
+                                    </div>
+                                </td>
+                            }
+                         }
+                        @if (minimumtutar == null)
+                        {
+                           <td>
+                                    <div style="margin:0px; padding:0px; margin-bottom:-30px;">
+                                        <i class="fas fa-newspaper fa-2x" style="margin-top:-10px;"></i>&nbsp;<strong style="position:relative; top:-5px;">Min. Paket Tutarı </strong>
+                                        <span id="rangeValue" style="font-size:15px; top:-30px; position:relative;  margin-left:170px;" onchange='minimumtutar(this);'>Hepsi</span>
+                                        <br />
+                                        <strong style="position:relative; left:-8px; top:-20px;">5 TL</strong>
+                                        <input class="range" type="range" style="left:25px; top:-10px;bottom:-20px; position:relative;width:150px; height:10px;" name="" value="40" min="5" max="40" step="5" onchange="rangeSlide(this.value)" />
+                                        <strong style="position:relative;top:-35px; bottom:-30px; left:178px;">Hepsi</strong>
+                                    </div>
+                                </td>
+                            
+                        }
+                        </tr>
+                        <tr>
+                          @if (odeme != null)
+                          {
+                            if ((string)odeme == "Hepsi")
+                            {
+                                <td>
+                                    <i class="far fa-credit-card fa-2x"></i>&nbsp;&nbsp;<strong style="margin-top:-5px; ">Ödeme Şekli</strong>
+                                    <span class="glyphicon glyphicon-chevron-down fa-1x" style="left:70px; position:relative; top:0px;" onclick="tikla(this)" id="iconcesidi"></span>
+                                    <div style="position:absolute;left:60px; top:211px;">
+                                        <ul class="list-unstyled" style="z-index:99999; position:absolute; margin-left:125px; top:30px; ">
+
+                                            <li id="ves" style="background-color:white;">Hepsi</li>
+                                            <li id="ve" style="background-color:white;">Online Kredi/Banka Kartı</li>
+                                            <li id="vesa" style="background-color:white;">Kredi Kartı</li>
+                                            <li id="ves" style="background-color:white;">Nakit</li>
+                                            <li id="ve" style="background-color:white;">Ticket Restaurant Yemek Kartı</li>
+                                            <li id="vesa" style="background-color:white;">Ticket Restaurant Yemek Çeki</li>
+                                            <li id="ves" style="background-color:white;">Sodexo Yemek Kartı</li>
+                                            <li id="ve" style="background-color:white;">Sodexo Yemek Çeki</li>
+                                            <li id="vesa" style="background-color:white;">Multinet</li>
+                                            <li id="ves" style="background-color:white;">Sodexo Yemek Kartı</li>
+                                            <li id="ve" style="background-color:white;">SetCard</li>
+                                            <li id="vesa" style="background-color:white;">Cüzdan</li>
+                                            <li id="ves" style="background-color:white;">Yemekmatik Yemek Kartı</li>
+                                            <li id="ve" style="background-color:white;">MetropolCard</li>
+                                            <li id="vesa" style="background-color:white;">CIO Card</li>
+                                            <li id="ves" style="background-color:white;">Paye Kart</li>
+                                            <li id="ve" style="background-color:white;">WinWin Mobil Cihaz</li>
+
+                                        </ul>
+                                    </div>
+                                    <br />
+                                    <span id="odemesekli" onchange='secilenodeme(this);' style="margin-left:30px;">Hepsi</span>
+
+                                </td>
+                            }
+                            if ((string)odeme != "Hepsi")
+                            {
+                                <td>
+                                    <i class="far fa-credit-card fa-2x"></i>&nbsp;&nbsp;<strong style="margin-top:-5px; ">Ödeme Şekli</strong>
+                                    <span class="glyphicon glyphicon-chevron-down fa-1x" style="left:70px; position:relative; top:0px;" onclick="tikla(this)" id="iconcesidi">@Session["odemetutari"]</span>
+                                    <div style="position:absolute;left:60px; top:211px;">
+                                        <ul class="list-unstyled" style="z-index:99999; position:absolute; margin-left:125px; top:30px; ">
+
+                                            <li id="ves" style="background-color:white;">Hepsi</li>
+                                            <li id="ve" style="background-color:white;">Online Kredi/Banka Kartı</li>
+                                            <li id="vesa" style="background-color:white;">Kredi Kartı</li>
+                                            <li id="ves" style="background-color:white;">Nakit</li>
+                                            <li id="ve" style="background-color:white;">Ticket Restaurant Yemek Kartı</li>
+                                            <li id="vesa" style="background-color:white;">Ticket Restaurant Yemek Çeki</li>
+                                            <li id="ves" style="background-color:white;">Sodexo Yemek Kartı</li>
+                                            <li id="ve" style="background-color:white;">Sodexo Yemek Çeki</li>
+                                            <li id="vesa" style="background-color:white;">Multinet</li>
+                                            <li id="ves" style="background-color:white;">Sodexo Yemek Kartı</li>
+                                            <li id="ve" style="background-color:white;">SetCard</li>
+                                            <li id="vesa" style="background-color:white;">Cüzdan</li>
+                                            <li id="ves" style="background-color:white;">Yemekmatik Yemek Kartı</li>
+                                            <li id="ve" style="background-color:white;">MetropolCard</li>
+                                            <li id="vesa" style="background-color:white;">CIO Card</li>
+                                            <li id="ves" style="background-color:white;">Paye Kart</li>
+                                            <li id="ve" style="background-color:white;">WinWin Mobil Cihaz</li>
+
+                                        </ul>
+                                    </div>
+                                    <br />
+                                    <span id="odemesekli" onchange='secilenodeme(this);' style="margin-left:30px;">@Session["odemetutari"]</span>
+
+                                </td>
+
+                            }
+
+                          }
+                          @if (odeme == null)
+                          {
+                                <td>
+                                    <i class="far fa-credit-card fa-2x"></i>&nbsp;&nbsp;<strong style="margin-top:-5px; ">Ödeme Şekli</strong>
+                                    <span class="glyphicon glyphicon-chevron-down fa-1x" style="left:70px; position:relative; top:0px;" onclick="tikla(this)" id="iconcesidi"></span>
+                                    <div style="position:absolute;left:60px; top:211px;">
+                                        <ul class="list-unstyled" style="z-index:99999; position:absolute; margin-left:125px; top:30px; ">
+
+                                            <li id="ves" style="background-color:white;">Hepsi</li>
+                                            <li id="ve" style="background-color:white;">Online Kredi/Banka Kartı</li>
+                                            <li id="vesa" style="background-color:white;">Kredi Kartı</li>
+                                            <li id="ves" style="background-color:white;">Nakit</li>
+                                            <li id="ve" style="background-color:white;">Ticket Restaurant Yemek Kartı</li>
+                                            <li id="vesa" style="background-color:white;">Ticket Restaurant Yemek Çeki</li>
+                                            <li id="ves" style="background-color:white;">Sodexo Yemek Kartı</li>
+                                            <li id="ve" style="background-color:white;">Sodexo Yemek Çeki</li>
+                                            <li id="vesa" style="background-color:white;">Multinet</li>
+                                            <li id="ves" style="background-color:white;">Sodexo Yemek Kartı</li>
+                                            <li id="ve" style="background-color:white;">SetCard</li>
+                                            <li id="vesa" style="background-color:white;">Cüzdan</li>
+                                            <li id="ves" style="background-color:white;">Yemekmatik Yemek Kartı</li>
+                                            <li id="ve" style="background-color:white;">MetropolCard</li>
+                                            <li id="vesa" style="background-color:white;">CIO Card</li>
+                                            <li id="ves" style="background-color:white;">Paye Kart</li>
+                                            <li id="ve" style="background-color:white;">WinWin Mobil Cihaz</li>
+
+                                        </ul>
+                                    </div>
+                                    <br />
+                                    <span id="odemesekli" onchange='secilenodeme(this);' style="margin-left:30px;">Hepsi</span>
+
+                                </td>
+                          }
+                        </tr>
+                        <tr>
+                            @if (hizimiz != null)
+                            {
+                                if ((string)hizimiz != "Hepsi")
+                                {
+                                    <td>
+                                        <div>
+                                            <div style="margin:0px; padding:0px; margin-bottom:-30px;">
+                                                <i style="position:relative; top:-10px;" class="fas fa-signal fa-2x"></i>&nbsp;&nbsp;<strong style="position:relative; top:-10px;">Hız Puanı</strong>
+                                                <span id="rangeVal" style="top:-35px; position:relative; margin-left:154px;  font-size:15px; ">@Session["hizim"]</span>
+
+                                                <br />
+                                                <strong style="position:relative; top:-20px; left:-4px;">0puan</strong>
+                                                <input class="range" type="range" style="top:-10px; left:38px; position:relative; bottom:-20px;width:150px;  height:20px;" name="" value="@Session["hiz2int"]" min="0" max="10" step="0.5" onchange="rangeSli(this.value)" />
+                                                <strong style="position:relative;top:-35px;bottom:-30px; left:189px;">Hepsi</strong>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                }
+                                if ((string)hizimiz == "Hepsi")
+                                {
+                                    <td>
+                                        <div>
+                                            <div style="margin:0px; padding:0px; margin-bottom:-30px;">
+                                                <i style="position:relative; top:-10px;" class="fas fa-signal fa-2x"></i>&nbsp;&nbsp;<strong style="position:relative; top:-10px;">Hız Puanı</strong>
+                                                <span id="rangeVal" style="top:-35px; position:relative; margin-left:154px;  font-size:15px; ">@Session["hizimiz"]</span>
+
+                                                <br />
+                                                <strong style="position:relative; top:-20px; left:-4px;">0puan</strong>
+                                                <input class="range" type="range" style="top:-10px; left:38px; position:relative; bottom:-20px;width:150px;  height:20px;" name="" value="10" min="0" max="10" step="0.5" onchange="rangeSli(this.value)" />
+                                                <strong style="position:relative;top:-35px;bottom:-30px; left:189px;">Hepsi</strong>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                }
+                            }
+                            @if (hizimiz==null)
+                            {
+                                  <td>
+                                        <div>
+                                            <div style="margin:0px; padding:0px; margin-bottom:-30px;">
+                                                <i style="position:relative; top:-10px;" class="fas fa-signal fa-2x"></i>&nbsp;&nbsp;<strong style="position:relative; top:-10px;">Hız Puanı</strong>
+                                                <span id="rangeVal" style="top:-35px; position:relative; margin-left:154px;  font-size:15px; ">Hepsi</span>
+
+                                                <br />
+                                                <strong style="position:relative; top:-20px; left:-4px;">0puan</strong>
+                                                <input class="range" type="range" style="top:-10px; left:38px; position:relative; bottom:-20px;width:150px;  height:20px;" name="" value="10" min="0" max="10" step="0.5" onchange="rangeSli(this.value)" />
+                                                <strong style="position:relative;top:-35px;bottom:-30px; left:189px;">Hepsi</strong>
+                                            </div>
+                                        </div>
+                                    </td>
+                            }
+                        </tr>
+                        <tr>
+                            @if (lezzeti != null)
+                            {
+                                if ((string)lezzeti == "Hepsi")
+                                {
+                                    <td>
+                                        <div>
+                                            <div style="margin:0px; padding:0px; margin-bottom:-30px;">
+                                                <i style="position:relative; top:-10px;" class="fas fa-signal fa-2x"></i>&nbsp;&nbsp;<strong style="position:relative; top:-10px;">Lezzet Puanı</strong>
+                                                <span id="rangeVal2" style="top:-35px; position:relative; margin-left:154px;  font-size:15px; ">Hepsi</span>
+
+                                                <br />
+                                                <strong style="position:relative; top:-20px; left:-8px;">0puan</strong>
+                                                <input class="range" type="range" style="top:-10px; left:38px; position:relative; bottom:-20px;width:150px;  height:20px;" name="" value="10" min="0" max="10" step="0.5" onchange="rangeSli2(this.value)" />
+                                                <strong style="position:relative;top:-35px;bottom:-30px; left:189px;">Hepsi</strong>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                }
+                                if ((string)lezzeti != "Hepsi")
+                                {
+                                    <td>
+                                        <div>
+                                            <div style="margin:0px; padding:0px; margin-bottom:-30px;">
+                                                <i style="position:relative; top:-10px;" class="fas fa-signal fa-2x"></i>&nbsp;&nbsp;<strong style="position:relative; top:-10px;">Lezzet Puanı</strong>
+                                                <span id="rangeVal2" style="top:-35px; position:relative; margin-left:154px;  font-size:15px; ">@Session["lezzet2int"]</span>
+                                                <br />
+                                                <strong style="position:relative; top:-20px; left:-8px;">0puan</strong>
+                                                <input class="range" type="range" style="top:-10px; left:38px; position:relative; bottom:-20px;width:150px;  height:20px;" name="" value="@Session["lezzeti"]" min="0" max="10" step="0.5" onchange="rangeSli2(this.value)" />
+                                                <strong style="position:relative;top:-35px;bottom:-30px; left:189px;">Hepsi</strong>
+                                            </div>
+                                        </div>
+                                    </td>
+                                }
+                            }
+                            @if (lezzeti == null)
+                            {
+                                <td>
+                                    <div>
+                                        <div style="margin:0px; padding:0px; margin-bottom:-30px;">
+                                            <i style="position:relative; top:-10px;" class="fas fa-signal fa-2x"></i>&nbsp;&nbsp;<strong style="position:relative; top:-10px;">Lezzet Puanı</strong>
+                                            <span id="rangeVal2" style="top:-35px; position:relative; margin-left:154px;  font-size:15px; ">Hepsi</span>
+
+                                            <br />
+                                            <strong style="position:relative; top:-20px; left:-8px;">0puan</strong>
+                                            <input class="range" type="range" style="top:-10px; left:38px; position:relative; bottom:-20px;width:150px;  height:20px;" name="" value="10" min="0" max="10" step="0.5" onchange="rangeSli2(this.value)" />
+                                            <strong style="position:relative;top:-35px;bottom:-30px; left:189px;">Hepsi</strong>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            }
+                        </tr>
+
+                    </tbody>
+                </table>
+
+               
+               
+            
+            
+        </div>
+        <!-- //product left -->
+        <!-- product right -->
+        <div class="col-md-9">
+           
+            <div class="featured-section" id="projects" >
+                <div class="container">
+                    <!-- tittle heading -->
+                    <!-- //tittle heading -->
+                    <div class="content-bottom-in">
+                        <ul id="flexiselDemo1">
+                            @for (int i = 0; i < veriler.Categoryliste.Count(); i++)
+                            {
+                               
+                                <li style="width:200px; border-radius:20px;">
+                                    <div class="w3l-specilamk">
+                                        <div class="speioffer-agile">
+                                            <a href="~/Content/web/single.html">
+                                                <img src="@veriler.resimbilgilistesi[i]" style="width:90px; height:50px;" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="product-name-w3l">
+                                            <h4>
+                                                <a href="~/Content/web/single.html"><span style="text-align:center">@veriler.Categoryliste[i].Cname</span></a>
+                                            </h4>
+
+
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+           
+                @foreach (var item in liste)
+                {
+
+                    
+                        <div class="card" style="position:relative; top:-40px; height:80px;">
+
+                            <div class="card-body">
+
+                                @if (item.CompanyLogo != null)
+                                {
+
+                                <img src="@resimler[sayac]" style="width:50px; height:40px;margin-right:20px; float:left;" />
+
+                                }
+                                @if (item.CompanyLogo == null)
+                                {
+                                <div>
+
+                                </div>
+                                }
+
+                                @if (item.OpeningTime < time && item.ClosingTime > time)
+                                {
+                                    <a href="/Sepetim/Firmabilgi/@item.Id">
+                                        <h5 class="card-title" style="float:left;color:#420000;">@item.CompanyName</h5>
+                                    </a>
+
+                                }
+                                @if (item.OpeningTime < time && item.ClosingTime < time)
+                                {
+
+                                    <div>
+                                        <h5 class="card-title" style="border:0px; float:left;color:#420000;">@item.CompanyName </h5>
+
+                                    </div>
+
+                                }
+                                @if (item.OpeningTime > time && item.ClosingTime > time)
+                                {
+
+                                        <div>
+                                        <h5 class="card-title" style="border:0px; float:left;color:#420000;">@item.CompanyName</h5>
+                                        </div>
+
+                                }
+                                @if (item.OpeningTime > time && item.ClosingTime < time)
+                                {
+                                    <a href="/Sepetim/Firmabilgi/@item.Id">
+                                        <h5 class="card-title" style="float:left;color:#420000;">@item.CompanyName</h5>
+                                    </a>
+                                }
+
+                                <br /><br />
+                                <div class="card-text" style="color:#dc3545; margin-left:65px; margin-top:-12px;">
+                                    <i class="fas fa-shopping-basket" style="color:#dc3545;margin-left:0px; "></i>@item.MinimumPackagePrice TL
+                                    <i class="fas fa-truck-pickup" style="color:#dc3545;margin-left:0px; "></i>@item.CompanyServiceTime dk.
+                                </div>
+                                @{
+                                    string[] parcalar = item.OpeningTime.ToString().Split(':');
+                                    string[] parcalar2 = item.ClosingTime.ToString().Split(':');
+                                }
+                                <h6 class="card-title" style="float:right; margin-top:-20px;">@parcalar[0]:@parcalar[1]/@parcalar2[0]:@parcalar2[1]</h6>
+                                @if (item.OpeningTime < time && item.ClosingTime > time)
+                                {
+                                    <img style="float:right;margin-top:-70px;left:55px; position:relative; " src="/Content/acik.png" />
+                                }
+                                @if (item.OpeningTime < time && item.ClosingTime < time)
+                                {
+
+                                    <img style="float:right;margin-top:-70px;left:55px; position:relative;" src="/Content/kapali.png" />
+                                }
+                                @if (item.OpeningTime > time && item.ClosingTime > time)
+                                {
+
+                                    <img style="float:right; margin-top:-70px;left:55px; position:relative;" src="/Content/kapali.png" />
+                                }
+                                @if (item.OpeningTime > time && item.ClosingTime < time)
+                                {
+                                    <img style="float:right;margin-top:-70px;left:55px; position:relative; " src="/Content/acik.png" />
+                                }
+</div>
+
+
+                        </div>
+                   
+                    <br />
+                    sayac = sayac + 1;
+                }
+
+            
+       
+            </div>
+        </div>
+    </div>
+<div class="col-md-12">
+    <div class="product-sec1 product-sec2">
+        <div class="col-xs-7 effect-bg">
+            <h3 class="">Yeni Fırsatlar</h3>
+            <h6>Yeni Kampanyalar</h6>
+
+        </div>
+
+        <div class="col-xs-5 bg-right-nut">
+            <img src="images/nut1.png" alt="">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@section scripts{
+<script type="text/javascript">
+   function myFunction(cb) {
+       var text = document.getElementById("text");
+       var mintutar = document.getElementById("rangeValue").innerHTML;
+       var hiz = document.getElementById("rangeVal").innerHTML;
+       var lezzet = document.getElementById("rangeVal2").innerHTML;
+       var odemesekli = document.getElementById("odemesekli").innerHTML;
+    
+     
+       if (cb.checked=!true || cb.unc!=false ||  mintutar != "Hepsi"  || lezzet!="Hepsi" || hiz!="Hepsi" || odemesekli!="Hepsi")
+       {
+           alert("den2332leme");
+           $.ajax({
+               type: "Get",
+               url: '/Anasayfalar/Filtreleme/',
+               data: { acikfirmalar: cb.checked, mintut: mintutar, hiz: hiz, lezzet: lezzet, odeme: odemesekli},
+
+               success: function () {
+                   alert("merhaba dunya");
+                   window.location.replace("/Anasayfalar/Den/");
+
+               },
+               error:function(){
+                   alert("merhaba dunyalar");
+               }
+
+
+           });
+       }
+   
+
+   }
+</script>
+    <script type="text/javascript">
+        function rangeSli(value) {
+
+            if (value == 10) {
+                document.getElementById("rangeVal").innerHTML = "Hepsi ";
+                $('.range::-webkit-slider-thumb').innerHTML = "";
+            }
+            else {
+                document.getElementById("rangeVal").innerHTML = value + " " + "Puan";
+                $('.range::-webkit-slider-thumb').innerHTML = value;
+
+            }
+            var checkBox = document.getElementById("myCheck");
+            var text = document.getElementById("text");
+            var mintutar = document.getElementById("rangeValue").innerHTML;
+            var hiz = document.getElementById("rangeVal").innerHTML;
+            var lezzet = document.getElementById("rangeVal2").innerHTML;
+            var odemesekli = document.getElementById("odemesekli").innerHTML;
+            if (checkBox.checked != false || checkBox.checked==false || mintutar != "Hepsi"  || lezzet!="Hepsi" || hiz!="Hepsi" || odemesekli!="Hepsi")
+            {
+                var lezzetparcala = lezzet.split(" ");
+                var lezzetint = lezzetparcala[0];
+                $.ajax({
+                    type: "GET",
+                    url: '/Anasayfalar/Filtreleme/',
+                    data: { acikfirma: true, mintut: mintutar, hiz: hiz, lezzet: lezzet, odeme: odemesekli },
+                    success: function () {
+
+                        alert("merhaba dunya");
+                        window.location.replace("/Anasayfalar/Den/");
+                    }
+                });
+            }
+        }
+        function rangeSli2(value) {
+
+            if (value == 10) {
+                document.getElementById("rangeVal2").innerHTML = "Hepsi ";
+                $('.range::-webkit-slider-thumb').innerHTML = "";
+            }
+            else {
+                document.getElementById("rangeVal2").innerHTML = value + " " + "Puan";
+                $('.range::-webkit-slider-thumb').innerHTML = value;
+
+            }
+            var checkBox = document.getElementById("myCheck");
+            var text = document.getElementById("text");
+            var mintutar = document.getElementById("rangeValue").innerHTML;
+            var hiz = document.getElementById("rangeVal").innerHTML;
+            var lezzet = document.getElementById("rangeVal2").innerHTML;
+            var odemesekli = document.getElementById("odemesekli").innerHTML;
+            if (checkBox.checked == false ||checkBox.checked != false || mintutar != "Hepsi" || lezzet != "Hepsi" || hiz != "Hepsi" || odemesekli != "Hepsi") {
+                var lezzetparcala = lezzet.split(" ");
+                var lezzetint = lezzetparcala[0];
+                $.ajax({
+                    type: "Get",
+                    url: '/Anasayfalar/Filtreleme/',
+                    data: { acikfirma: true, mintut: mintutar, hiz: hiz, lezzet: lezzet, odeme: odemesekli },
+                    
+                    success: function () {
+                        alert("merhaba dunya");
+                        window.location.replace("/Anasayfalar/Den/");
+                    }
+                });
+            }
+
+        }
+        function rangeSlide(value) {
+
+            if (value == 40) {
+                document.getElementById("rangeValue").innerHTML = "Hepsi ";
+                $('.range::-webkit-slider-thumb').innerHTML = "";
+            }
+            else {
+                document.getElementById("rangeValue").innerHTML = value + " " + "TL";
+                $('.range::-webkit-slider-thumb').innerHTML = value;
+
+            }
+            alert("merhaba dunya");
+            var checkBox = document.getElementById("myCheck");
+            var text = document.getElementById("text");
+            var mintutar = document.getElementById("rangeValue").innerHTML;
+            var hiz = document.getElementById("rangeVal").innerHTML;
+            var lezzet = document.getElementById("rangeVal2").innerHTML;
+            var odemesekli = document.getElementById("odemesekli").innerHTML;
+            if (checkBox.checked == false ||checkBox.checked != false || mintutar != "Hepsi" || lezzet != "Hepsi" || hiz != "Hepsi" || odemesekli != "Hepsi") {
+                var lezzetparcala = lezzet.split(" ");
+                var lezzetint = lezzetparcala[0];
+                alert("merhaba dunya2");
+                 $.ajax({
+                    type: "Get",
+                    url: '/Anasayfalar/Filtreleme/',
+                    data: { acikfirma: true, mintut: mintutar, hiz: hiz, lezzet: lezzet, odeme: odemesekli },
+                  
+                    success: function () {
+                        alert("merhaba dunya");
+                        window.location.replace("/Anasayfalar/Den/");
+                    }
+                });
+            }
+
+        }
+        function tikla(x) {
+
+            var test = document.getElementById("iconcesidi");
+            var testClass = test.className;
+            var denemem = x.className;
+
+            $('.glyphicon-chevron-down').click(function () {
+
+                $("ul").css("display", "block");
+                $(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+            });
+
+            $('.glyphicon-chevron-up').click(function () {
+                $("ul").css("display", "none");
+
+                $(this).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+            });
+            $("ul").on("click", "li:not(.init)", function () {
+
+                $(".glyphicon-chevron-up").removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+                document.getElementById("odemesekli").innerHTML = $(this).html();
+                $(".list-unstyled").css("display", "none");
+            });
+            if (checkBox.checked == false || checkBox.checked != false || mintutar != "Hepsi" || lezzet != "Hepsi" || hiz != "Hepsi" || odemesekli != "Hepsi") {
+                var lezzetparcala = lezzet.split(" ");
+                var lezzetint = lezzetparcala[0];
+                $.ajax({
+                    type: "Get",
+                    url: '/Anasayfalar/Filtreleme/',
+                    data: { acikfirma: true, mintut: mintutar, hiz: hiz, lezzet: lezzet, odeme: odemesekli },
+                  
+                    success: function () {
+                        alert("merhaba dunya");
+                        window.location.replace("/Anasayfalar/Den/");
+                    }
+                });
+            }
+
+        }
+
+
+    </script>
+   <script type="text/javascript">
+       $(document).ready(function () {
+           var say = 0;
+
+           $('#media').carousel({
+               play: auto,
+               interval: true,
+           });
+       
+   function tilandi() {
+       say = say + 1;
+       if (say % 2 == 0) {
+           alert("cift for .click() called." + say);
+
+       }
+       if (say % 2 != 0) {
+           alert("tek for .click() called." + say);
+
+       }
+   }
+       });
+
+</script>
+}

@@ -1,0 +1,84 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+
+  window.fbAsyncInit = function() {
+    FB.init({
+        appId: '553849748826121',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v7.0'
+    });
+
+    FB.AppEvents.logPageView();
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  FB.getLoginStatus(function (response) {
+      if (response.status === 'connected') {
+          // The user is logged in and has authenticated your
+          // app, and response.authResponse supplies
+          // the user's ID, a valid access token, a signed
+          // request, and the time the access token 
+          // and signed request each expire.
+          var uid = response.authResponse.userID;
+          var accessToken = response.authResponse.accessToken;
+      } else if (response.status === 'not_authorized') {
+          // The user hasn't authorized your application.  They
+          // must click the Login button, or you must call FB.login
+          // in response to a user gesture, to launch a login dialog.
+      } else {
+          // The user isn't logged in to Facebook. You can launch a
+          // login dialog with a user gesture, but the user may have
+          // to log in to Facebook before authorizing your application.
+      }
+  });
+
+  FB.login(function (response) {
+      if (response.authResponse) {
+          console.log('Welcome!  Fetching your information.... ');
+          FB.api('/me', function (response) {
+              console.log('Good to see you, ' + response.name + '.');
+          });
+      } else {
+          console.log('User cancelled login or did not fully authorize.');
+      }
+  });
+
+  FB.login(function (response) {
+      // handle the response
+  }, { scope: 'email,user_likes' });
+
+  FB.logout(function (response) {
+      // user is now logged out
+  });
+    </script>
+    <div id="fb-root"></div>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script async defer src="https://connect.facebook.net/es_LA/sdk.js"></script> 
+    <script async defer src="https://connect.facebook.net/en_US/sdk/debug.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v7.0&appId=908620006322849&autoLogAppEvents=1" nonce="kS67mVsz"></script>
+    <div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+
+    <div id="status">
+    </div>
+</body>
+</html>

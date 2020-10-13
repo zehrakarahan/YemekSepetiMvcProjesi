@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CategoryModel>
+
+<div class="widget">
+    <div class="panel-group custom-accordion sm-accordion" id="category-filter">
+        <div class="panel">
+            <div class="accordion-header">
+                <div class="accordion-title"><span>Category</span></div>
+                <a class="accordion-btn opened" data-toggle="collapse" data-target="#category-list-1"></a>
+            </div>
+            <div id="category-list-1" class="collapse in">
+                <div class="panel-body">
+                    <ul class="category-filter-list jscrollpane">
+                        @foreach (var categoryItem in Model)
+                        {
+                        <li><a asp-controller="Home" asp-action="ProductList" asp-route-categoryid="@categoryItem.CategoryId">@categoryItem.CategoryName (@categoryItem.Count)</a></li>
+                        }
+                        @*<li><a href="#">Smartphones (55)</a></li>
+                        <li><a href="#">Communicators (24)</a></li>
+                        <li><a href="#">CDMA Phones (14)</a></li>
+                        <li><a href="#">Accessories (83)</a></li>
+                        <li><a href="#">Chargers (8)</a></li>
+                        <li><a href="#">Memory Cards (6)</a></li>
+                        <li><a href="#">Protectors (12)</a></li>
+                        <li><a href="#">ravelsim (5)</a></li>
+                        <li><a href="#">CDMA Phones (14)</a></li>
+                        <li><a href="#">Accessories (83)</a></li>
+                        <li><a href="#">Chargers (8)</a></li>
+                        <li><a href="#">Memory Cards (6)</a></li>
+                        <li><a href="#">Protectors (12)</a></li>
+                        <li><a href="#">ravelsim (5)</a></li>
+                        <li><a href="#">CDMA Phones (14)</a></li>
+                        <li><a href="#">Accessories (83)</a></li>
+                        <li><a href="#">Chargers (8)</a></li>
+                        <li><a href="#">Memory Cards (6)</a></li>
+                        <li><a href="#">Protectors (12)</a></li>
+                        <li><a href="#">ravelsim (5)</a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

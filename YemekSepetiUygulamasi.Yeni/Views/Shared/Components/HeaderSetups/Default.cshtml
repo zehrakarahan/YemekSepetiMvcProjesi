@@ -1,0 +1,122 @@
+﻿@model MainPage
+
+<header id="header">
+    <div id="header-top" style="background:#00509A !important">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="header-top-right">
+                        <div class="header-text-container pull-right">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (!User.IsInRole("Admin"))
+                                {
+                                    <a href="~/User/Index" class="header-text" style="color:#FFCE00" alt="You Can Go To User Page"><i class="fa fa-user"></i>Welcome to @User.Identity.Name</a>
+                                    <p class="header-link" style="color:white">
+                                        <a href="~/Account/Logout">Logout</a>&nbsp;&nbsp;
+                                    </p>
+                                }
+                                else
+                                {
+                                    <a href="~/Admin/Index" class="header-text" style="color:orangered">Welcome to Admin</a>
+                                    <p class="header-link" style="color:white">
+                                        <a href="~/Account/Logout">Logout</a>&nbsp;&nbsp;
+                                    </p>
+                                }
+
+                            }
+                            else
+                            {
+                                <p class="header-text" style="color:white">Welcome </p>
+                                <p class="header-link">
+                                    <a href="~/Account/Index">login</a>&nbsp;or&nbsp;<a href="~/Account/CreateAccount">create an account</a>
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="inner-header" style="background: #0056a6;">
+        <div class="container">
+            <div class="row">
+                @if (Model != null)
+                {
+                    <div class="col-md-4 col-sm-5 col-xs-12 logo-container">
+                        <h1 class="logo clearfix" style="        margin-top: -17px;
+">
+                            <span>Ecommerce Site</span> <a href="~/Home/Index">
+                                <img src="~/logos/@Model.LogoImage" width="240" height="80">
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="col-md-4 col-sm-7 col-xs-12">
+                        <form class="form-inline quick-search-form" role="form" action="#" style="float: none">
+                            <div class="form-group" id="quicksearch-formgroup">
+                                <input type="text" class="form-control" placeholder="Search here">
+                                <button type="submit" id="quick-search" class="btn btn-custom"></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12 header-inner-right">
+                        <div class="header-box contact-infos pull-right">
+                            <ul>
+                                <li>
+                                    <span class="header-box-icon">
+
+                                        <img src="~/UserTemplate/images/sprites/skype2.png" style="width:22px;" />
+                                    </span>
+                                    venedor_support
+                                </li>
+                                <li>
+                                    <span class="header-box-icon">
+                                        <img src="~/UserTemplate/images/sprites/mail.png" style="width:22px;" />
+                                    </span><a href="mailto:@Model.MailAdress">@Model.MailAdress</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="header-box contact-phones pull-right clearfix">
+                            <span class="header-box-icon">
+                                <img src="~/UserTemplate/images/sprites/callicon.png" style="width: 36px" />
+                            </span>
+                            <ul class="pull-left">
+                                <li>@Model.PhoneNumber1</li>
+                                <li>@Model.PhoneNumber2</li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <h1 style="color:orangered"> Not Any Header Record From Database </h1>
+                }
+            </div>
+        </div>
+        <div id="main-nav-container" style="background:#0D5FAB">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 clearfix">
+                        <nav id="main-nav">
+                            <div id="responsive-nav">
+                                <div id="responsive-nav-button">
+                                    Menu <span id="responsive-nav-button-icon"></span>
+                                </div>
+                            </div>
+                            <ul class="menu clearfix">
+                                <li>
+                                    <a class="active" id="mainCategory" href="~/Home/Index">HOME</a>
+                                </li>
+                                <li>
+                                    <a href="~/Home/ProductList" class="active" style="color:white">PRODUCTS</a>
+                                </li>
+                              @await Component.InvokeAsync("MenuCategorySubCategory")
+                            </ul>
+                        </nav>
+                        @await Component.InvokeAsync("CartSummary")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

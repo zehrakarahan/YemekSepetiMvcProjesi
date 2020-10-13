@@ -1,0 +1,212 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Areas.Admin.Models.PromosyonveKampanya
+@{
+    ViewBag.Title = "KampanyaBazliPromosyon";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Areas/Admin/Content/bs-binary-admin/assets/css/bootstrap.css" rel="stylesheet" />
+<!-- FONTAWESOME STYLES-->
+<link href="~/Areas/Admin/Content/bs-binary-admin/assets/css/font-awesome.css" rel="stylesheet" />
+<!-- MORRIS CHART STYLES-->
+<!-- CUSTOM STYLES-->
+<link href="~/Areas/Admin/Content/NiceAdmin/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Areas/Admin/Content/bs-binary-admin/assets/css/custom.css" rel="stylesheet" />
+<!-- GOOGLE FONTS-->
+<script src="~/Areas/Admin/Content/NiceAdmin/js/bootstrap.min.js"></script>
+<link href='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' rel='stylesheet' type='text/css' />
+<link href='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js' rel='stylesheet' type='text/css' />
+<link href='https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js' rel='stylesheet' type='text/css' />
+
+<link href='https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css' rel='stylesheet' type='text/css' />
+<link href='https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css' rel='stylesheet' type='text/css' />
+<!-- TABLE STYLES-->
+<link href="~/Areas/Admin/Content/bs-binary-admin/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<!-- Extra large modal -->
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/custom.js"></script>
+
+
+
+<!-- Modal: modalCart -->
+<div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="margin-top:50px;"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="margin-left:-115px; width:900px; margin-top:-30px; height:610px;">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Kampanya Seçimi Yap</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="width:30px; height:20px; margin-top:-30px;" class="yukaridaki">x</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body" style="width:600px; height:1500px;">
+
+                <div class="container" style="width:800px;  ">
+
+
+                    <table id="myTablete" class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Seçiniz</th>
+
+                                <th>Kampanya Ürün Adı</th>
+                                <th>Kampanyalı Ürün Fiyatı</th>
+                                <th>Kampanya Ürün Açıklama</th>
+                                <th>Kampanyalı Ürün Yıldız Sayısı</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.CampaignPNamelist.Count(); i++)
+                            {
+                                <tr>
+
+                                    <td class="col-md-2"><a href="/Admin/Anasayfa/KampanyaBazliPro/@Model.CampaignPNamelist[i].Id"><i class="fas fa-search"></i></a></td>
+
+                                    <td>@Model.CampaignPNamelist[i].CampaignName</td>
+                                    <td>@Model.CampaignPNamelist[i].Price</td>
+                                    <td>@Model.CampaignPNamelist[i].Description</td>
+                                    <td class="col-md-2">
+                                        @*  @for (int j = 0; j < Model.Productlist[i].Stars; j++)
+                                            {
+                                                <i class="fas fa-star"></i>
+
+                                            }*@
+                                    </td>
+
+
+
+
+                                </tr>
+                            }
+
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+            </div>
+            <!--Footer-->
+
+        </div>
+    </div>
+</div>
+<script>
+    $('#myTablete').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+        }
+    });
+</script>
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+
+            <header class="panel-heading">
+                <div style="float:left; font-weight:bold; font-size:25px;">
+                    Kampanyalı Ürüne Promosyon Ekle
+                </div>
+                <div class="form-group" style="float:right">
+                    <div class="col-lg-offset-2 col-lg-10 " style="margin-top:10px;">
+                        <button type="button" class="btn btn-danger" id="goster" data-toggle="modal" data-target="#modalCart" style="width:200px; margin-top:-40px; ">Kampanyalı Ürün Seçimi Yap</button>
+
+                    </div>
+                </div>
+                <br />
+            </header>
+            <br /><br /><br />
+            @if (Model == null || Model != null)
+            {
+                <div class="panel-body" style="height:400px;">
+                    <div class="form">
+                        @using (Html.BeginForm("KampanyaBazliPromosyon", "Anasayfa", new { area = "Admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+
+                            <div class="form-group ">
+                                <label for="fullname" class="control-label col-md-2" style="margin-top:-5px;">Ürün Adı <span class="required"></span></label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.CampaignPName.CampaignName, new { @required = "required", @class = "form-control", @style = "border:1px solid; position:absolute; top:-12px;", @readonly = true })
+                                    @Html.HiddenFor(m => m.CampaignPName.Id, new { @required = "required", @class = "form-control", @style = "border:1px solid; position:absolute; top:19px; display:none;" })
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group ">
+                                <label for="fullname" class="control-label col-md-2" style="margin-top:8px;">Ürün Fiyatı <span class="required"></span></label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.CampaignPName.Price, new { @required = "required", @class = "form-control", @style = "border:1px solid; position:absolute; top:8px;", @readonly = true })
+
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="form-group ">
+                                <label for="fullname" class="control-label col-md-2" style="margin-top:8px;">Ürün İndirim Adı <span class="required"></span></label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Promosyon.PromosyonName, new { @required = "required", @class = "form-control", @style = "border:1px solid; position:absolute; top:12px;", })
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group ">
+                                <label for="fullname" class="control-label col-md-2" style="margin-top:10px;">İnd. Başlangıcı <span class="required"></span></label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Promosyon.PromosyonBaslangicTarih, new { @required = "required", @class = "form-control ", @type = "date", @style = "border:1px solid; position:absolute; top:16px;" })
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group ">
+                                <label for="fullname" class="control-label col-md-2" style="margin-top:20px;">İnd. Bitişi <span class="required"></span></label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Promosyon.PromasyonBitisTarih, new { @required = "required", @type = "date", @class = "form-control", @style = "border:1px solid; position:absolute; top:19px;" })
+
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="form-group ">
+                                <label for="fullname" class="control-label col-md-2" style="margin-top:20px;">Oranı veya Tutarı  <span class="required"></span></label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Promosyon.PromosyonQuantity, new { @required = "required", @id = "promosyontutari", @min = "0", @step = "0.01", @class = "form-control", @style = "border:1px solid; position:absolute; top:19px;" })
+
+
+
+                                </div>
+                            </div>
+                            <br /><br />
+
+
+
+
+
+                            <button class="btn btn-danger" style="margin-left:300px;  margin-top:70px; width:150px; " id="kaydet" type="submit">Kaydet</button>
+                            <a href="/Admin/Anasayfa/KampanyaSifirla" class="btn btn-primary" style="margin-left:70px; margin-top:70px; width:150px;">Verileri Sil</a>
+
+
+
+                        }
+                    </div>
+                </div>
+            }
+
+
+        </section>
+    </div>
+</div>
+
+
+
+
+

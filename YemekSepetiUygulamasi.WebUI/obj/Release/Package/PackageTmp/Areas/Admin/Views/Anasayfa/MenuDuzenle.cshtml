@@ -1,0 +1,323 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Areas.Admin.Models.MenuwithProduct
+@{
+
+    ViewBag.Title = "MenuDuzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    int sayac = 1;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Bootstrap Admin Template : Binary Admin</title>
+    <!-- BOOTSTRAP STYLES-->
+ 
+    <!-- GOOGLE FONTS-->
+ 
+
+    <!-- TABLE STYLES-->
+    <!---Deneme -->
+    <link href="~/Areas/Admin/Content/bs-binary-admin/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="~/Areas/Admin/Content/bs-binary-admin/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- MORRIS CHART STYLES-->
+    <!-- CUSTOM STYLES-->
+    <link href="~/Areas/Admin/Content/NiceAdmin/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/bs-binary-admin/assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <script src="~/Areas/Admin/Content/NiceAdmin/js/bootstrap.min.js"></script>
+    
+
+
+ 
+    <!-- TABLE STYLES-->
+    <link href="~/Areas/Admin/Content/bs-binary-admin/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+
+
+    <style>
+        .card {
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+            max-width: 600px;
+            height: 100px;
+            flex-direction: row;
+            border-radius: 25px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+            .card h2 {
+                margin: 0;
+                padding: 0 1rem;
+            }
+
+            .card .title {
+                padding: 1rem;
+                text-align: right;
+                color: green;
+                font-weight: bold;
+                font-size: 12px;
+            }
+
+            .card .desc {
+                padding: 0.5rem 1rem;
+                font-size: 12px;
+            }
+
+            .card .actions {
+                display: grid;
+
+                align-items: center;
+                padding: 0.5rem 1rem;
+            }
+
+            .card svg {
+                width: 85px;
+                height: 85px;
+                margin: 0 auto;
+            }
+
+
+
+        .card-text {
+            display: grid;
+
+        }
+        .img-portada {
+            width: 100%;
+        }
+
+        .portada {
+            width: 100%;
+            height: 100%;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            background-position: bottom center;
+            background-size: cover;
+        }
+
+    </style>
+</head>
+<body>
+
+
+  
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    <div style="float:left; font-weight:bold; font-size:25px;">
+                        Menu Düzenle
+                    </div>
+                    <div class="form-group" style="float:right">
+                        <div class="col-lg-offset-3 col-lg-10">
+                            <a class="btn btn-danger" href="/Admin/Anasayfa/MenuBilgileri" id="kaydet" style="font-weight:bold;">Geri Dön</a>
+
+                        </div>
+                    </div>
+                    <br />
+                </header>
+
+
+                <div class="panel-body">
+                    <div class="form">
+                        <hr />
+
+                        <div class="form-group ">
+                            <h2 style="text-align:center">Menu İçindeki Ürünler</h2>
+                            @for (int i = 0; i < Model.Product.Count(); i++)
+                            {
+                                <div>
+                                    <div class="deneme">
+                                        <h3>@sayac. Ürün Bilgisi</h3>
+                                    </div>
+                                    <div class="card">
+                                        @if (Model.Resimler[i] != null)
+                                        {
+
+                                            <div class="card-text">
+                                                <div class="portada" style="width:100px; height:60px; margin-top:-50px;">
+
+                                                </div>
+
+                                                <div class="title-total">
+
+                                                    <h2>@Model.Product[i].Pname</h2>
+
+                                                    <div class="desc">@Model.Product[i].Price TL</div>
+                                                </div>
+
+                                            </div>
+
+                                        }
+
+                                        @if (Model.Resimler[i] == null)
+                                        {
+                                            <div class="card-text">
+                                                <div class="portada" style="width:100px; height:60px; margin-top:-50px;">
+
+                                                </div>
+
+                                                <div class="title-total">
+
+                                                    <h2>@Model.Product[i].Pname</h2>
+
+                                                    <div class="desc">@Model.Product[i].Price TL</div>
+                                                </div>
+
+                                            </div>
+                                        }
+
+
+                                    </div>
+                                
+                               
+                                    <a class="btn btn-danger" href="@Url.Action("MenuUrunleri", new { tiklananid = Model.Product[i].Id, menuid = Model.MenuNames.Id })" data-urunid="@Model.Product[i].Id" data-deger="@i" style="float:right; margin-top:-120px;">Ürün Değiştir</a>
+
+
+                                </div>
+
+                                sayac = sayac + 1;
+
+                            }
+                            <br /><br /><br />
+
+
+
+                            @Html.TextBoxFor(model => model.MenuNames.MenuResim, new { @style = "margin-bottom:10px; display:none;", @type = "file", @id = "yeniresi", @placeholder = "deneme", @class = "form-control" })
+                            <br /><br /><br /><br /><br />
+                            <label for="password" class="control-label col-md-2" style="margin-top:8px;">Menu Resim Seç</label>
+                            <div class="col-lg-10">
+                                @if (Model.menuresim != null)
+                                {
+                                    <img src="@Model.menuresim" /><button class="btn btn-danger resmidegis" style="float:right;">Resmi Değiştir</button>
+                                    @Html.TextBoxFor(model => model.MenuNames.MenuResim, new { @style = "display:none; margin-bottom:10px;", @type = "file", @id = "yeniresim", @class = "form-control" })
+                                }
+                                else
+                                {
+                                    <button class="btn btn-danger resmigirme" style="float:right;">Resmi Seç</button>
+                                    @Html.TextBoxFor(model => model.MenuNames.MenuResim, new { @style = "margin-bottom:10px; display:none;", @type = "file", @id = "yeniresi", @placeholder = "deneme", @class = "form-control" })
+                                }
+
+
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-md-2" style="margin-top:8px;">Menu Adı</label>
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(model => model.MenuNames.MenuName, new { @type = "text", @class = "form-control" })
+
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="fullname" class="control-label col-lg-2" style="margin-top:8px;">Menu Fiyatı </label>
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(model => model.MenuNames.Price, new { @style = "margin-top:7px;", @type = "text", @class = "form-control" })
+                                @Html.HiddenFor(model => model.MenuNames.CompaniesId, new { @style = "margin-top:7px; display:none;", @type = "text", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="fullname" class="control-label col-lg-2" style="margin-top:8px;">Menu Açıklama </label>
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(model => model.MenuNames.Description, new { @style = "margin-top:7px;", @type = "text", @class = "form-control" })<br />
+                            </div>
+                        </div>
+                        <br /><br />
+                        .
+                        <div id="sonuc"></div>
+
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</body>
+</html>
+<!-- DATA TABLE SCRIPTS -->
+
+
+<!-- CUSTOM SCRIPTS -->
+
+
+@*<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Areas/Admin/Content/NiceAdmin/js/bootstrap.min.js"></script>*@
+
+
+<!--
+    
+
+<!--sDeneme -->
+
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/bootstrap.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/jquery.metisMenu.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/dataTables/jquery.dataTables.js"></script>
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/dataTables/dataTables.bootstrap.js"></script>
+<script src="~/Areas/Admin/Content/jquery-3.4.1.min.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="~/Areas/Admin/Content/bs-binary-admin/assets/js/custom.js"></script>
+
+<script src="~/Areas/Admin/Content/NiceAdmin/js/jquery-ui-1.10.4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@section scripts{
+    <script type="text/javascript">
+
+        $(".denemem").click(function () {
+            alert("merhaba dunya");
+        });
+        $(".resmidegis").click(function () {
+            document.getElementById("yeniresim").style.display = "block";
+        });
+        $(".resmigirme").click(function () {
+            document.getElementById("yeniresi").style.display = "block";
+        });
+
+        $(".urundegir").click(function () {
+            alert("merhaba dunya");
+        });
+
+       
+
+        $(".resmideg").click(function () {
+            debugger;
+            alert("merhaba dunya");
+            var kacincieleman = $(this).data("deger");
+            var tiklananurunid=$(this).data("urunid");
+            alert("kacinci"+kacincieleman+"tikalananurunid "+tiklananurunid);
+            $(".yenitiklaurun").click(function(){
+
+                var yenitiklananurunid=$(this).data("id");
+
+                alert("yeniurunid"+yenitiklananurunid);
+                $.ajax({
+                    url: "/Admin/Anasayfa/Urundegis/",
+                    data: { kacincieleman :kacincieleman,menuid:@Model.MenuNames.Id,tiklananurunid:tiklananurunid,yenitiklananurunid:yenitiklananurunid},
+                    type:'Post',
+                    success:function(){
+                        window.location.replace("/Admin/Anasayfa/MenuDuzenle/"@Model.MenuNames.Id);
+                    }
+                });
+
+            });
+        });
+
+    </script>
+}
+
+
+

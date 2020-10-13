@@ -1,0 +1,282 @@
+﻿
+@{
+    ViewBag.Title = "Sehirler";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    List<string> resim = ViewBag.resimler;
+    var ilkeleman = resim[0];
+    var ikincieleman = resim[1];
+    var ucuncueleman = resim[2];
+    var sehirler = (IEnumerable<YemekSepetiUygulamasi.Entity.EntityTable.City>)TempData["sehirler"];
+}
+<style>
+    body {
+        border: 0;
+        margin: 0px;
+        padding: 0px;
+    }
+    a .tiklacak:hover{
+       
+        font-weight:bold;
+        border:4px solid;
+        border-color:#800000;
+        z-index:9999;
+        background-color:black;
+    }
+   
+    #myCarousel {
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    table {
+        width: 100%;
+    }
+
+        table thead th {
+            padding: 20px;
+        }
+
+        table tbody th {
+            width: 10%;
+            font-style: italic;
+        }
+
+        table td {
+            padding: 10px;
+        }
+
+
+    #rangeValue {
+        position: relative;
+        display: block;
+        text-align: center;
+        font-size: 15px;
+        color: #999;
+        font-weight: 400;
+        z-index: 999999;
+        color: black;
+        font-weight: bold;
+    }
+
+    .range {
+        width: 400px;
+        height: 15px;
+        -webkit-appearance: none;
+        outline: none;
+        overflow: hidden;
+        margin-top: -30px;
+        box-shadow: inset 0 0 5px rgba(0,0,0,1);
+    }
+
+        .range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 30px;
+            height: 30px;
+            background: black;
+            cursor: pointer;
+            border-radius: 30px;
+            border: 6px solid black;
+            box-shadow: -407px 0 0 400px #ff6508;
+            color: white;
+            -moz-appearance: none;
+        }
+
+    ul {
+        height: 30px;
+        width: 150px;
+    }
+
+    .list-unstyled {
+        display: none;
+        width: 300px;
+        height: 260px;
+        overflow: scroll;
+    }
+
+    ul li {
+        font-size: 12px;
+        width: 300px;
+    }
+
+        ul li:hover {
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            background-color: #ff6508;
+            overflow: auto;
+            border: 3px solid #ff6508;
+        }
+
+
+    a#submit {
+        z-index: 1;
+    }
+
+    .glyphicon-chevron-down {
+        cursor: pointer;
+    }
+
+    .glyphicon-chevron-up {
+        cursor: pointer;
+    }
+
+    a {
+        color: magenta;
+    }
+</style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+<link href="~/Content/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/Content/RangeSlider/css/range-slider.css" rel="stylesheet" />
+<script src="~/Content/bootstrap/js/bootstrap.js"></script>
+
+<script src="~/Content/RangeSlider/src/range-slider.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+<link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
+<script src="~/Content/fontawesome-free/js/all.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+            $(document).ready(function () {
+                $(window).load(function () {
+                    var modal = document.getElementById("myModal");
+                  
+                    modal.style.display = "block";
+                    
+                    
+                });
+            });
+    </script>
+
+<body>
+  
+  
+    <div class="row">
+       
+      
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top:-20px; ">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active" style=""></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src='@ilkeleman' />
+                    </div>
+
+                    <div class="item">
+                        <img src='@ikincieleman' />
+                    </div>
+
+                    <div class="item">
+                        <img src='@ucuncueleman' />
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="" style="background-color:black;">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next" style="background-color:black;">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+    
+        </div>
+    <br /><br />
+    
+
+    <div id="myModal" class="col-xs-11 modal" style="z-index:99999; margin:auto; overflow-y:auto;"  >
+        
+           
+                <div class="modal-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-8 col-md-3 col-lg-8">
+                                <div id="sdx-city-box" class="">
+                                    <div class="box-wrapper">
+                                        <div class="box-content">
+                                            <h2 class="sdx-section-title visible" style="text-align:center; color:#800000;  font-family:Arial; font-weight:bold;">Şehrini Seç<span style="font-size:25px;"><br />HOŞGELDİNİZ</span></h2>
+                                            <div class="desc">
+                                                <p style="text-align:center; font-size:15px; font-family:Calibri">Binlerce Yemek fırsatı ve işyeri restoran seni bekliyor! <br> Lütfen bulunduğun şehri seç ve hemen sipariş ver. </p>
+                                            </div>
+                                            @foreach (var item in sehirler)
+                                            {
+                                                if (item.Id < 9)
+                                                {
+                                                    <div id="sdxbox-city-select-radio">
+                                                        <a href="@Url.Action("Index", "Anasayfalar", new { cityId = item.Id })" class="btn btn-default tiklacak" style="float:left;   border:1px solid; width:150px;  margin-left:10px; margin-bottom:10px; height:70px; max-width:100%; max-height:100%;"><span class="tiklah" style="position:relative;  top:10px;">@item.CityName</span></a>
+                                                        
+                                                     </div>
+                                                }
+                                                if (item.Id == 9)
+                                                {
+                                                    <br /><br /><br /><br /><br /><br /><br /><br />
+                                                    <div id="sakla" style="text-align:center; font-size:20px;">Tüm Şehirleri Göster &nbsp;&nbsp; <a href="#" id="sakla2"><i class="fas fa-chevron-down fa-2x" style="margin-top:12px; color:#800000;"></i></a></div>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="float:right;">
+                                <img src="~/Content/hamburger3.jpg" style="width:600px; height:300px; max-width:100%; padding:0px; margin:0px; margin-left:15px; max-height:100%;" />
+                            </div>
+                            <div id="goster" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                @foreach (var item in sehirler)
+                                {
+                                    if (item.Id > 9)
+                                    {
+                                        <div id="sdxbox-city-select-radio">
+                                            <a href="@Url.Action("Index", "Anasayfalar", new { cityId = item.Id })" class="btn btn-default tiklacak" style="float:left; border:1px solid; width:150px; margin-left:10px; margin-bottom:10px; height:70px; max-width:100%; max-height:100%;">@item.CityName</a>
+                                        </div>
+                                    }
+
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+    
+    </div>
+
+
+
+
+
+
+
+
+</body>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById("goster").style.display = "none";
+            $("#sakla2").click(function () {
+                document.getElementById("goster").style.display = "block";
+                document.getElementById("sakla2").style.display = "none";
+                document.getElementById("sakla").style.display = "none";
+            });
+        });
+
+    </script>
+}

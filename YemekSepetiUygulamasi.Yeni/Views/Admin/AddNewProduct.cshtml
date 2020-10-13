@@ -1,0 +1,196 @@
+﻿@model Products
+@{
+    ViewData["Title"] = "AddNewProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="col-md-12">
+        @if (Model.CategoryId == 0)
+        {
+            <h1 style="text-align:center;color:darkred">
+                New Product Add
+            </h1>
+        }
+        else
+        {
+            <h1 style="text-align:center;color:darkred">
+                Update Product
+            </h1>
+        }
+
+    </div>
+</div>
+<form asp-controller="Admin" asp-action="AddNewProduct" enctype="multipart/form-data" class="form-horizontal form-label-left" style="margin-top:3%">
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <input type="hidden" asp-for="ProductsId" />
+    <input type="hidden" asp-for="ProductImage" />
+
+    <div class="form-group">
+        <label asp-for="ProductName" class="control-label col-md-3 col-sm-3 col-xs-12">Product Name</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="ProductName" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProductDescription" class="control-label col-md-3 col-sm-3 col-xs-12">Product Description</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="ProductDescription" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProductSmallDescription" class="control-label col-md-3 col-sm-3 col-xs-12">Product Small Description</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="ProductSmallDescription" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BrutProductPrice" class="control-label col-md-3 col-sm-3 col-xs-12">Brut Product Prize</label>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="BrutProductPrice" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NetProductPrice" class="control-label col-md-3 col-sm-3 col-xs-12">Net Product Prize</label>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="NetProductPrice" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ShippingPrice" class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Product Prize</label>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="ShippingPrice" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label asp-for="ProductQuantity" class="control-label col-md-3 col-sm-3 col-xs-12">Product Quantity</label>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="ProductQuantity" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProductImage" class="control-label col-md-3 col-sm-3 col-xs-12">Product Image</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <img src="~/Productimage/@Model.ProductImage" width="120" />
+            <input type="file" name="file" id="file" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Is New ? <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="checkbox" class="form-check-input" asp-for="IsNew">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Gelecek Olan Ürün mü ? <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="checkbox" class="form-check-input" asp-for="IsFeatured">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            En Çok Satılan Ürün mü? <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="checkbox" class="form-check-input" asp-for="Bestsellers">
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                Eklenme Tarihi
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="MM-DD-YYYY" aria-describedby="inputSuccess2Status" required="" asp-for="DateAdded">
+                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Categories<span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <select asp-for="CategoryId" required="required" class="form-control col-md-7 col-xs-12" asp-items="@ViewBag.AllCategories">
+                <option>Please Select A Category</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Sub Category
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <select asp-for="SubCategoryId" required="required" class="form-control col-md-7 col-xs-12" asp-items="@ViewBag.AllSubCategories">
+                <option>Please Select A SubCategory</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Is Active ?
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="checkbox" class="form-check-input" asp-for="productIsActive">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ShippingDescription" class="control-label col-md-3 col-sm-3 col-xs-12">Shipping Description</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="ShippingDescription" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="cancellationProcedure" class="control-label col-md-3 col-sm-3 col-xs-12">Refund/Cancellation Procedure</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" asp-for="cancellationProcedure" required="required" class="form-control col-md-7 col-xs-12">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success col-md-12 col-sm-12 col-xs-12" style="margin-top:2%">@(Model.ProductsId == 0 ? " Add To New Product" : "Edit Product")</button>
+</form>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#single_cal1').daterangepicker({
+                singleDatePicker: true,
+                singleClasses: "picker_1"
+            }, function (start, end, label) {
+                //console.log(start.toISOString(), end.toISOString(), label);
+            });
+
+        });
+
+    </script>
+
+
+}

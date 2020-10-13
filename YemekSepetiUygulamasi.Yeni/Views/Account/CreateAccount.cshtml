@@ -1,0 +1,77 @@
+﻿@model UserAndRoleModels
+@{
+    ViewData["Title"] = "CreateAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["LoginError"] != null)
+{
+    <div class="alert alert-danger alert-dismissable"  style="text-align:center">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <strong>@TempData["LoginError"]</strong>
+    </div>
+}
+<div class="lg-margin"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <header class="content-title">
+                <h1 class="title">Register Account</h1>
+                <p class="title-desc">If you already have an account, please login at <a href="#">login page</a>.</p>
+            </header>
+            <div class="xs-margin"></div>
+            <form asp-controller="Account" asp-action="CreateAccount" method="post">
+                <div class="row">
+
+                    <div class="col-md-10 col-sm-8 col-xs-12">
+                        <fieldset>
+                            <h2 class="sub-title">YOUR PERSONAL DETAILS</h2>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">First Name*</span></span>
+                                <input asp-for="Name" required="" class="form-control input-lg" placeholder="Your First Name">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">Last Name*</span></span>
+                                <input asp-for="Surname" required="" class="form-control input-lg" placeholder="Your Last Name">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="input-icon input-icon-email"></span><span class="input-text">Email*</span></span>
+                                <input asp-for="Email" required="" class="form-control input-lg" placeholder="Your Email">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="input-icon input-icon-phone"></span><span class="input-text">Telephone*</span></span>
+                                <input asp-for="PhoneNumber" class="form-control input-lg" placeholder="Your Telephone">
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <h2 class="sub-title">YOUR PASSWORD</h2>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="input-icon input-icon-password"></span><span class="input-text">Password*</span></span>
+                                <input asp-for="Password" required="" type="password" class="form-control input-lg" placeholder="Your Password">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="input-icon input-icon-password"></span><span class="input-text">Password*</span></span>
+                                <input asp-for="ConfirmedPassword" required="" type="password" class="form-control input-lg" placeholder="Your Password">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-12">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <fieldset class="half-margin">
+                            <h2 class="sub-title">NEWSLETTER</h2>
+                            <div class="input-desc-box"><span class="separator icon-box">+</span>I wish to subscribe to the Venedor newsletter.</div>
+                            <div class="input-group custom-checkbox">
+                                <input type="checkbox"> <span class="checbox-container"><i class="fa fa-check"></i></span> I have reed and agree to the <a href="#">Privacy Policy</a>.
+                            </div>
+                        </fieldset>
+                        <input type="submit" value="CREATE MY ACCCOUNT" class="btn btn-custom-2 md-margin">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

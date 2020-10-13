@@ -1,0 +1,491 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+
+    <!--/tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!--//tags -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="~/Content/web/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/web/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/web/css/font-awesome.css" rel="stylesheet">
+    <!--pop-up-box-->
+    <link href="~/Content/web/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//pop-up-box-->
+    <!-- price range -->
+    <link rel="stylesheet" type="text/css" href="~/Content/web/css/jquery-ui1.css">
+    <!-- fonts -->
+    <link href="~/Content/web//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+    <style>
+        #uyeol:hover {
+            background-color: #380000;
+            font-size: 19px;
+            border: 2px solid #380000;
+            cursor: pointer;
+        }
+
+        #girisyap:hover {
+            background-color: #380000;
+            font-size: 19px;
+            border: 2px solid #380000;
+            cursor: pointer;
+        }
+
+
+
+        span.notify {
+            width: 32px;
+            height: 22px;
+            color: #fff;
+            text-align: center;
+            position: absolute;
+            line-height: normal;
+            font-size: 11px;
+            padding-top: 3px;
+            z-index: 1;
+        }
+
+        .tilkagiris:hover {
+            cursor: pointer;
+        }
+
+        .tilkauyeol:hover {
+            cursor: pointer;
+        }
+    </style>
+    @RenderSection("head", required: false)
+</head>
+<body>
+    @{
+        Html.RenderAction("DövizKurlari", "Anasayfalar");
+    }
+    <div class="header-bot" style="margin-top:25px;">
+        <div class="header-bot_inner_wthreeinfo_header_mid">
+            <!-- header-bot-->
+            <div class="col-md-4 logo_agile" style="margin-top:30px;">
+                <h1>
+                    <a href="~/Content/web/index.html">
+                        <span>G</span>rocery
+                        <span>S</span>hoppy
+                        <img src="~/Content/web/images/logo2.png" alt=" ">
+                    </a>
+                </h1>
+            </div>
+            <!-- header-bot -->
+            <div class="col-md-8 header">
+                <!-- header lists -->
+                <ul style="">
+                    @if (Session["adsoyadi"] == null && Session["kullaniciadi"] == null)
+                    {
+                        <li style="text-decoration: none;list-style-type:none; border-right:0px;">
+                            <a href="/Home/GirisYap" class="giristikla">
+
+                                <i class="fas fa-users fa-2x" style="color:white; border-radius:32px 5px 0px 1px; margin-left:-7px; width:150px; background-color:#850000;margin-bottom:-1px;"></i><label class="tilkagiris" style="font-size:15px; height:30px; width:147px; font-weight:600;margin-top:-1px; width:160px; margin-left:-7px; color:white; background-color:#850000;font-weight:600;">Giriş Yap</label>
+                            </a>
+                        </li>
+                        <li style="text-decoration: none;list-style-type:none; border-right:0px;">
+                            <a href="/Home/Uyeol" class="uyeoltikla">
+
+                                <i class="fas fa-user-plus fa-2x" style="color:white; border-radius:5px 32px 0px 1px; margin-left:-7px; width:147px; background-color:#850000;margin-bottom:-1px;"></i><label class="tilkauyeol" style="font-size:15px;height:30px; font-weight:600;margin-top:-1px; width:147px; margin-left:-7px; color:white; background-color:#850000;font-weight:600;">Üye Ol</label>
+                            </a>
+                        </li>
+                    }
+                    @if (Session["adsoyadi"] != null && Session["kullaniciadi"] != null)
+                    {
+                        <li style="text-decoration: none;list-style-type:none; border-right:0px;">
+                            <a href="/Home/Uyeol">
+
+                                <i class="fas fa-user-circle fa-2x" style="color:white; border-radius:5px 5px 1px 1px; margin-left:-7px; width:147px; background-color:#850000;margin-bottom:-1px;"></i><label style="font-size:15px;height:30px; border-radius:1px 1px 5px 5px; font-weight:600;margin-top:-1px; width:147px; margin-left:-7px; color:white; background-color:#850000;font-weight:600;">@Session["adsoyadi"]</label>
+                            </a>
+                        </li>
+                        <li style="text-decoration: none;list-style-type:none; border-right:0px;">
+                            <a href="/Ana/CikisYap2">
+
+                                <i class="fas fa-sign-out-alt fa-2x" style="color:white; border-radius:5px 5px 1px 1px; margin-left:-7px; width:147px; background-color:#850000;margin-bottom:-1px;"></i><label style="font-size:15px;height:30px; border-radius:1px 1px 5px 5px; font-weight:600;margin-top:-1px; width:147px; margin-left:-7px; color:white; background-color:#850000;font-weight:600;">Çıkış Yap</label>
+                            </a>
+                        </li>
+
+                    }
+
+
+                </ul>
+
+                <!-- //header lists -->
+                <!-- search -->
+                <div class="agileits_search">
+                    @*<form action="/Anasayfalar/YemekveRestoransearch" method="post">*@
+                    @using (Html.BeginForm("YemekveRestoransearch", "Anasayfalar", FormMethod.Get))
+                    {
+
+                        <input name="search" style="padding:7px;" class="col-md-10" id="search" type="text" placeholder="Yemek veya Restorant Arayın..">
+                        <button type="submit" id="searcharama" class="btn btn-default" aria-label="Left Align">
+                            <span class="fa fa-search" aria-hidden="true"> </span>
+                        </button>
+                    }
+
+                    <p id="demo"></p>
+                    <div id="parent"></div>
+                    <div id="parent2"></div>
+                    <div id="parent3"></div>
+                    @*</form>*@
+                </div>
+                <!-- //search -->
+                <!-- cart details -->
+                <!-- //cart details -->
+                <a href="/Home/Sehirler" id="girisyap" class="btn btn-danger" style="background-color:#850000; width:160px; height:100px; margin-right: -100px; top:-100px; position:relative; border:1px solid white;">
+                    <i class="fas fa-street-view fa-2x"></i><br /><strong style="font-size:17px; font-weight:bold;">Bölge:@Session["sehiradi"]<br />Değiştir</strong>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div id="small-dialog1" class="mfp-hide">
+        <div class="select-city">
+            <h3>Please Select Your Location</h3>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <header class="modal-header">
+                ...
+                <button class="close-modal" aria-label="close modal" data-close>✕</button>
+            </header>
+            <section class="modal-content">Deneme</section>
+            <footer class="modal-footer">Deenmem debadf</footer>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" vocab="">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body modal-body-sub_agile">
+                    <div class="main-mailposi">
+                        <span class="fa fa-envelope-o" aria-hidden="true"></span>
+                    </div>
+                    <div class="modal_body_left modal_body_left1">
+                        <h3 class="agileinfo_sign">Sign In </h3>
+                        <p>
+                            Sign In now, Let's start your Grocery Shopping. Don't have an account?
+                            <a href="#" data-toggle="modal" data-target="#myModal2">
+                                Sign Up Now
+                            </a>
+                        </p>
+                        <form action="#" method="post">
+                            <div class="styled-input agile-styled-input-top">
+                                <input type="text" placeholder="User Name" name="Name" required="">
+                            </div>
+                            <div class="styled-input">
+                                <input type="password" placeholder="Password" name="password" required="">
+                            </div>
+                            <input type="submit" value="Sign In">
+                        </form>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- //Modal content-->
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body modal-body-sub_agile">
+                    <div class="main-mailposi">
+                        <span class="fa fa-envelope-o" aria-hidden="true"></span>
+                    </div>
+                    <div class="modal_body_left modal_body_left1">
+                        <h3 class="agileinfo_sign">Sign Up</h3>
+                        <p>
+                            Come join the Grocery Shoppy! Let's set up your Account.
+                        </p>
+                        <form action="#" method="post">
+                            <div class="styled-input agile-styled-input-top">
+                                <input type="text" placeholder="Name" name="Name" required="">
+                            </div>
+                            <div class="styled-input">
+                                <input type="email" placeholder="E-mail" name="Email" required="">
+                            </div>
+                            <div class="styled-input">
+                                <input type="password" placeholder="Password" name="password" id="password1" required="">
+                            </div>
+                            <div class="styled-input">
+                                <input type="password" placeholder="Confirm Password" name="Confirm Password" id="password2" required="">
+                            </div>
+                            <input type="submit" value="Sign Up">
+                        </form>
+                        <p>
+                            <a href="#">By clicking register, I agree to your terms</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- //Modal content-->
+        </div>
+    </div>
+    @RenderBody()
+
+
+    @RenderSection("scripts", required: false);
+    <div class="copy-right">
+        <div class="container">
+            <p>
+                © 2017 Grocery Shoppy. All rights reserved | Design by
+                <a href="http://w3layouts.com"> W3layouts.</a>
+            </p>
+        </div>
+    </div>
+    <script src="~/Content/web/js/jquery-2.1.4.min.js"></script>
+    <!-- //jquery -->
+    <!-- popup modal (for signin & signup)-->
+    <script src="~/Content/web/js/jquery.magnific-popup.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+        });
+    </script>
+    <!-- Large modal -->
+    <!-- <script>
+        $('#').modal('show');
+    </script> -->
+    <!-- //popup modal (for signin & signup)-->
+    <!-- cart-js -->
+    <script src="~/Content/web/js/minicart.js"></script>
+    <script>
+        paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
+
+        paypalm.minicartk.cart.on('checkout', function (evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
+
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
+
+            if (total < 3) {
+                alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                evt.preventDefault();
+            }
+        });
+    </script>
+    <!-- //cart-js -->
+    <!-- price range (top products) -->
+    <script src="~/Content/web/js/jquery-ui.js"></script>
+    <script>
+        //<![CDATA[
+        $(window).load(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 9000,
+                values: [50, 6000],
+                slide: function (event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
+        }); //]]>
+    </script>
+    <!-- //price range (top products) -->
+    <!-- flexisel (for special offers) -->
+    <script src="~/Content/web/js/jquery.flexisel.js"></script>
+    <script>
+        $(window).load(function () {
+            $("#flexiselDemo1").flexisel({
+                visibleItems: 3,
+                animationSpeed: 1000,
+                autoPlay: true,
+                autoPlaySpeed: 3000,
+                pauseOnHover: true,
+                enableResponsiveBreakpoints: true,
+                responsiveBreakpoints: {
+                    portrait: {
+                        changePoint: 480,
+                        visibleItems: 1
+                    },
+                    landscape: {
+                        changePoint: 640,
+                        visibleItems: 2
+                    },
+                    tablet: {
+                        changePoint: 768,
+                        visibleItems: 2
+                    }
+                }
+            });
+
+        });
+    </script>
+    <!-- //flexisel (for special offers) -->
+    <!-- password-script -->
+    <script>
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+    </script>
+    <!-- //password-script -->
+    <!-- smoothscroll -->
+    <script src="~/Content/web/js/SmoothScroll.min.js"></script>
+    <!-- //smoothscroll -->
+    <!-- start-smooth-scrolling -->
+    <script src="~/Content/web/js/move-top.js"></script>
+    <script src="~/Content/web/js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- for bootstrap working -->
+    <script src="~/Content/web/js/bootstrap.js"></script>
+    <!-- //for bootstrap working -->
+    <!-- //js-files -->
+
+
+</body>
+
+</html>
+<script src="~/Content/web/js/jquery-ui.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+<script type="text/javascript">
+
+    $('#search').keyup(function () {
+
+
+        $('#parent').html('');
+        $('#parent').html('');
+        $('#parent').html('');
+
+        var x = document.getElementById("search").value;
+        document.getElementById("demo").innerHTML = "You wrote: " + x;
+        alert("merhaba dunya");
+
+        var txt = $('#search').val().toLowerCase();
+        if (txt.length > 2) {
+            $.ajax({
+                url: '/Anasayfalar/SeachArama/',
+                data: { searchvalue: txt },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    var veriler = "";
+                    var i = "";
+                    var a = "";
+                    var b = "";
+                    //sonuc burda lıstelenıyor
+                    for (i in data.FirmaListesi) {
+
+                        $('#parent').append('<p>' + data.FirmaListesi[i].CompanyName + '</p>');
+                    }
+                    for (a in data.ProductListe) {
+
+                        $('#parent2').append('<p>' + data.ProductListe[a].Pname + '</p>');
+                    }
+                    for (b in data.CategoryListe) {
+                        $('#parent3').append('<p>' + data.CategoryListe[b].Cname + '</p>');
+                    }
+                    deneme();
+                }
+            });
+        }
+        if (txt.length == 0 || txt.length < 2) {
+            $('#parent').html('');
+            $('#parent').html('');
+            $('#parent').html('');
+        }
+        function deneme() {
+            alert("merhabalar");
+        }
+
+
+
+
+    });
+
+</script>

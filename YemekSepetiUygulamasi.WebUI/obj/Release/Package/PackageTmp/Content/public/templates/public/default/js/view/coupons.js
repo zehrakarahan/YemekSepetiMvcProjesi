@@ -1,0 +1,1 @@
+!function(a){a.couponsPlugin=function(){function b(){a("#coupons-list a[data-print]").click(function(b){b.preventDefault();var c=a(window).width()>700?700:a(window).width(),d=a(this).attr("href"),e=Math.floor(100*Math.random()+1)+"EnlargeImageWindow";window.open(d,e,"width="+c+", height=500")})}b()}}(jQuery),$(document).ready(function(a){$.couponsPlugin()});

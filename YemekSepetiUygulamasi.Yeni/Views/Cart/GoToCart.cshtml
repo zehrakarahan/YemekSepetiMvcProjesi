@@ -1,0 +1,100 @@
+﻿@model IEnumerable<CartOrderModel>
+@{
+    ViewData["Title"] = "GoToCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="breadcrumb-container">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Shopping Cart</li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <header class="content-title">
+                <h1 class="title">Shopping Cart</h1>
+                <p class="title-desc">Just this week, you can use the free premium delivery.</p>
+            </header>
+            <div class="xs-margin"></div>
+            <div class="row">
+                <div class="col-md-12 table-responsive">
+                    <table class="table cart-table">
+                        <thead>
+                            <tr>
+                                <th class="table-title">Product Name</th>
+                                <th class="table-title">Product Code</th>
+                                <th class="table-title">Unit Price</th>
+                                <th class="table-title">Shipping Price</th>
+                                <th class="table-title">Quantity</th>
+                                <th class="table-title">SubTotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cart in Model)
+                            {
+                            <tr>
+                                <td class="item-name-col">
+                                    <figure>
+                                        <a href="#"><img src="~/Productimage/@cart.productImage" alt="Lowlands Lace Blouse"></a>
+                                    </figure>
+                                    <header class="item-name"><a href="">@cart.productName</a></header>
+                                </td>
+                                <td class="item-code">@cart.productCode</td>
+                                <td class="item-price-col"><span class="item-price-special">€ @cart.unitPrice</span></td>
+                                <td class="item-price-col"><span class="item-price-special">@(cart.ShippingPrice !=0 ?  @cart.ShippingPrice.ToString():"No Selected Shipping") </span></td>
+                                <td>
+                                    <div class="custom-quantity-input">
+                                        <span class="item-price-special">@cart.quantity</span>
+                                    </div>
+                                </td>
+                                <td class="item-total-col">
+                                    <span class="item-price-special">€ @cart.subTotal</span>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="lg-margin"></div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12 lg-margin">
+
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <table class="table total-table">
+                        @*<tbody>
+                            <tr>
+                                <td class="total-table-title">Subtotal:</td>
+                                <td>$434.50</td>
+                            </tr>
+                            <tr>
+                                <td class="total-table-title">Shipping:</td>
+                                <td>$6.00</td>
+                            </tr>
+                            <tr>
+                                <td class="total-table-title">TAX (0%):</td>
+                                <td>$0.00</td>
+                            </tr>
+                        </tbody>*@
+                        <tfoot>
+                            <tr>
+                                <td>Total:</td>
+                                <td>$ @ViewBag.totalPriceForCart</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="md-margin"></div>
+                    <a href="~/Home/ProductList" class="btn btn-custom-2">CONTINUE SHOPPING</a>
+                    <a asp-controller="Cart" asp-action="CheckOut" class="btn btn-custom">CHECKOUT</a>
+                </div>
+            </div>
+            <div class="md-margin2x"></div>
+
+        </div>
+    </div>
+</div>

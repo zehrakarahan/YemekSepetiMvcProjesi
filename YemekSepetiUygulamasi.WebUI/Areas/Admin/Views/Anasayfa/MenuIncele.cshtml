@@ -1,0 +1,203 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Areas.Admin.Models.MenuwithProduct
+@{
+    ViewBag.Title = "MenuIncele";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    int sayac = 1;
+}
+<style>
+
+
+.card {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+  max-width: 600px;
+  height:100px;
+  flex-direction: row;
+  border-radius: 25px;
+  position: relative;
+  margin-bottom:10px;
+}
+.card h2 {
+  margin: 0;
+  padding: 0 1rem;
+}
+.card .title {
+  padding: 1rem;
+  text-align: right;
+  color: green;
+  font-weight: bold;
+  font-size: 12px;
+}
+.card .desc {
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+}
+.card .actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+.card svg {
+  width: 85px;
+  height: 85px;
+  margin: 0 auto;
+}
+
+
+
+.card-text {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+
+
+
+
+.img-portada {
+  width: 100%;
+}
+
+.portada {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+ 
+  background-position: bottom center;
+  background-size: cover;
+}
+
+button {
+  border: none;
+  background: none;
+  font-size: 24px;
+  color: #8bc34a;
+  cursor: pointer;
+  transition:.5s;
+  &:hover{
+    color: #4CAF50  ;
+    transform: rotate(22deg)
+  }
+}
+
+
+</style>
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div style="float:left; font-weight:bold; font-size:25px;">
+                    Menu Bilgileri
+                </div>
+                <div class="form-group" style="float:right">
+                    <div class="col-lg-offset-3 col-lg-10">
+                        <a class="btn btn-danger" href="/Admin/Anasayfa/MenuBilgileri" id="kaydet" style="font-weight:bold;">Geri Dön</a>
+
+                    </div>
+                </div>
+                <br />
+            </header>
+           
+
+            <div class="panel-body">
+                <div class="form">
+                    <hr />
+                   
+                    <div class="form-group ">
+                        <label for="password" class="control-label col-md-2">Menu Resmi</label>
+                        <div class="col-lg-10">
+                            @if (Model.menuresim != null)
+                            {
+                                <div>
+                                    <img src="@Model.menuresim" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <img src="" />
+                                </div>
+                            }
+                           
+                        </div>
+                    </div>
+                    <br /><br />
+                    <div class="form-group ">
+                        <label for="password" class="control-label col-md-2">Menu Adı</label>
+                        <div class="col-lg-10">
+                            <input class="form-control " id="temcilciadi" style="margin-top:7px;" name="KurucuTemsilciAdi" type="text" value="@Model.MenuNames.MenuName" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Menu Fiyatı </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.MenuNames.Price" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Menu Açıklama </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.MenuNames.Description" readonly /><br />
+                        </div>
+                    </div>
+                   <br /><br />
+                   <h2 style="text-align:center">Menu İçindeki Ürünler</h2>
+                   
+                   @foreach (var item in Model.Product)
+                   {
+                    <div >
+                        <div class="deneme" >
+                            <h3>@sayac. Ürün Bilgisi</h3>
+                        </div>
+                        <div class="card" >
+                            @foreach (var deger in Model.ProductImage)
+                            {
+                                if (item.ProductImageId == deger.Id)
+                                {
+                                    <div class="card-text">
+                                        <div class="portada" style="width:100px; height:60px;">
+
+                                            @deger.Resimler
+                                        </div>
+
+                                        <div class="title-total">
+
+                                            <h2>@item.Pname</h2>
+
+                                            <div class="desc">@item.Price TL</div>
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+                            
+                        </div>
+                    </div>
+                     
+                  @*  <div class="form-group ">
+        <label for="fullname" class="control-label col-lg-2" style="margin-top:10px;">@sayac Ürün Adı </label>
+        <div class="col-lg-10">
+            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@item.Pname" readonly />
+        </div>
+    </div>
+    <div class="form-group ">
+        <label for="fullname" class="control-label col-lg-2" style="margin-top:10px;">@sayac Ürün Fiyatı </label>
+        <div class="col-lg-10">
+            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@item.Price" readonly />
+        </div>
+    </div>*@
+                       sayac = sayac + 1;
+                   }
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+

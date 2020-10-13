@@ -1,0 +1,187 @@
+﻿@model CheckOutAndCartModel
+@{
+    ViewData["Title"] = "CheckOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <style>
+       body {
+  background-color:#f6f6f5;
+}
+h4.payHead {
+   font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+   font-size: 14px;
+   color: #09f;
+   border: 2px solid #09f;
+   border-radius: 4px;
+   padding: 5px 8px;
+   cursor: pointer;
+}
+.wpwl-container {display:none;}
+    </style>
+
+<div id="breadcrumb-container">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Checkout</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <header class="content-title">
+                <h1 class="title">Checkout</h1>
+                <p class="title-desc">Quisque elementum nibh at dolor pellentesque, a eleifend libero pharetra.</p>
+            </header>
+            <div class="xs-margin"></div>
+            <form asp-controller="Cart" asp-action="CheckOut" method="post" id="checkout-form">
+                <div class="panel-group custom-accordion" id="checkout">
+                    <div class="panel">
+                        <div class="accordion-header">
+                            <div class="accordion-title">2 Step: <span>Billing Information</span></div>
+                            <a class="accordion-btn" data-toggle="collapse" data-target="#billing"></a>
+                        </div>
+                        <div id="billing" class="collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h2 class="checkout-title">Your personal details</h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">First Name*</span></span>
+                                            <input asp-for="CheckOutmodel.FirstName" required="required" class="form-control input-lg" placeholder="Your First Name">
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">Last Name*</span></span>
+                                            <input asp-for="CheckOutmodel.LastName" required="" class="form-control input-lg" placeholder="Your Last Lame">
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="input-icon input-icon-email"></span><span class="input-text">Email*</span></span>
+                                            <input asp-for="CheckOutmodel.Email" class="form-control input-lg" placeholder="Your Email">
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="input-icon input-icon-phone"></span><span class="input-text">Telephone*</span></span>
+                                            <input asp-for="CheckOutmodel.Telephone" required="" class="form-control input-lg" placeholder="Your Telephone">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h2 class="checkout-title">Your Address</h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="input-icon input-icon-address"></span><span class="input-text">Address 1*</span></span>
+                                            <input asp-for="CheckOutmodel.Address1" class="form-control input-lg" placeholder="Your Address">
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="input-icon input-icon-address"></span><span class="input-text">Address 2*</span></span>
+                                            <input asp-for="CheckOutmodel.Address2" required="" class="form-control input-lg" placeholder="Your Address">
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="input-icon input-icon-city"></span><span class="input-text">City*</span></span>
+                                            <input asp-for="CheckOutmodel.City" type="text" required="" class="form-control input-lg" placeholder="Your City">
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="input-icon input-icon-postcode"></span><span class="input-text">Post Code*</span></span>
+                                            <input asp-for="CheckOutmodel.PostCode" type="text" required="" class="form-control input-lg" placeholder="Your Post Code">
+                                        </div>
+                                        <div class="input-group custom-checkbox md-margin">
+                                            <input type="checkbox"> <span class="checbox-container"><i class="fa fa-check"></i></span> I have reed and agree to the <a href="#">Privacy Policy</a>.
+                                        </div><a href="#" class="btn btn-custom-2">CONTINUE</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="accordion-header">
+                            <div class="accordion-title">3 Step: <span>Delivery Details</span></div>
+                            <a class="accordion-btn" data-toggle="collapse" data-target="#delivery-details"></a>
+                        </div>
+                        <div id="delivery-details" class="collapse">
+                            <div class="panel-body">
+                                <p>Details about delivery</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="accordion-header">
+                            <div class="accordion-title">4 Step: <span>Delivery Method</span></div>
+                            <a class="accordion-btn" data-toggle="collapse" data-target="#delivery-method"></a>
+                        </div>
+                        <div id="delivery-method" class="collapse">
+                            <div class="panel-body">
+                                <p>Choose your delivery method.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="accordion-header">
+                            <div class="accordion-title">5 Step: <span>Payment Method</span></div>
+                            <a class="accordion-btn" data-toggle="collapse" data-target="#payment-method"></a>
+                        </div>
+                        <div id="payment-method" class="collapse">
+                            <div class="panel-body">
+                                <p>Choose your payment method.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="accordion-header">
+                            <div class="accordion-title">6 Step: <span>Confirm Order</span></div>
+                            <a class="accordion-btn opened" data-toggle="collapse" data-target="#confirm"></a>
+                        </div>
+                        <div id="confirm" class="collapse in">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table cart-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="table-title">Product Name</th>
+                                                <th class="table-title">Product Code</th>
+                                                <th class="table-title">Unit Price</th>
+                                                <th class="table-title">Shipping Price</th>
+                                                <th class="table-title">Quantity</th>
+                                                <th class="table-title">SubTotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var cart in Model.CartOrders)
+                                            {
+                                                <tr>
+                                                    <td class="item-name-col">
+                                                        <figure>
+                                                            <a href="#"><img src="~/Productimage/@cart.productImage" alt="Lowlands Lace Blouse"></a>
+                                                        </figure>
+                                                        <header class="item-name"><a href="">@cart.productName</a></header>
+                                                    </td>
+                                                    <td class="item-code">@cart.productCode</td>
+                                                    <td class="item-price-col"><span class="item-price-special">€ @cart.unitPrice</span></td>
+                                                    <td class="item-price-col"><span class="item-price-special">@(cart.ShippingPrice != 0 ? @cart.ShippingPrice.ToString() : "No Selected Shipping") </span></td>
+                                                    <td>
+                                                        <div class="custom-quantity-input">
+                                                            <span class="item-price-special">@cart.quantity</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="item-total-col">
+                                                        <span class="item-price-special">€ @cart.subTotal</span>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="lg-margin"></div>
+                                <div class="text-right">
+                                    <input type="submit" class="btn btn-custom-2" value="CONFIRM ORDER">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="xlg-margin"></div>
+
+        </div>
+    </div>
+</div>

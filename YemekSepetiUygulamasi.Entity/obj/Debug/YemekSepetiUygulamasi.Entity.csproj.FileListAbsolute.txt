@@ -1,0 +1,15 @@
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Debug\YemekSepetiUygulamasi.Entity.dll.config
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Debug\YemekSepetiUygulamasi.Entity.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Debug\YemekSepetiUygulamasi.Entity.pdb
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Debug\EntityFramework.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Debug\YemekSepetiUygulamasi.Core.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Debug\YemekSepetiUygulamasi.Core.pdb
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Debug\EntityFramework.xml
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\obj\Debug\YemekSepetiUygulamasi.Entity.dll
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\obj\Debug\YemekSepetiUygulamasi.Entity.pdb
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\bin\Debug\YemekSepetiUygulamasi.Core.dll.config
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\obj\Debug\YemekSepetiUygulamasi.Entity.csprojAssemblyReference.cache
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\obj\Debug\YemekSepetiUygulamasi.Entity.csproj.CoreCompileInputs.cache
+C:\Users\zehra\OneDrive\Belgeler\Visual Studio 2015\Projects\YemekSepetiUygulamasi\YemekSepetiUygulamasi.Entity\obj\Debug\YemekSepetiUygulamasi.Entity.csproj.CopyComplete

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{175F49ED-D6CF-4440-8B3E-348FE331A12B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YemekSepetiUygulamasi.Dal</RootNamespace>
+    <AssemblyName>YemekSepetiUygulamasi.Dal</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IAuthorityDal.cs" />
+    <Compile Include="Abstract\IBasketDal.cs" />
+    <Compile Include="Abstract\ICampaignPNameDal.cs" />
+    <Compile Include="Abstract\ICampaignProductsDal.cs" />
+    <Compile Include="Abstract\ICategoryDal.cs" />
+    <Compile Include="Abstract\ICategoryTypeDal.cs" />
+    <Compile Include="Abstract\ICommentDal.cs" />
+    <Compile Include="Abstract\ICompaniesDal.cs" />
+    <Compile Include="Abstract\ICountryDal.cs" />
+    <Compile Include="Abstract\ICountyDal.cs" />
+    <Compile Include="Abstract\ICustomerDal.cs" />
+    <Compile Include="Abstract\ICustomersAdressDal.cs" />
+    <Compile Include="Abstract\IDayTableDal.cs" />
+    <Compile Include="Abstract\IDiscountCouponDal.cs" />
+    <Compile Include="Abstract\IEmployeesDal.cs" />
+    <Compile Include="Abstract\IFavoritesDal.cs" />
+    <Compile Include="Abstract\IManagerTableDal.cs" />
+    <Compile Include="Abstract\IMenuNamesDal.cs" />
+    <Compile Include="Abstract\IMenusDal.cs" />
+    <Compile Include="Abstract\INeighborhoodDal.cs" />
+    <Compile Include="Abstract\IOrderDal.cs" />
+    <Compile Include="Abstract\IOrderProductDal.cs" />
+    <Compile Include="Abstract\IPaymentsOptionsDal.cs" />
+    <Compile Include="Abstract\IProductDal.cs" />
+    <Compile Include="Abstract\IProductImageDal.cs" />
+    <Compile Include="Abstract\IProductSalesDal.cs" />
+    <Compile Include="Abstract\IPromosyonDal.cs" />
+    <Compile Include="Abstract\ISalesDal.cs" />
+    <Compile Include="Abstract\ISandDtableDal.cs" />
+    <Compile Include="Abstract\IShiftTableDal.cs" />
+    <Compile Include="Abstract\ISifreDegisiklikDal.cs" />
+    <Compile Include="Abstract\ISliderDal.cs" />
+    <Compile Include="Abstract\IStatusDal.cs" />
+    <Compile Include="Abstract\IWorkingDal.cs" />
+    <Compile Include="Abstract\ICityDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\AuthorityDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\BasketDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CampaignProductsDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CampaignPNameDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CategoryDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CategoryTypeDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CityDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CommentDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CompaniesDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CountryTableDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CountyDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CustomerDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\CustomersAdressDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\DayTableDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\DiscountCouponDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\EmployeesDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\FavoritesDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\ManagerTableDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\MenuNamesDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\MenusDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\NeighborhoodDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\OrderDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\OrderProductDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\PaymentsOptionsDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\ProductDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\ProductImageDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\ProductSalesDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\PromosyonDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\SalesDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\SandDtableDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\ShiftTableDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\SifreDegisiklikDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\SliderDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\StatusDal.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository\WorkingDal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Concrete\EntityFramework\Context\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YemekSepetiUygulamasi.Core\YemekSepetiUygulamasi.Core.csproj">
+      <Project>{19cef283-a700-43fc-88bc-3673749391c8}</Project>
+      <Name>YemekSepetiUygulamasi.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YemekSepetiUygulamasi.Entity\YemekSepetiUygulamasi.Entity.csproj">
+      <Project>{0481bb05-c745-4fd4-8394-220bc365bd94}</Project>
+      <Name>YemekSepetiUygulamasi.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

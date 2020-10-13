@@ -1,0 +1,124 @@
+﻿@model YemekSepetiUygulamasi.Entity.EntityTable.Companies
+@{
+    ViewBag.Title = "Incele";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading" >
+                <div style="float:left; font-weight:bold; font-size:25px;">
+                    Firma Bilgileri
+                </div>
+                    <div class="form-group" style="float:right">
+                        <div class="col-lg-offset-3 col-lg-10">
+                            <a class="btn btn-danger" href="/Admin/Anasayfa/Index"  id="kaydet" style="font-weight:bold;" >Geri Dön</a>
+
+                        </div>
+                    </div>
+              <br />
+            </header>
+            
+            <div class="panel-body">
+                <div class="form">
+                    <hr />
+
+                    <div class="form-group ">
+                        <label for="password" class="control-label col-md-2">Firma Adı</label>
+                        <div class="col-lg-10">
+                            <input class="form-control " id="temcilciadi" name="KurucuTemsilciAdi" type="text"  value="@Model.CompanyName" readonly/>
+                        </div>
+                    </div>
+                        <div class="form-group ">
+                            <label for="fullname" class="control-label col-lg-2">Firma Adres </label>
+                            <div class="col-lg-10">
+                                <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.CompanyAdress" readonly />
+                            </div>
+                        </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Firma Servis Süresi </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.CompanyServiceTime" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Minimum Sipariş  </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.MinimumPackagePrice" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2" style="margin-bottom:5px;">Servis Ort. Puan </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.ServicePoint" readonly />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Hız Ort. Puan </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.SpeedPoint" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Lezzet Ort. Puan </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.FlavorPoint" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Açık/Kapalı </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.OpeningTime/@Model.ClosingTime" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Ödeme Seçenekleri </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.PaymentOptionsId.ToUpper()" readonly />
+                        </div>
+                    </div>
+                        <div class="form-group ">
+                            <label for="address" class="control-label col-lg-2">Promosyon </label>
+                            <div class="col-lg-10">
+                                <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.Promasyon" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="username" class="control-label col-lg-2">Firma Bilgisi</label>
+                            <div class="col-lg-10">
+                                <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.FirmaInformation" readonly />
+                            </div>
+                        </div>
+                    <div class="form-group ">
+                        <label for="username" class="control-label col-lg-2">Firma Açıklama</label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:10px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.CompanyDescription" readonly />
+                        </div>
+                    </div>
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">İl</label>
+                            <div class="col-lg-10">
+                                <input class="form-control " style="margin-top:10px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@TempData["iladi"]" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="confirm_password" class="control-label col-lg-2">İlçe/Semt</label>
+                            <div class="col-lg-10">
+                                <input class="form-control " style="margin-top:10px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@TempData["ilceadi"]/@TempData["semtadi"]" readonly />
+                            </div>
+                        </div>
+                       
+
+
+                 
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+

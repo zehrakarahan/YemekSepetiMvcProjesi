@@ -1,0 +1,128 @@
+﻿@model SubCategoryCategoryModel
+@{
+    ViewData["Title"] = "GetSubCategoryList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-lg-offset-3">
+
+    <div class="col-sm-4 col-xs-12 col-md-12 " style="margin-top:15px">
+        <div class="form-group">
+            <button type="submit" id="newSubCategory" class="btn btn-primary" data-toggle="modal" data-target="#NewSubCategoryModal" asp->
+                Add New Sub Category
+            </button>
+        </div>
+    </div>
+
+
+    @Html.Partial("_AddNewSubCategoriesModal")
+
+    <div class="col-md-6 col-sm-12 col-xs-12" style="margin-top:20px">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Add Sub Category </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>SubCategory Id</th>
+                            <th>SubCategory Name</th>
+                            <th>Category Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.SubCategoryList as List<SubCategoryCategoryModel>)
+                        {
+                            <tr>
+                                <td>@item.SubCategoryId</td>
+                                <td>@item.SubCategoryName</td>
+                                <td>@item.CategoryName</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="EditSubCategories(@item.SubCategoryId)" data-target="#exampleModal">
+                                        Edit
+                                    </button>
+                                    <a asp-controller="Admin" asp-action="RemoveSubCategories" asp-route-subCategory_id="@item.SubCategoryId" class="btn btn-danger">Remove</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+           
+            <div class="modal-body" id="SubCategoriesBodyDiv">
+
+
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    @*<a onclick="EditNewSubCategory()" class="btn btn-primary">Save changes</a>*@
+                    <button type="submit" onclick="EditNewSubCategory()" class="btn btn-primary">Save Changes</button>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts
+ {
+    <script>
+        var EditSubCategories = function (id) {
+            debugger;
+
+            $.ajax({
+                type: "POST",
+                url: "/Admin/EditSubCategory",
+                data: { subCategory_id: id },
+                beforeSend: function () {
+                    $('#exampleModal').modal('hide');
+                },
+                success: function (result) {
+                    $("#SubCategoriesBodyDiv").html(result);
+                }
+            });
+        }
+    </script>
+    <script>
+        var EditNewSubCategory = function () {
+            var subCategory_id = $("#SubCategory_Id").val();
+            var newSubCategoryName = $("#subCategoryName").val();
+            var newCategory_id = $("#newCategoryId").val();
+            $.ajax({
+                type: "POST",
+                url: "/Admin/ChangeAndSaveEdittedSubCategory",
+                data: { subCategory_id: subCategory_id, newSubCategoryName: newSubCategoryName, newCategory_id: newCategory_id },
+                success: function (result) {
+                    $("#exampleModal").modal('hide');
+                    location.reload();
+                    $("#TempData").append(html);
+                }
+            });
+
+        }
+    </script>
+
+}

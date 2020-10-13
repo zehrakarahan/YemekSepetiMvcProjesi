@@ -1,0 +1,204 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Models.Sepet
+
+<style>
+    .inputum:hover {
+        border-color: white;
+    }
+
+    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .arttir {
+        background-color: white;
+    }
+
+        .arttir:hover {
+            background-color: #bfbfbf;
+            cursor: pointer;
+        }
+
+    .azalt {
+        background-color: white;
+    }
+
+        .azalt:hover {
+            background-color: #bfbfbf;
+            cursor: pointer;
+        }
+</style>
+@{
+     var alert = (YemekSepetiUygulamasi.WebUI.Models.Ilcevesemt)Session["bilgiler"];
+}
+
+<div class="cartim">
+
+    <div style="color:white;  background-color:#CA3037; width:260px;  padding:15px 1px 0px 10px; height:50px;">YEMEK SEPETİM</div>
+
+    @if (Model != null)
+    {
+        <button class="sepetibosalt" style="position:absolute; background-color:#CA3037; border:none; margin-top:-35px; cursor:pointer; right:15px;">
+
+            <i class="far fa-trash-alt" title="Sepeti Boşalt" data-toggle="tooltip" data-placement="top" style="color:white;"></i>
+        </button>
+        foreach (var item in Model.Urunler)
+        {
+            <div class="card" style="padding:5px 10px; width:261px; height:60px;">
+
+                <div style="float:left; left:5px; position:absolute; text-transform:capitalize; font-size:13px; color:#ff6508;">@item.urunadi</div>
+
+                <input readonly class="inputum" style="text-align:center; border-color:black; border:1px solid; width:35px;  height:30px;position:absolute; left:143px;" value="@item.adeti" />
+
+                <button data-urunadi="@item.urunadi" data-urunid="@item.urunid" data-urunadeti="@item.adeti" data-firmaid="@item.firmaid" aria-label="Ürün Artır" style="position:absolute;left:120px;" onclick="arttirmaislemi()" class="number-button arttir">+</button>
+                <button data-urunadi="@item.urunadi" data-urunid="@item.urunid" data-urunadeti="@item.adeti" data-firmaid="@item.firmaid" aria-label="Ürün Azalt" style="position:absolute;left:170px;" onclick="azaltmaislemi()" class="number-button azalt">-</button>
+
+                <div style="position:absolute;right:15px; font-size:13px;">@item.Tutar</div>
+
+                <div class="silinecek" data-urunadi="@item.urunadi" data-urunid="@item.urunid" data-urunadeti="@item.adeti" data-tutari="@item.Tutar" data-firmaid="@item.firmaid" style="cursor:pointer; color:#CA3037;position:absolute;right:2px;margin-top: -3px;font-weight:650;font-size: 18px;">x</div>
+
+            </div>
+        }
+
+        <div>
+            Toplam Tutar:<span style="color:#CA3037; right:1px; position:absolute;">@Model.ToplamTutar TL</span>
+        </div>
+        <div><button type="button" style="background-color:#CA3037; width:260px;" class="btn btn-danger denemesite">Sipariş Ver</button></div>
+    }
+    @if (Model == null)
+    {
+        <div class="card" style="padding:5px 4px; width:260px;">
+            Sepetinizde Şuan Ürün Yok...
+        </div>
+        <div>
+            Toplam Tutar:<span style="color:#CA3037; right:1px; position:absolute;">0.00 TL</span>
+        </div>
+    }
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var sayi = 1;
+
+    function arttirmaislemi() {
+        var urunadeti = $(".inputum").val();
+        alert("urunadedi"+urunadeti);
+        var urunadet = parseInt(urunadeti);
+        if (urunadet >= 1) {
+
+            var sonuc = parseInt(urunadeti) + 1;
+            var urunadi = $(this).data("urunadi");
+            var urunid = $(this).data("urunid");
+            var firmaid = $(this).data("firmaid");
+            var urunadedi = $(this).data("urunadeti");
+            document.getElementsByName("inputum").value = sonuc;
+            $(".inputum").val() = sonuc;
+            var urunadetim = $(".inputum").val();
+            alert("yeniadet" + urunadetim);
+            var yeniurunadedi = sonuc;
+
+            $.ajax({
+                type: "POST",
+                url: "/Sepetim/DegistirTutar",
+                data: { id: urunid, urunadi: urunadi, yeniadet: sonuc, firmaid: firmaid },
+                success: function () {
+
+                            var alert = @alert;
+
+                         window.location.replace("/Anasayfalar/AramaSonuclari"+alert);
+
+                }
+
+
+            });
+        }
+    }
+    function azaltmaislemi() {
+        var urunadeti = $(".inputum").html();
+        var urunadet = parseInt(urunadedi);
+        if (urunadet <= 1) {
+            var urunadi = $(this).data("urunadi");
+            var urunid = $(this).data("urunid");
+            var firmaid = $(this).data("firmaid");
+            var urunadedi = $(this).data("urunadeti");
+            document.getElementsByName("inputum").value = 1;
+            $.ajax({
+                type: "POST",
+                url: "/Sepetim/DegistirTutar",
+                data: { id: urunid, urunadi: urunadi, yeniadet: 1, firmaid: firmaid },
+                success: function () {
+
+                            var alert = @alert;
+
+                         window.location.replace("/Anasayfalar/AramaSonuclari"+alert);
+                }
+            });
+        }
+        if (urunadet > 1) {
+            var sonuc = parseInt(urunadeti) - sayi;
+            var urunadi = $(this).data("urunadi");
+            var urunid = $(this).data("urunid");
+            var firmaid = $(this).data("firmaid");
+            var urunadedi = $(this).data("urunadeti");
+            document.getElementsByName("inputum").value = sonuc;
+            var yeniurunadedi = sonuc;
+
+            $.ajax({
+                type: "POST",
+                url: "/Sepetim/DegistirTutar",
+                data: { id: urunid, urunadi: urunadi, yeniadet: sonuc, firmaid: firmaid },
+                success: function () {
+
+                            var alert = @alert;
+
+                         window.location.replace("/Anasayfalar/AramaSonuclari"+alert);
+                }
+
+
+            });
+        }
+
+    }
+    $(".denemesite").click(function () {
+        window.location.replace("/Anasayfalar/SepetDetay");
+    });
+
+
+    $(".silinecek").click(function () {
+
+        alert("merhaba dunya");
+        var firmaid = $(this).data("firmaid");
+        var urunadi = $(this).data("urunadi");
+        var urunid = $(this).data("urunid");
+        var urunadedi = $(this).data("urunadeti");
+        alert("fir"+firmaid+"uradi"+urunadi+"uruade"+urunadedi);
+        $.ajax({
+            type:"POST",
+            url: "/Sepetim/SepetUrunSil",
+            data: { id: urunid, urunadi: urunadi, adet: urunadedi, firmaid:firmaid},
+            success: function () {
+
+                            var alert = @alert;
+
+                         window.location.replace("/Anasayfalar/AramaSonuclari"+alert);
+            }
+        });
+
+    });
+    $(".sepetibosalt").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Sepetim/SepetBosalt",
+            success:function() {
+
+                            var alert = @alert;
+
+                         window.location.replace("/Anasayfalar/AramaSonuclari"+alert);
+            }
+
+        })
+    });
+</script>

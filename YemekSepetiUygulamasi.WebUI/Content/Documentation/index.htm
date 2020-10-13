@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="KuteShop HTML Template - Designed by KuteThemes.com" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/960.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/prettyPhoto.css" />
+    <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="js/jquery.scrollTo-min.js"></script>
+    <script type="text/javascript" src="js/jquery.localscroll-min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // $("ul.tabs").tabs(".content_element",{
+            //     effect: 'default',
+            //     history: true
+            // });
+            $("a[rel^='prettyPhoto']").prettyPhoto({
+                theme: 'light_rounded',
+                slideshow : true
+			});
+            $('a[href=#main]').click(function(){
+                $('html, body').animate({scrollTop:0},500);
+                return false;
+            });
+
+
+            $('#sidebar').localScroll();
+            selected_child = false;
+            h5 = false
+
+            $("#sidebar ul li h5").click(function(){
+                if (h5) h5.removeClass("selected");
+                $(this).addClass("selected");
+                h5 = $(this);
+                $(".active").slideUp().removeClass("active");
+                $(this).next().slideDown().addClass("active");
+                activeli = $(this).parent();
+                return false;
+            });
+
+            $("#sidebar ul li ul li").click(function(){
+                if (selected_child) selected_child.removeClass("selected");
+                $(this).addClass("selected");
+                selected_child = $(this);
+                return false;
+            });
+
+
+            var topHeight = $('#sidebar').offset().top;
+            $(window).scroll( function() {
+            if($(document).scrollTop() > topHeight){
+                $('#sidebar').css({position: 'fixed', marginTop: -topHeight});
+            }else{
+                $('#sidebar').css({position: 'absolute', marginTop: 0});
+            }
+            });
+        });
+    </script>
+	<title>KuteShop Documentation</title>
+</head>
+
+<body>
+
+<div id="header" class="container_12">
+    <h2>KuteShop Template Documentation By KuteThemes.Com</h2>
+    <div id="header_left" class="grid_4">
+        <div class="inner">
+            <p>Created: June 11, 2015<br />
+            By: <a href="http://themeforest.net/user/KuteThemes" target="_blank">KuteThemes</a><br />
+            Website: <a href="http://www.kutethemes.com" target="_blank">http://www.kutethemes.com</a>
+        </div>
+    </div>
+    <div id="header_right" class="grid_8">
+        <div class="inner">
+            <p>Thank you for purchasing my theme. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://themeforest.net/user/KuteThemes">here</a>. Thanks so much!</p>
+        </div>
+    </div>
+    <div class="clear"></div>
+
+
+<div id="main" class="grid_12">
+    <div id="sidebar" class="grid_3 alpha" data-spy="affix" data-offset-top="200">
+        <ul class="nav tabs">
+            <li><h5 class=""><a href="#overview">Overview and Features</a></h5></li>
+            
+            <li><h5><a href="#online">How to Put It Online</a></h5></li>
+
+            <li><h5><a href="#html">HTML Structure</a></h5></li>
+
+            <li><h5><a href="#css">CSS Structure</a></h5></li>
+
+            <li><h5><a href="#javascripts">Javascripts</a></h5></li>
+
+            <li><h5><a href="#contact">Ajax Contact Form</a></h5></li>         
+
+            <li><h5><a href="#psd">PSD files</a></h5></li>
+
+            <li><h5><a href="#credits">Sources and Credits</a></h5></li>
+        </ul>
+    </div>
+    <div id="content" class="grid_9 omega">
+
+        <div id="overview" class="content_element">
+            <h3>KuteShop - Responsive Multi-Purpose HTML Template</h3>
+            <p>KuteShop is a modern, clean and professional HTML Template, It is fully responsive, it looks stunning on all types of screens and devices.<br />
+</p>
+            <h4 class="option_title">Template Features</h4>
+			
+				<ul>
+                    <li>HTML5 / CSS 3</li>
+					<li>Fully Responsive (Tested on Multiple Devices)</li>
+                    <li>Full Width Layout </li>
+                    <li><strong>Shop Design</strong></li>
+                    <li><strong>Working Contact Form (Ajax)</strong></li>
+                    <li><strong>Multi-options for Home Page</strong></li>
+                    <li><strong>Inner Pages: Category 1, Category 2, Product 1, Product 2, Product 3, Order, Checkout, Wishlist, Compare, Login, Blog, Detail Blog, About, Contact</strong>,...</li>
+                    <li>Mega Top Menu</li>
+                    <li>Mega Vertical Menu</li>
+                    <li>Sticky Menu</li>
+                    <li>Brand Showcase</li>
+                    <li>Hot Categories</li>
+                    <li>Special  Product Groups</li>
+                    <li>Services</li>
+                    <li>Carousel : Best Sellers, On Sales, New Products, Latest Deals, Deals of The Day, Related Products, Testimonials, Categories, Filter Section, Banners, Slideshow,...</li>
+                    <li>jQuery Enhanced</li>
+                    <li> HTML files</li>
+					<li>HTML5 and CSS3 tableless design</li>
+                    <li>List &amp; Grid View (Products)</li>
+                    <li>Ajax Contact Form</li>
+                    <li>Compatible Browsers: IE9+, Firefox, Safari, Opera, Chrome</li>
+                    <li>Included documentation.</li>
+				</ul>
+                <div class="divider_top"><a style="float: right;" href="#main">Back to top</a></div>
+        </div><!-- / content_element -->
+
+        <div id="online" class="content_element">
+            <h4 class="option_title">How to put the template online</h4>
+            <p>After you have downloaded the theme to your liking by replacing the text and images with your own, you'll want to put it online but in order to be able to put your new theme online there are some requirements you need to meet:</p>
+            <ol>
+                <li>Buy a domain name</li>
+                <li>Buy a web hosting service</li>
+                <li>Have a ftp client installed</li>
+            </ol>
+        </div>
+
+        <div id="html" class="content_element">
+            <h4 class="option_title">HTMl Structure</h4>
+            <p>The basic structure of the pages of the theme is presented in the picture below</p>
+            <p><img src="images/html_structure.png" alt="" /></p>
+            <p>Homepage Structure</p>
+            <p><img src="images/home 2.png" alt="Home 2" /></p>
+            <p><img src="images/home 1.png" alt="Home 1" /></p>
+        </div>
+        
+        <div id="css" class="content_element">
+            <h4 class="option_title">CSS Structure</h4>
+            <p>We recommend using the FireBug add on in Firefox for a fast identification of the css properties that you might want to change.</p>
+            <img src="images/skins.png" alt="CSS Structure" />
+            
+            
+        </div>            
+
+        <div id="javascripts" class="content_element">
+            <h4 class="option_title">Javascripts</h4>
+            <p>This theme contains many advanced jQuery functions and libraties.</p>
+            <p>All javascript files (at assets/js/ folder) :</p>
+            <ul>
+                <li><b>jquery.actual.min.js</b></li>
+                <li><b>theme-script.js</b></li>
+            </ul>
+            <div class="divider_top"><a style="float: right;" href="#main">Back to top</a></div>
+        </div><!-- / content_element -->
+
+         <div id="contact" class="content_element">
+            <h4 class="option_title">Ajax Contact Form</h4>
+            <p>In the root folder of the file you’ll find a ajax_contact.php file. This file takes care of the contact form from the contact us page. Even if the verifications of the form is made by js, this file will not work if you are not uploading it on your server. It needs the PHP server from your host in order to run.</p>
+            <p><img src="images/contact_form.png" alt="" /></p>
+            <p>Before upload this tempate to your server, make sure you change the blog title and your email address at ajax_contact.php line 24.</p>
+        </div>    
+
+        
+        <div id="psd" class="content_element">
+            <h4 class="option_title">PSD files</h4>
+            <p>I've included psd with this theme:</p>
+            <ul>
+                <li>KuteShop PSD Files</li>
+            </ul>
+            <div class="divider_top"><a style="float: right;" href="#main">Back to top</a></div>
+        </div><!-- / content_element -->
+        
+        
+        <div id="credits" class="content_element">
+            <h4 class="option_title">Sources and Credits</h4>
+            <p>I would like to thank the following providers. This theme would not have been possible without the hard work and dedication of all of them.</p>
+            <ul>
+                <li><a href="http://jquery.com">Jquery</a> JavaScript Library</li>
+                <li>Icon font by <a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a></li>
+                <li><a href="http://fancyapps.com/fancybox/"> fancyBox </a> jQuery Plugin</li>
+                <li><a href="http://keith-wood.name/countdown.html">jQuery Countdown</a></li>
+                <li><a href="http://bxslider.com">BxSlider</a></li>
+                <li><a href="http://owlcarousel.owlgraphic.com/">Owl carousel</a></li>
+                <li><a href="https://select2.github.io">select2</a> jQuery Plugin</li>
+                <li><a href="http://www.elevateweb.co.uk/image-zoom">jQuery elevateZoom 3.0.3</a></li>
+                <li><a href="https://daneden.github.io/animate.css/">Animate.css</a></li>
+                
+            </ul>
+            <h5>Please note that none of the images in the demo are available in the theme package.</span></h5>
+            <p>In order to get sample images, please register an account at our support forum and go to this form : <a href="http://support.ovicsoft.com/forum/">http://support.ovicsoft.com/forum/</a></p>
+
+            <div class="divider_top"><a style="float: right;" href="#main">Back to top</a></div>
+        </div><!-- / content_element -->
+        
+        
+        
+    </div>
+    <div class="clear"></div>
+</div> <!-- /container_12 -->
+
+</div>
+</body>
+</html>

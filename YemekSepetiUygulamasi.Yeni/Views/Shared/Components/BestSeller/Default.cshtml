@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Products>
+
+@if (Model.Count() != 0)
+{
+    <div class="container">
+        @if (ViewBag.IsActive == "False")
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-8 col-xs-12 main-content">
+                            @*<div class="xlg-margin"></div>*@
+                            <div class="xlg-margin"></div>
+                            <div class="hot-items carousel-wrapper">
+                                <header class="content-title">
+                                    <div class="title-bg">
+                                        <h2 class="title">Hot Product</h2>
+                                    </div>
+                                    <p class="title-desc">Only with us you can get a new model with a discount.</p>
+                                </header>
+                                <div class="carousel-controls">
+                                    <div id="hot-items-slider-prev" class="carousel-btn carousel-btn-prev"></div>
+                                    <div id="hot-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div>
+                                </div>
+                                @*items*@
+                                <div class="hot-items-slider owl-carousel">
+                                    @foreach (var item in Model)
+                                    {
+                                        @*<input type="hidden" value="@item.ProductsId"/>*@
+                                        <div class="item item-hover">
+                                            <div class="item-image-wrapper">
+                                                <figure class="item-image-container">
+                                                    <a asp-controller="Home" asp-action="Product" asp-route-product_id="@item.ProductsId">
+                                                        <img src="~/Productimage/@item.ProductImage" alt="item1" >
+                                                    </a>
+                                                </figure>
+                                                <div class="item-price-container">
+                                                    <span class="item-price">@item.NetProductPrice € </span>
+                                                </div>
+                                                @if (item.IsNew)
+                                                {
+                                                    <span class="new-rect">New</span>
+                                                }
+
+                                            </div>
+                                            <div class="item-meta-container">
+                                                <h3 class="item-name">
+                                                    <a asp-controller="Home" asp-action="Product" asp-route-product_id="@item.ProductsId">
+                                                        @item.ProductSmallDescription
+                                                    </a>
+                                                </h3>
+                                                <div class="item-action">
+                                                    <a href="#" class="item-add-btn"><span class="icon-cart-text">Add to Cart</span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                                <div class="lg-margin"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div id="brand-slider-container" class="carousel-wrapper">
+                <header class="content-title">
+                    <div class="title-bg">
+                        <h2 class="title">Best Seller</h2>
+                    </div>
+                </header>
+                <div class="carousel-controls">
+                    <div id="brand-slider-prev" class="carousel-btn carousel-btn-prev"></div>
+                    <div id="brand-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div>
+                </div>
+                <div class="sm-margin"></div>
+                <div class="row">
+                    <div class="brand-slider owl-carousel">
+                        @foreach (var item in Model)
+                        {
+                            <div class="item item-hover">
+                                <div class="item-image-wrapper">
+                                    <figure class="item-image-container">
+                                        <a asp-controller="Home" asp-action="Product" asp-route-product_id="@item.ProductsId">
+                                            <img src="~/Productimage/@item.ProductImage" alt="item1" style="width: auto;height: 180px;" class="img-responsive">
+                                        </a>
+                                    </figure>
+                                    <div class="item-price-container">
+                                        <span class="item-price">@item.NetProductPrice € </span>
+                                    </div>
+                                    @if (item.IsNew)
+                                    {
+                                        <span class="new-rect">New</span>
+                                    }
+
+                                </div>
+                                <div class="item-meta-container">
+                                    <h3 class="item-name">
+                                        <a asp-controller="Home" asp-action="Product" asp-route-product_id="@item.ProductsId">
+                                            @item.ProductSmallDescription
+                                        </a>
+                                    </h3>
+                                    <div class="item-action">
+                                        <a href="#" class="item-add-btn"><span class="icon-cart-text">Add to Cart</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="text-center mb-5 mb-lg-5 mb-md-5">
+        @if (ViewBag.IsActive == "True")
+        {
+            <h1 style="color:orangered"> Not Any New Product Recort From Database </h1>
+        }
+        else
+        {
+            <h1 style="color:orangered"> Not Any Best Seller Product Recort From Database </h1>
+        }
+    </div>
+}

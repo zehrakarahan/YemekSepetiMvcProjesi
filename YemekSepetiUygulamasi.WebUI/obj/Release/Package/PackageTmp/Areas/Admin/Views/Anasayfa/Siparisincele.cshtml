@@ -1,0 +1,141 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Areas.Admin.Models.Siparislerim
+@{
+    ViewBag.Title = "Siparisincele";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    int sayac1 = 1;
+    int sayac2 = 1;
+    int sayac3 = 1;
+}
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div style="float:left; font-weight:bold; font-size:25px;">
+                    Sipariş Bilgileri
+                </div>
+                <div class="form-group" style="float:right">
+                    <div class="col-lg-offset-3 col-lg-10">
+                        <a class="btn btn-danger" href="/Admin/Anasayfa/Siparisler" id="kaydet" style="font-weight:bold;">Geri Dön</a>
+
+                    </div>
+                </div>
+                <br />
+            </header>
+
+            <div class="panel-body">
+                <div class="form">
+                    <hr />
+
+                    <div class="form-group ">
+                        <label for="password" class="control-label col-md-2">Adı Soyadı</label>
+                        <div class="col-lg-10">
+                            <input class="form-control " id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.Customer.Cname" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Sipariş  Adresi </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.CustomersAdress.CustomerAdress" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Sipariş Tarihi </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.Order.CreateDateTime.Value.ToShortDateString()" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2">Siparis Durumu </label>
+                        <div class="col-lg-10">
+                            <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.Status.StatusName" readonly />
+                        </div><br /><br /><br /><br />
+                    </div>
+                    @if (Model.DiscountCoupon != null)
+                    {
+                       
+                        <div class="form-group " >
+                           
+                                <label for="fullname"  class="control-label col-lg-2" style="margin-top:14px;">İndirim Kodu<br /><span style="text-align:center; margin-left:30px; margin-top:15px; margin-bottom:15px; position:relative; top:10px;"> ve</span> <br /><br /><span style="margin-top:20px;">İndirim Oranı</span> </label>
+                                <div class="col-lg-10" >
+                                    <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.DiscountCoupon.CouponKodu" readonly />
+                                    <span> <i class="fas fa-angle-double-right"></i></span>
+                                    <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.DiscountCoupon.DiscountCouponQuantity" readonly />
+                                </div>
+                        </div><br /><br />
+                    }
+                  
+                    @if (Model.Product != null)
+                    {
+                        <br /><br /><br /><br /><h3>Sipariş Edilen Ürünler</h3>
+                        for(int i=0;i<Model.Product.Count();i++)
+                        {
+                         
+                            <div class="form-group">
+                                <label for="fullname" class="control-label col-lg-2" style="margin-top:14px;">@sayac1 . Sipariş Ürünü<br /><span style="text-align:center; margin-left:30px; margin-top:15px; margin-bottom:15px; position:relative; top:10px;"> ve</span> <br /><br /><span style="margin-top:20px;">Ürün Adeti</span> </label>
+                                <div class="col-lg-10">
+                                    <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.Product[i].Pname" readonly />
+                                    <span> <i class="fas fa-angle-double-right"></i></span>
+                                    <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.OrderProduct[i].ProductQuanty" readonly />
+                                </div>
+                            </div>
+                            <br /><br />
+                            sayac1 = sayac1 + 1;
+                        }
+
+                    }
+                    <br /><br /><br />
+                    @if (Model.MenuNames != null)
+                    {
+                        <br /><br /><h3>Sipariş Edilen Menuler</h3>
+                        
+                        for (int i = 0; i < Model.MenuNames.Count(); i++)
+                        {
+                         
+                        <div class="form-group ">
+                            <label for="fullname" class="control-label col-lg-2" style="margin-top:14px;">@sayac2 . Sipariş Menusu<br /><span style="text-align:center; margin-left:30px; margin-top:15px; margin-bottom:15px; position:relative; top:10px;"> ve</span> <br /><br /><span style="margin-top:20px;">Menu Adeti</span> </label>
+                            <div class="col-lg-10">
+                                <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.MenuNames[i].MenuName" readonly />
+                                <span> <i class="fas fa-angle-double-right"></i></span>
+                                <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.OrderProduct[i].MenusQuanty" readonly />
+                            </div>
+                        </div>
+                        <br /><br />
+                            sayac2 = sayac2 + 1;
+                        }
+                    }
+                    <br /><br /><br />
+                    @if(Model.CampaignProductName!=null)
+                    {
+                        <br /><br /><h3>Sipariş Edilen Kampanya Ürünleri </h3>
+                        
+                       
+                   
+                        for (int i = 0; i < Model.CampaignProductName.Count(); i++)
+                        {
+                        <div class="form-group ">
+                            <label for="fullname" class="control-label col-lg-2" style="margin-top:14px;">@sayac3 Kampanyalı Ü.<br /><span style="text-align:center; margin-left:30px; margin-top:15px; margin-bottom:15px; position:relative; top:10px;"> ve</span> <br /><br /><span style="margin-top:20px;">Kampanya Adeti</span> </label>
+                        
+                            <div class="col-lg-10">
+                            
+                                <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.CampaignProductName[i].CampaignName" readonly />
+                                <span> <i class="fas fa-angle-double-right"></i></span>
+                                <input class="form-control " style="margin-top:7px;" id="temcilciadi" name="KurucuTemsilciAdi" type="text" value="@Model.OrderProduct[i].CampaignProductQuanty" readonly />
+                             </div>
+                        </div>
+                        <br /><br />
+                            sayac3 = sayac3 + 1;
+                        }
+                    }
+
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+

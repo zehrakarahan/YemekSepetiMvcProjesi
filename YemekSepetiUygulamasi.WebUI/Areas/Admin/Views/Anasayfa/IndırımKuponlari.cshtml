@@ -1,0 +1,108 @@
+﻿@model PagedList.IPagedList<YemekSepetiUygulamasi.Entity.EntityTable.DiscountCoupon>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "IndırımKuponlari";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
+<script src="~/Content/fontawesome-free/js/all.js"></script>
+<script src="~/Content/fontawesome-free/js/all.min.js"></script>
+<script src="~/Content/fontawesome-free/js/fontawesome.min.js"></script>
+<style>
+    .pagination-container{
+        float:right;
+    }
+</style>
+
+
+
+<header class="panel-heading">
+    <div style="float:left; font-weight:bold; font-size:25px;">
+        İndirim Kuponları
+    </div>
+    <div class="form-group" style="float:right">
+        <div class="col-lg-offset-3 col-lg-10">
+            <a class="btn btn-danger" href="/Admin/Anasayfa/KuponEkle" id="kaydet" style="font-weight:bold;">Kupon Ekle</a>
+
+        </div>
+    </div>
+    <br />
+</header>
+<div class="table-responsive-xl">
+
+    <table class="table table-striped table-advance table-hover" id="myTablete">
+
+        <tr>
+
+            <th class="col-md-2">Kupan Kodu</th>
+            <th class="col-md-2">Kupon Başlangıç Tarihi</th>
+            <th class="col-md-2">Kupon Bitiş Tarihi</th>
+            <th class="col-md-2">Kupon Durumu</th>
+            <th class="col-md-2">Kupon Indirim Yüzdesi</th>
+            <th class="col-md-1">Düzenle</th>
+
+            <th class="col-md-2">Sil</th>
+     
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td scope="row">@item.CouponKodu</td>
+                    <td>@item.CouponBaslangicTarihi.Value.ToShortDateString()</td>
+                    <td>@item.CouponBitisTarihi.Value.ToShortDateString()</td>
+                    <td>@item.CouponStatus</td>
+                    <td>@item.DiscountCouponQuantity</td>
+                   
+
+                    <td>
+
+                        <a class="btn btn-primary" title="düzenle" href="/Admin/Anasayfa/IndirimDuzenle/@item.Id"><i class="fas fa-edit fa-2x "></i></a>
+
+                    </td>
+                    <td>
+                        <button class="btn btn-danger tiklanama" title="sil" data-kuponid="@item.Id" data-kuponkodu="@item.CouponKodu" ><i class="fas fa-trash fa-2x "></i></button>
+                    </td>
+
+                </tr>
+            }
+         
+
+        </tbody>
+
+
+
+    </table>
+    
+    @Html.PagedListPager(Model, sayfa => Url.Action("IndırımKuponlari", new { sayfa }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< İlk", LinkToPreviousPageFormat = "< Önceki", LinkToNextPageFormat = "Sonraki >", LinkToLastPageFormat = "Son >>" })
+
+</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Areas/Admin/Content/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(".tiklanama").click(function () {
+
+       /* var id = $(this).data("kuponid");
+        var kodu = $(this).data("kuponkodu");*/
+        swal({
+            title: "Silmek istediğine emin misiniz?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            buttons: ["İptal", "Sil"],
+        })
+.then((willDelete) => {
+    if (willDelete) {
+       
+       
+        window.location.replace("KuponSil?vid=" + $(this).data("kuponid"));
+       
+       
+    } 
+});
+    });
+
+</script>

@@ -1,0 +1,141 @@
+﻿@model YemekSepetiUygulamasi.WebUI.Areas.Admin.Models.KampanyaBilgilerimodel
+@{
+    ViewBag.Title = "KampanyaEkle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    int sayac = 1;
+
+
+}
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div style="float:left; font-weight:bold; font-size:25px;">
+                    Kampanya Ekle
+                </div>
+                <div class="form-group" style="float:right">
+                    <div class="col-lg-offset-3 col-lg-10">
+                        <a class="btn btn-danger" href="/Admin/Anasayfa/IndırımKuponlari" id="kaydet" style="font-weight:bold;">Geri Dön</a>
+
+                    </div>
+                </div>
+                <br />
+            </header>
+            @using (Html.BeginForm("KampanyaEkle", "Anasayfa", new { area = "Admin" }, FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                <div class="panel-body">
+
+                    <hr />
+
+                    <div class="form-group ">
+                        <label for="password" class="control-label col-md-2">Kampanya Adı</label>
+                        <div class="col-lg-10">
+
+                            @Html.TextBoxFor(m => m.CampaignPName.CampaignName, new { @type = "text", @required = "required", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2" style="margin-top:10px;">Kampanya Fiyatı </label>
+                        <div class="col-lg-10">
+
+                            @Html.TextBoxFor(m => m.fiyat, new { @style = "margin-top:7px;", @type = "number", @class = "form-control", @step = "0.01" })
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2" style="margin-top:10px;">Kampanya Açıklama </label>
+                        <div class="col-lg-10">
+
+                            @Html.TextBoxFor(m => m.CampaignPName.Description, new { @style = "margin-top:7px;", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="fullname" class="control-label col-lg-2" style="margin-top:10px;">Kampanya Resmi Seç</label>
+                        <div class="col-lg-10">
+
+                            @Html.TextBoxFor(m => m.kampanyaresim, new { @type = "file", @accept = "image/*", @style = "margin-top:7px;", @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    @Html.HiddenFor(m => m.CampaignPName.CompaniesId, new { @style = "display:none;" })
+                    <div class="col-md-12">
+                        <div class="col-md-8">
+                            <h3 style="float:left;">Kampanya İçindeki ürünleri Seç</h3>
+                        </div>
+                        <div class="col-md-4" style="margin-top:20px;">
+                            <a class="btn btn-danger" href="/Admin/Anasayfa/Sayac2/@Model.sayac" style="margin-top:3px; float:right; min-width:200px;">Ürün Ekle</a>
+                        </div>
+                    </div>
+                    @for (int i = 0; i < Model.sayac; i++)
+                    {
+
+
+                        if (i == 0)
+                        {
+                            <div class="form-group ">
+                                <div class="col-lg-10 listem" style="margin-top:10px;  margin-bottom:10px;">
+
+                                    @Html.DropDownListFor(model => model.Productsectikleri[i].Id, new SelectList(ViewBag.urunler, "Value", "Text"), "Ürün Seçiniz", new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        }
+
+                        if (i != 0)
+                        {
+                            <div class="form-group col-lg-12 " sty>
+                                <div class="col-lg-10 listem" style="margin-top:10px; margin-left:-15px;">
+                                    @Html.DropDownListFor(model => model.Productsectikleri[i].Id, new SelectList(ViewBag.urunler, "Value", "Text"), "Ürün Seçiniz", new { @class = "form-control" })
+                                </div>
+                                <div class="col-lg-2 listem" style="margin-top:10px;">
+                                    <a href="/Admin/Anasayfa/UrunKaldir/@Model.sayac" class="btn btn-danger">Ürün Kaldır</a>
+                                </div>
+                            </div>
+                        }
+
+
+                    }
+
+                    <div class="form-group ">
+
+                        <button class="btn btn-danger" type="submit" style="margin-top:10px; width:200px; margin-left:250px;">
+                            Kaydet
+                        </button>
+                        <a href="/Admin/Anasayfa/Index" class="btn btn-primary" style="margin-left:20px; width:200px; margin-top:10px;background-color:">İptal</a>
+                    </div>
+
+
+
+
+                </div>}
+
+
+        </section>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function denemem(ve)
+            {
+                ve=ve+1;
+                Model.sayac=Model.sayac+1;
+                alert("sayac"+@Model.sayac);
+            }
+          /*  $("#denep").click(function () {
+                sayi = sayi + 1;
+                var deger = sayi;
+                alert("deger" + deger);
+
+                document.getElementById("degeri").value = deger;
+
+            });*/
+        });
+
+    </script>
+}
+
+

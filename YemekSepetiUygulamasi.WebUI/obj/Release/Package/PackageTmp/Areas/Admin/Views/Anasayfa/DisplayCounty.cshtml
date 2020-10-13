@@ -1,0 +1,13 @@
+﻿
+@{ 
+    var view = ViewBag.slist;
+}
+<option value="">--ilçe Seç--</option>
+
+@if (ViewBag.slist != null)
+{
+    foreach (var item in ViewBag.slist)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

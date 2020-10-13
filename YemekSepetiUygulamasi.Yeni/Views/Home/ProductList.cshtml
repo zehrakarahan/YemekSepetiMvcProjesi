@@ -1,0 +1,102 @@
+﻿@*@model IEnumerable<Products>*@
+@model PagingModel.ProducListModel
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="breadcrumb-container">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="">Home</a></li>
+            <li class="active">Product</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="category-header" class="category-banner">
+                        <img src="~/Productimage/banner.png" alt="Category banner" class="img-responsive">
+                        <div class="category-title">
+                            <h2>Computers</h2>
+                            <p>Aenean dictum libero vitae magna sagittis, eu convallis dolor blandit. Fusce consectur tincidunt pretium aenean tincidunt...</p><a href="#" class="btn btn-custom">LEARN MORE</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg-margin2x"></div>
+                <div class="col-md-3 col-sm-4 col-xs-12 sidebar">
+
+                    @await Component.InvokeAsync("CategoryBlock");
+
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-12 main-content">
+                    <div class="md-margin"></div>
+
+                    <div class="md-margin"></div>
+                    <div class="category-item-container">
+                        <div class="row">
+                            @foreach (var item in Model.products)
+                            {
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                        <input type="hidden" name="ProductId" value="@item.ProductsId" />
+                                        <div class="item item-hover">
+                                            <div class="item-image-wrapper">
+                                                <figure class="item-image-container">
+                                                    <a asp-controller="Home" asp-action="Product" asp-route-product_id="@item.ProductsId">
+                                                        @*<img src="~/Productimage/@item.ProductImage" alt="item1" class="item-image">
+                                                        <img src="~/Productimage/@item.ProductImage" class="item-image-hover">*@
+                                                        <img src="~/Productimage/@item.ProductImage" alt="item1" style="width: auto;height: 180px;" class="img-responsive">
+                                                    </a>
+                                                </figure>
+                                                <div class="item-price-container" style="margin-bottom: 40%;">
+                                                    <span class="item-price">
+                                                        <strong>Net Price</strong>
+                                                        € @item.NetProductPrice
+                                                    </span>
+                                                </div>
+                                                <div class="item-meta-container">
+                                                    <h3 class="item-name"><a asp-controller="Home" asp-action="Product" asp-route-product_id="@item.ProductsId">@item.ProductName</a></h3>
+                                                    <div class="item-action">
+                                                        @*<a asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@item.ProductsId" class="item-add-btn">
+                                                                <span class="icon-cart-text">Add to Cart</span>
+                                                            </a>*@
+                                                        <button action="Submit" class="btn btn-custom-2">ADD TO CART</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+
+                    <div class="pagination-container clearfix">
+                        <div class="pull-right">
+                            <ul class="pagination">
+                                <li page-model="@Model.pagingInfo" page-action="ProductList"></li>
+                            </ul>
+                        </div>
+                        <div class="pull-right view-count-box hidden-xs">
+                            <span class="separator">view:</span>
+                            <div class="btn-group select-dropdown">
+                                <button type="button" class="btn select-btn">8</button>
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-down"></i></button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-action="ProductList" asp-controller="Home" asp-route-PageSize="8">8</a></li>
+                                    <li><a asp-action="ProductList" asp-controller="Home" asp-route-PageSize="16">16</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

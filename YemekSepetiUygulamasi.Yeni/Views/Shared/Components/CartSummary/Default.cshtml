@@ -1,0 +1,77 @@
+﻿
+<div id="quick-access">
+    <div class="dropdown-cart-menu-container pull-right">
+        <div class="btn-group dropdown-cart">
+            <button type="button" class="btn btn-custom dropdown-toggle" data-toggle="dropdown">
+                @if (@ViewBag.CartLine != null)
+                {
+                    <span class="cart-menu-icon"></span> @Enumerable.Count(ViewBag.CartLine) <b>item(s)</b> <span class="drop-price">- @ViewBag.ItemTotalPrice €</span>
+                }
+                else
+                {
+                    <span class="cart-menu-icon"></span><span>No Items</span>
+                }
+            </button>
+            <div class="dropdown-menu dropdown-cart-menu pull-right clearfix" role="menu">
+                <p class="dropdown-cart-description" style="text-align: center;">@(ViewBag.Cartline == null ? "Shopping Cart Is Empty" : "Recently added item(s).")</p>
+                <ul class="dropdown-cart-product-list">
+                    @if (ViewBag.CartLine != null)
+                    {
+                        @foreach (var cart in ViewBag.CartLine as List<CartLine>)
+                        {
+                            <li class="item clearfix">
+                                <a asp-action="RemoveProduct" asp-controller="Cart" asp-route-product_id="@cart.Product.ProductsId" title="Delete item" class="delete-item">
+                                    <i class="fa fa-times"></i>
+                                </a>
+
+                                <figure>
+                                    <a href="product.html">
+                                        <img src="~/Productimage/@cart.Product.ProductImage" alt="">
+                                    </a>
+                                </figure>
+                                <div class="dropdown-cart-details">
+                                    <p class="item-name">
+                                        <a href="product.html">@cart.Product.ProductName</a>
+                                    </p>
+                                    @if (cart.ShippingPrice == false)
+                                    {
+                                        <p>
+                                            @cart.Quantity x <span class="item-price">@cart.Product.NetProductPrice</span>
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p>
+                                            @cart.Quantity x <span class="item-price">@cart.Product.ShippingPrice</span>
+                                        </p>
+                                    }
+                                </div>
+                            </li>
+                        }
+                    }
+
+                </ul>
+                @if (@ViewBag.CartLine != null)
+                {
+                    <ul class="dropdown-cart-total">
+                        <li>
+                            <span class="dropdown-cart-total-title">Total:</span> @ViewBag.ItemTotalPrice
+
+                        </li>
+                    </ul>
+                    <div class="dropdown-cart-action">
+
+                        <p>
+                            <a asp-action="GoToCart" asp-controller="Cart" class="btn btn-custom-2 btn-block">Cart</a>
+                        </p>
+
+
+                        @*<p>
+                                <a href="checkout.html" class="btn btn-custom btn-block">Checkout</a>
+                            </p>*@
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

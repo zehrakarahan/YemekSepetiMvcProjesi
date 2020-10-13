@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "MenuUrunleri";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var tiklananurun = ViewBag.tiklananid;
+    var menuid = ViewBag.menuid;
+}
+<body>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+                <header class="panel-heading">
+                    <div style="float:left;  font-size:20px;">
+                        Menu Bilgileri
+                    </div>
+                    <div class="form-group" style="float:right">
+                        <div class="col-lg-offset-3 col-lg-10">
+                            <a class="btn btn-danger" href="/Admin/Anasayfa/MenuEkle" id="kaydet" style="font-weight:bold; margin-top:-5px;">Menu Ekle</a>
+
+                        </div>
+                    </div>
+                    <br />
+                </header>
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="demoGrid">
+                            <thead>
+                                <tr>
+                                    <th>Seçiniz</th>
+                                    <th>Ürün Adı</th>
+                                    <th>Ürün Detay</th>
+                                    <th>Ürün Fiyat</th>
+                                    <th>Ürün Açıklama</th>
+                                    <th>Ürün Star</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.veri)
+                                {
+                                    <tr>
+
+                                        <td><a href="@Url.Action("MenurunSecim", new { tiklananurunid =tiklananurun , yeniurunid =item.Id,menuid=menuid })"><i class="fas fa-search "></i></a></td>
+                                        <td>@item.Pname</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.Price</td>
+                                        <td>@item.Detail</td>
+                                        <td>@item.Stars</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <script type="text/javascript">
+                        $('#demoGrid').dataTable({
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</body>
+
+
+
+
+
+

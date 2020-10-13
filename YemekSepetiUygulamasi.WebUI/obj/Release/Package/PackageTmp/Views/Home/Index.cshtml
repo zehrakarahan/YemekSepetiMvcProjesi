@@ -1,0 +1,430 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    List<string> resim = ViewBag.resimler;
+    var ilkeleman = resim[0];
+    var ikincieleman = resim[1];
+    var ucuncueleman = resim[2];
+}
+<style>
+    body{
+        border:0;
+        margin:0px;
+        padding:0px;
+    }
+     #myCarousel{
+        
+     -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    cursor: pointer;
+     }
+            table {
+                width: 100%;
+            }
+            table thead th {
+                padding: 20px;
+            }
+            table tbody th {
+                width: 10%;
+                font-style: italic;
+            }
+            table td {
+                padding: 10px;
+            }
+        
+         
+            #rangeValue{
+                position:relative;
+                display:block;
+                text-align:center;
+                font-size:15px;
+            
+                color:#999;
+                font-weight:400;
+                z-index:999999;
+                color:black;
+                font-weight:bold;
+            }
+            .range{
+                width:400px;
+                height:15px;
+                -webkit-appearance:none;
+                outline:none;
+                overflow:hidden;
+                margin-top:-30px;
+                box-shadow:inset 0 0 5px rgba(0,0,0,1);
+            }
+            .range::-webkit-slider-thumb{
+                -webkit-appearance:none;
+                width:30px;
+                height:30px;
+                background:black;
+                cursor:pointer;
+                border-radius:30px;
+                border:6px solid black;
+                box-shadow:-407px 0 0 400px #ff6508;
+                color:white;
+  -moz-appearance: none;   
+            }
+            ul { 
+    height: 30px;
+    width: 150px;
+   
+}
+
+.list-unstyled{
+    display: none;
+    width:300px;
+    height:260px;
+   
+    overflow:scroll;
+
+}
+ul li{
+    font-size:12px;
+   
+    width:300px;
+   
+   
+}
+
+ul li:hover {
+ 
+ font-weight:bold;
+ font-size:15px;
+ cursor:pointer;
+ background-color:#ff6508;
+ overflow:auto;
+ border:3px solid #ff6508;
+}
+
+
+a#submit { z-index: 1; }
+
+.glyphicon-chevron-down{
+	cursor:pointer
+}
+.glyphicon-chevron-up{
+	cursor:pointer
+}
+    a {
+        color: magenta;
+    }
+          
+          
+      
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-3.1.0.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Content/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet" />
+
+<link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/RangeSlider/css/range-slider.css" rel="stylesheet" />
+<script src="~/Content/bootstrap/js/bootstrap.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Content/RangeSlider/src/range-slider.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link href="~/Content/fontawesome-free/css/all.min.css" rel="stylesheet" />
+<script src="~/Content/fontawesome-free/js/all.min.js"></script>
+<script src="~/Content/fontawesome-free/js/fontawesome.min.js"></script>
+<body>
+  
+     
+    <div class="container-fluid" style="width:1349px; min-height:300px; ">
+       
+        <div class="row">
+            <div class="col-xl-2" style=" margin-top:-60px; margin-bottom:0px; margin-right:0px; margin-left:-15px;">
+                <nav class="navbar navbar-light bg-light" style="height:0px;">
+                    <span style="font-size:15px; margin-left:-10px;">Restoran Filtreleri:</span>
+                    <i class="fas fa-times-circle fa-2x " style="margin-left:31px; color:#ac1f1f"></i><strong class="danger" style="font-size:12px;color:#ac1f1f;">Temizle</strong>
+                </nav>
+                <table class="table table-bordered" style="margin-top:-20px; border:1px solid; border-color:black;">
+                    <tbody>
+                        <tr>
+                            <td><div class="basit"><i class="fas fa-circle"></i><strong style="margin-left:9px;">Açık</strong><input style="margin-left:150px;" type="checkbox" /></div></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-award fa-2x"></i><strong style="margin-left:9px;margin-top:-10px;">Süper Restoran</strong><input style="margin-left:93px;" type="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <div>
+                                        <i class="fas fa-newspaper fa-2x"></i>&nbsp;<strong style="margin-top:-3px;">Min. Paket Tutarı Belirle</strong>
+                                        <span id="rangeValue" style="top:-20px; position:relative; margin-left:150px;">10 TL</span>
+                                    </div>
+
+                                    <div>
+                                        <strong style="position:relative; top:-20px;">5 TL</strong>
+                                        <strong style="position:relative;top:-20px; left:158px;">Hepsi</strong>
+                                    </div>
+                                    <div>
+
+
+                                        <i class="fas fa-long-arrow-alt-left fa-2x" style="top:-8px; position:relative; "></i>
+
+                                        <i class="fas fa-long-arrow-alt-right fa-2x" style="left:170px; top:-10px; position:relative;"></i>
+                                    </div>
+
+
+                                    <input class="range" type="range" style="top:-10px; position:relative; bottom:-10px;width:210px;" name="" value="10" min="5" max="40" step="5" onchange="rangeSlide(this.value)" />
+
+
+                                </div>
+                                <script type="text/javascript">
+                                        function rangeSlide(value)
+                                        {
+
+                                            if (value == 40) {
+                                                document.getElementById("rangeValue").innerHTML = "Hepsi ";
+                                                $('.range::-webkit-slider-thumb').innerHTML = "";
+                                            }
+                                            else {
+                                                document.getElementById("rangeValue").innerHTML = value +" "+ "TL";
+                                                $('.range::-webkit-slider-thumb').innerHTML = value;
+
+                                            }
+
+                                        }
+                                </script>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="far fa-credit-card fa-2x"></i>&nbsp;&nbsp;<strong style="margin-top:-5px; font-size:10px;">Ödeme Şekli</strong>
+                                <span class="glyphicon glyphicon-chevron-down fa-1x" style="margin-left:100px;" onclick="tikla(this)" id="iconcesidi"></span>
+                                <div style="position:absolute;left:60px; top:211px;">
+                                    <ul class="list-unstyled" style="z-index:99999; position:absolute; margin-left:125px; top:30px; ">
+
+                                        <li id="ves" style="background-color:white;">Hepsi</li>
+                                        <li id="ve" style="background-color:white;">Online Kredi/Banka Kartı</li>
+                                        <li id="vesa" style="background-color:white;">Kredi Kartı</li>
+                                        <li id="ves" style="background-color:white;">Nakit</li>
+                                        <li id="ve" style="background-color:white;">Ticket Restaurant Yemek Kartı</li>
+                                        <li id="vesa" style="background-color:white;">Ticket Restaurant Yemek Çeki</li>
+                                        <li id="ves" style="background-color:white;">Sodexo Yemek Kartı</li>
+                                        <li id="ve" style="background-color:white;">Sodexo Yemek Çeki</li>
+                                        <li id="vesa" style="background-color:white;">Multinet</li>
+                                        <li id="ves" style="background-color:white;">Sodexo Yemek Kartı</li>
+                                        <li id="ve" style="background-color:white;">SetCard</li>
+                                        <li id="vesa" style="background-color:white;">Cüzdan</li>
+                                        <li id="ves" style="background-color:white;">Yemekmatik Yemek Kartı</li>
+                                        <li id="ve" style="background-color:white;">MetropolCard</li>
+                                        <li id="vesa" style="background-color:white;">CIO Card</li>
+                                        <li id="ves" style="background-color:white;">Paye Kart</li>
+                                        <li id="ve" style="background-color:white;">WinWin Mobil Cihaz</li>
+
+                                    </ul>
+                                </div>
+                                <br />
+                                <span id="odemesekli" style="margin-left:30px;">Hepsi</span>
+                                <script type="text/javascript">
+                                    function tikla(x) {
+
+                                        var test = document.getElementById("iconcesidi");
+                                        var testClass = test.className;
+                                        var denemem = x.className;
+
+                                        $('.glyphicon-chevron-down').click(function () {
+
+                                             $("ul").css("display", "block");
+                                             $(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+                                        });
+
+                                        $('.glyphicon-chevron-up').click(function () {
+                                            $("ul").css("display", "none");
+
+                                            $(this).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+                                        });
+                                        $("ul").on("click", "li:not(.init)", function () {
+
+                                            $(".glyphicon-chevron-up").removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+                                            document.getElementById("odemesekli").innerHTML = $(this).html();
+                                            $(".list-unstyled").css("display", "none");
+
+
+                                        });
+                                    }
+
+                                  /*  function tikla(x) {
+                                        $('.glyphicon-chevron-down').click(function () {
+                                            alert("tıklandi");
+                                            $(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+
+                                            $("ul").css("display", "block");
+                                            var allOptions = $("ul").children('li:not(.init)');
+                                            $("ul").on("click", "li:not(.init)", function () {
+                                                document.getElementById("odemesekli").innerHTML = $(this).html();
+                                                $(".list-unstyled").css("display", "none");
+                                                $(this).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+
+                                            });
+                                        });
+                                        $('.glyphicon-chevron-up').click(function () {
+                                            $(this).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+                                            $("ul").css("display", "none");
+                                        });
+                                    }*/
+
+
+
+                                </script>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fas fa-wallet fa-2x"></i>&nbsp; <strong style="margin-top:-3px; font-size:10px;">Cüzdan</strong>
+                                <input type="checkbox" style="margin-left:120px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <div>
+                                        <i class="fas fa-signal fa-2x"></i>&nbsp;&nbsp;<strong style="font-size:10px;">Puan</strong>
+                                        <span id="rangeVal" style="top:-20px; position:relative; margin-left:155px; font-weight:bold; font-size:13px; ">5 Puan</span>
+                                        <div>
+                                            <br />
+                                            <strong style="position:relative; top:-20px;">Hepsi</strong>
+                                            <strong style="position:relative;top:-20px; left:163px;">10</strong>
+                                        </div>
+                                    </div>
+                                    <div>
+
+
+                                        <i class="fas fa-long-arrow-alt-left fa-2x" style="top:-8px; position:relative; "></i>
+
+                                        <i class="fas fa-long-arrow-alt-right fa-2x" style="left:170px; top:-10px; position:relative;"></i>
+                                    </div>
+                                    <input class="range" type="range" style="top:-10px; position:relative; bottom:-10px;width:210px;" name="" value="5" min="0" max="10" step="0.5" onchange="rangeSli(this.value)" />
+                                </div>
+                                <script type="text/javascript">
+                                        function rangeSli(value)
+                                        {
+
+                                            if (value == 0) {
+                                                document.getElementById("rangeVal").innerHTML = "Hepsi ";
+                                                $('.range::-webkit-slider-thumb').innerHTML = "";
+                                            }
+                                            else {
+                                                document.getElementById("rangeVal").innerHTML = value +" "+ "Puan";
+                                                $('.range::-webkit-slider-thumb').innerHTML = value;
+
+                                            }
+
+                                        }
+                                </script>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <i class="fas fa-atom fa-2x"></i>&nbsp; <strong style="margin-top:-10px; font-size:10px;">Promosyonlu</strong>
+                                    <input type="checkbox" style="position:relative; left:98px; top:-5px;" />
+                                </div>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="card" style="width: 22rem; margin-top:-3px; ">
+
+                    <div class="card-body">
+                        <div action="javascript:void(0);" id="login-form" class="ys-userInfo">
+                            <div class="form-group"> <label for="UserName" class="control-label">Kullanıcı Adı / E-Posta</label> <div class=""> <input type="hidden" name="LoginPostUrl" value="/giris"> <input type="text" class="form-control" name="UserName" id="UserName" value=""> </div> </div> <div class="form-group"> <label for="password" class="control-label">Şifre</label> <div class=""> <input type="password" class="form-control" name="Password" id="password" value=""> </div> </div> <div class="form-group actions">
+                                <div class="">
+                                    <a href="/sifremi-unuttum" style="color:#ff6508; margin-top:9px; font-size:12px;">Şifremi Unuttum</a> <div class="checkbox pull-right">
+                                        <label style="position:relative; top:-10px;">
+                                            <input type="checkbox" name="RememberMe" checked="checked"><span style="font-size:12px; ">Beni Hatırla</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div> <button type="submit" id="ys-fastlogin-button" class="btn btn-success" style="background-color:#48912a;width:100%; max-height:320px; font-size:12px; font-weight:bold;">ÜYE GİRİŞİ</button> <div class="separate" style="margin-top:8px; font-size:12px; text-align:center;">veya </div>
+                        </div>
+                        <div class="ys-userDetails" style="margin-left:5px; margin-top:5px;">  <a href="/Anasayfa/Facebook" id="btnFacebookLogin" class="btn btn-primary" style="background-color:#334f8d;width:100%; height:35px; font-size:12px; font-weight:bold;"><i class="fab fa-facebook-square fa-2x" style="margin-right:5px;"></i>Facebook ile Giriş Yap</a> </div>
+                        <!-- As a link -->
+                        <nav class="navbar navbar-light bg-light" style="background-color:#bfbfbf;height:10px; margin-bottom:-10px;">
+                            <div style="float:left;">
+                                <br />
+                                <span style="margin-left:-5px; margin-top:15px;">Üyeliğiniz yok mu?</span> <a class="navbar-brand" href="#" style="color:#ff6508; margin-left:80px; margin-top:-20px;">Yeni Üyelik!</a>
+                            </div>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xl-10" style="width:1000px; max-width:100%; margin-top:-60px; margin-bottom:0px; margin-left:15px; margin-right:0px; padding-left:0px; padding-right:0px;">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border:0px; padding:0px;  margin:0px; ">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                yeni
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </nav>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top:-20px; ">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active" style=""></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src='@ilkeleman' />
+                        </div>
+
+                        <div class="item">
+                            <img src='@ikincieleman' />
+                        </div>
+
+                        <div class="item">
+                            <img src='@ucuncueleman' />
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev" style="background-color:black;">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next" style="background-color:black;">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+         
+         
+        </div>
+       
+    </div>
+   
+
+
+        <!-- Small modal -->
+
+</body>  
+
+
+
+
